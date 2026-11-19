@@ -30,9 +30,9 @@ const Footer = () => {
                 <div className="text-center mb-10">
                     <span
                         className="text-[var(--brand-gold)] select-none"
-                        style={{ fontFamily: "'Lalezar', 'Noto Kufi Arabic', serif", fontWeight: 400, fontSize: 'clamp(3rem, 12vw, 5.5rem)', lineHeight: 1.3, textShadow: '0 2px 12px rgba(0,0,0,.35)' }}
+                        style={{ fontFamily: "'Amiri Quran', 'Noto Kufi Arabic', serif", fontWeight: 400, fontSize: 'clamp(3rem, 12vw, 5.5rem)', lineHeight: 1.3, textShadow: '0 2px 12px rgba(0,0,0,.35)' }}
                     >
-                        أبشر
+                        أَبْشِرْ
                     </span>
                 </div>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
