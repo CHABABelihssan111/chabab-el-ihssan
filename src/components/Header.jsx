@@ -35,22 +35,23 @@ const Header = () => {
         }
     };
 
-    const navBtn = 'text-white hover:text-[var(--brand-gold)] font-medium transition cursor-pointer';
+    const navBtn = 'nav-link text-white hover:text-[var(--brand-gold)] transition-colors cursor-pointer';
     const navLinkClass = ({ isActive }) =>
-        `text-white font-medium transition hover:text-[var(--brand-gold)] ${isActive ? 'text-[var(--brand-gold)] font-bold' : ''}`;
-    const mobBtn = 'block py-2 text-white text-start hover:text-[var(--brand-gold)]';
+        `nav-link text-white transition-colors hover:text-[var(--brand-gold)] ${isActive ? 'active text-[var(--brand-gold)]' : ''}`;
+    const mobBtn = 'block w-full py-3 px-2 text-white text-start text-base font-semibold rounded-lg hover:bg-white/10 hover:text-[var(--brand-gold)] transition-colors';
+    const mobLink = 'block py-3 px-2 text-white text-base font-semibold rounded-lg hover:bg-white/10 hover:text-[var(--brand-gold)] transition-colors';
 
     return (
         <>
             {/* Top Bar */}
-            <div className="bg-[var(--brand-navy-dark)] text-white text-sm py-2 border-b-4 border-[var(--brand-gold)]">
-                <div className="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
-                    <div className="flex items-center gap-4 flex-wrap justify-center sm:justify-start">
+            <div className="bg-[var(--brand-navy-dark)] text-white text-sm py-2 border-b-[3px] border-[var(--brand-gold)]">
+                <div className="container mx-auto px-3 sm:px-4 flex flex-col sm:flex-row justify-between items-center gap-1.5 sm:gap-2">
+                    <div className="flex items-center gap-3 sm:gap-4 flex-wrap justify-center sm:justify-start">
                         <span className="flex items-center gap-2 text-xs sm:text-base"><FaHandHoldingHeart /> <Link to="/donate" className="hover:text-[var(--brand-gold)] transition">{t.donate}</Link></span>
                         <span className="flex items-center gap-2 text-xs sm:text-base"><FaHandsHelping /> <Link to="/volunteer" className="hover:text-[var(--brand-gold)] transition">{t.volunteer}</Link></span>
                         <InstallButton />
                     </div>
-                    <div className="flex items-center gap-4 text-xs sm:text-base">
+                    <div className="flex items-center gap-2.5 sm:gap-4 text-xs sm:text-base flex-wrap justify-center">
                         <button className={`hover:text-[var(--brand-gold)] transition ${language === 'ar' ? 'font-bold' : ''}`} onClick={() => changeLanguage('ar')}>العربية</button>
                         <span>|</span>
                         <button className={`hover:text-[var(--brand-gold)] transition ${language === 'fr' ? 'font-bold' : ''}`} onClick={() => changeLanguage('fr')}>Français</button>
@@ -61,28 +62,28 @@ const Header = () => {
             </div>
 
             {/* Branding: (right) خير الناس — logo — (left) أنفعهم للناس. Always Arabic, in every language. */}
-            <div className="bg-white dark:bg-gray-800 py-4 md:py-5">
-                <div dir="ltr" className="container mx-auto px-3 flex items-center justify-between gap-2">
-                    <p className="flex-1 text-left font-display text-xl sm:text-3xl md:text-5xl text-[var(--brand-navy)] dark:text-white leading-tight">
+            <div className="bg-gradient-to-b from-white to-rose-50/60 dark:from-gray-800 dark:to-gray-800 py-3 md:py-5 overflow-hidden">
+                <div dir="ltr" className="container mx-auto px-2 sm:px-3 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-1.5 sm:gap-4">
+                    <p className="text-center font-display text-[clamp(.8rem,4.1vw,1.25rem)] sm:text-3xl md:text-5xl text-[var(--brand-navy)] dark:text-white leading-snug fade-up" style={{ animationDelay: '.15s' }}>
                         أنفعهم للناس
                     </p>
-                    <Link to="/" onClick={handleScrollToTop} className="shrink-0">
-                        <img src={LOGO} alt="شباب الإحسان" fetchpriority="high" decoding="async" className="h-24 sm:h-32 md:h-40 w-auto object-contain" />
+                    <Link to="/" onClick={handleScrollToTop} className="shrink-0 justify-self-center">
+                        <img src={LOGO} alt="شباب الإحسان" fetchpriority="high" decoding="async" className="logo-glow h-[5.5rem] min-[400px]:h-24 sm:h-32 md:h-40 w-auto object-contain" />
                     </Link>
-                    <p className="flex-1 text-right font-display text-xl sm:text-3xl md:text-5xl text-[var(--brand-navy)] dark:text-white leading-tight">
+                    <p className="text-center font-display text-[clamp(.8rem,4.1vw,1.25rem)] sm:text-3xl md:text-5xl text-[var(--brand-navy)] dark:text-white leading-snug fade-up" style={{ animationDelay: '.3s' }}>
                         خير الناس
                     </p>
                 </div>
-                <h1 dir="rtl" className="mt-2 text-center font-display text-2xl sm:text-3xl md:text-4xl text-[var(--brand-red)]">
+                <h1 dir="rtl" className="mt-1 md:mt-2 px-3 text-center font-display text-[clamp(1.05rem,5.4vw,1.5rem)] sm:text-3xl md:text-4xl text-[var(--brand-red)] fade-up" style={{ animationDelay: '.45s' }}>
                     الجمعية الولائية شباب الإحسان
                 </h1>
             </div>
 
             {/* Sticky navigation bar */}
-            <div className="bg-[var(--brand-navy)] dark:bg-[var(--brand-navy-dark)] shadow-md sticky top-0 z-50 border-b-4 border-[var(--brand-gold)]">
-                <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div className="nav-glass dark:bg-[var(--brand-navy-dark)] shadow-lg sticky top-0 z-50 border-b-[3px] border-[var(--brand-gold)]">
+                <div className="container mx-auto px-3 sm:px-4 py-2 md:py-3 flex justify-between items-center">
                     <nav className="hidden md:block">
-                        <ul className="flex items-center gap-8">
+                        <ul className="flex items-center gap-5 lg:gap-8">
                             <li><button onClick={(e) => handleNavigation(e, 'hero')} className={navBtn}>{t.home}</button></li>
                             <li><button onClick={(e) => handleNavigation(e, 'about')} className={navBtn}>{t.about}</button></li>
                             <li><button onClick={(e) => handleNavigation(e, 'programs')} className={navBtn}>{t.programs}</button></li>
@@ -101,7 +102,7 @@ const Header = () => {
                         >
                             {theme === 'light' ? <FaMoon /> : <FaSun />}
                         </button>
-                        <button className="md:hidden text-white text-2xl" onClick={toggleMobileMenu} aria-label="Toggle menu">
+                        <button className="md:hidden text-white text-2xl p-2 rounded-lg hover:bg-white/10 transition-colors" onClick={toggleMobileMenu} aria-label="Toggle menu" aria-expanded={isMobileMenuOpen}>
                             {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
                         </button>
                     </div>
@@ -109,14 +110,14 @@ const Header = () => {
 
                 {/* Mobile Menu */}
                 {isMobileMenuOpen && (
-                    <div className="md:hidden w-full py-2 px-4 border-t border-white/20">
+                    <div className="mobile-menu md:hidden w-full py-2 px-3 border-t border-white/20 max-h-[70vh] overflow-y-auto">
                         <ul className="flex flex-col gap-2">
                             <li><button className={mobBtn} onClick={(e) => { toggleMobileMenu(); handleNavigation(e, 'hero'); }}>{t.home}</button></li>
                             <li><button className={mobBtn} onClick={(e) => { toggleMobileMenu(); handleNavigation(e, 'about'); }}>{t.about}</button></li>
                             <li><button className={mobBtn} onClick={(e) => { toggleMobileMenu(); handleNavigation(e, 'programs'); }}>{t.programs}</button></li>
                             <li><button className={mobBtn} onClick={(e) => { toggleMobileMenu(); handleNavigation(e, 'branches'); }}>{t.branches}</button></li>
-                            <li><NavLink to="/sadaqa-jariya" className="block py-2 text-white hover:text-[var(--brand-gold)]" onClick={toggleMobileMenu}>{sadaqaLabel}</NavLink></li>
-                            <li><NavLink to="/gallery" className="block py-2 text-white hover:text-[var(--brand-gold)]" onClick={toggleMobileMenu}>{t.gallery}</NavLink></li>
+                            <li><NavLink to="/sadaqa-jariya" className={mobLink} onClick={toggleMobileMenu}>{sadaqaLabel}</NavLink></li>
+                            <li><NavLink to="/gallery" className={mobLink} onClick={toggleMobileMenu}>{t.gallery}</NavLink></li>
                             <li><button className={mobBtn} onClick={(e) => { toggleMobileMenu(); handleNavigation(e, 'contact'); }}>{t.contact_us}</button></li>
                         </ul>
                     </div>

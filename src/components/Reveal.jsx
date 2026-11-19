@@ -3,16 +3,17 @@ import { useEffect } from 'react';
 // Animations du site : apparition des sections + cartes en cascade + barre de progression du défilement.
 // Aucun élément déjà visible n'est caché, et les classes sont retirées après l'animation.
 const CSS = `
-.rv{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
-.rv.rv-l{transform:translateX(-40px)}
-.rv.rv-r{transform:translateX(40px)}
+.rv{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1);will-change:opacity,transform}
+.rv.rv-l{transform:translate3d(-40px,0,0)}
+.rv.rv-r{transform:translate3d(40px,0,0)}
 .rv.rv-s{transform:scale(.92)}
+@media (max-width:1023px){.rv.rv-l,.rv.rv-r{transform:translate3d(0,28px,0)}}
 .rv.rv-in{opacity:1;transform:none}
 #scroll-bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#f2b705,#c8102e);z-index:400;pointer-events:none}
 .btn-brand,.btn-brand-light{transition:transform .2s ease,box-shadow .2s ease}
 .btn-brand:hover,.btn-brand-light:hover{transform:translateY(-2px) scale(1.03)}
 @keyframes cei-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-header img[src*="logo"]{animation:cei-float 4s ease-in-out infinite}
+header img[src*="logo"],.logo-glow{animation:cei-float 4s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1!important;transform:none!important;transition:none}#scroll-bar{display:none}header img[src*="logo"]{animation:none}}
 `;
 

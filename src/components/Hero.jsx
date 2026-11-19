@@ -15,7 +15,7 @@ const Hero = () => {
     const watchLabel = { ar: 'شاهد الفيديو', fr: 'Voir la vidéo', en: 'Watch the video' }[language] || 'Watch the video';
 
     return (
-        <section id="home" className="relative overflow-hidden bg-brand-grid text-white py-12 md:py-20">
+        <section id="home" className="relative overflow-hidden bg-brand-grid text-white py-10 md:py-20">
             {/* ===== Decorative background layers ===== */}
             <div aria-hidden="true" className="absolute inset-0 pointer-events-none select-none">
                 {/* Faint photo texture */}
@@ -48,8 +48,8 @@ const Hero = () => {
                     transition={{ duration: 0.7 }}
                     className="md:w-1/2 w-full"
                 >
-                    <div className="paper-torn px-6 py-8 md:px-10 md:py-10 -rotate-1">
-                        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-tight text-[var(--brand-navy)]">
+                    <div className="paper-torn px-5 py-8 sm:px-6 md:px-10 md:py-10 -rotate-1">
+                        <h2 className="font-display text-[clamp(1.55rem,6.4vw,2.2rem)] sm:text-4xl md:text-5xl leading-[1.5] text-[var(--brand-navy)]">
                             {t.hero_title}
                         </h2>
                         <p className="mt-4 text-base md:text-lg text-gray-700 font-medium">
