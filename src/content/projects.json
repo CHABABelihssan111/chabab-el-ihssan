@@ -21,6 +21,11 @@
             "ar": "تنظيف المسجد",
             "fr": "Nettoyage de la mosquée",
             "en": "Mosque cleaning"
+          },
+          "description": {
+            "ar": "حملة أسبوعية لتنظيف المسجد وتهيئته للمصلين بمشاركة متطوعي الجمعية.",
+            "fr": "Campagne hebdomadaire de nettoyage de la mosquée, menée par les bénévoles de l'association.",
+            "en": "A weekly campaign to clean the mosque, carried out by the association's volunteers."
           }
         },
         {
@@ -30,6 +35,11 @@
             "ar": "سلة الخضر",
             "fr": "Panier à légumes",
             "en": "Vegetable basket"
+          },
+          "description": {
+            "ar": "قفة خضر تُحضَّر وتُوزَّع على الأسر المحتاجة بشكل منتظم.",
+            "fr": "Un panier de légumes préparé et distribué régulièrement aux familles dans le besoin.",
+            "en": "A vegetable basket prepared and distributed regularly to families in need."
           }
         }
       ]
@@ -55,6 +65,11 @@
             "ar": "حقيبة إحسان",
             "fr": "Cartable Ihssan",
             "en": "Ihssan school bag"
+          },
+          "description": {
+            "ar": "حملة موسمية لتوفير الأدوات والحقائب المدرسية للتلاميذ المحتاجين عند الدخول المدرسي.",
+            "fr": "Campagne de rentrée pour fournir cartables et fournitures aux élèves dans le besoin.",
+            "en": "A back-to-school campaign providing school bags and supplies to pupils in need."
           }
         },
         {
@@ -64,6 +79,11 @@
             "ar": "قوافل إحسان",
             "fr": "Kawafil Ihssan",
             "en": "Ihssan caravans"
+          },
+          "description": {
+            "ar": "قوافل خيرية تحمل المساعدات إلى المناطق النائية والأسر المحتاجة.",
+            "fr": "Des caravanes solidaires qui apportent de l'aide aux régions isolées et aux familles démunies.",
+            "en": "Charity caravans bringing aid to remote areas and families in need."
           }
         }
       ]
@@ -89,6 +109,11 @@
             "ar": "مطعم إحسان",
             "fr": "Restaurant Ihssan",
             "en": "Ihssan restaurant"
+          },
+          "description": {
+            "ar": "مطعم يقدّم وجبات الإفطار للصائمين والمحتاجين طيلة شهر رمضان.",
+            "fr": "Un restaurant qui sert des repas d'iftar aux jeûneurs et aux personnes dans le besoin pendant le Ramadan.",
+            "en": "A restaurant serving iftar meals to those fasting and in need throughout Ramadan."
           }
         },
         {
@@ -98,6 +123,11 @@
             "ar": "السحور",
             "fr": "Repas du Suhoor",
             "en": "Suhoor meals"
+          },
+          "description": {
+            "ar": "حملة لتوفير وجبات السحور للمحتاجين خلال شهر رمضان.",
+            "fr": "Campagne de repas du suhoor pour les personnes dans le besoin pendant le Ramadan.",
+            "en": "A campaign providing suhoor meals to people in need during Ramadan."
           }
         },
         {
@@ -107,6 +137,11 @@
             "ar": "قفة رمضان",
             "fr": "Couffin du Ramadan",
             "en": "Ramadan food basket"
+          },
+          "description": {
+            "ar": "قفة رمضان تحتوي على المواد الغذائية الأساسية للأسر المحتاجة.",
+            "fr": "Un couffin du Ramadan contenant les denrées de base pour les familles dans le besoin.",
+            "en": "A Ramadan basket with essential food items for families in need."
           }
         },
         {
@@ -116,6 +151,11 @@
             "ar": "قفة العيد",
             "fr": "Couffin de l'Aïd",
             "en": "Eid food basket"
+          },
+          "description": {
+            "ar": "قفة العيد لإدخال الفرحة على الأسر المحتاجة في أيام العيد.",
+            "fr": "Un couffin de l'Aïd pour apporter de la joie aux familles dans le besoin.",
+            "en": "An Eid basket to bring joy to families in need during Eid."
           }
         },
         {
@@ -125,6 +165,11 @@
             "ar": "لبسة العيد",
             "fr": "Vêtements de l'Aïd",
             "en": "Eid clothes"
+          },
+          "description": {
+            "ar": "حملة لتوفير ملابس العيد للأطفال والأسر المحتاجة.",
+            "fr": "Campagne pour offrir des vêtements de l'Aïd aux enfants et familles dans le besoin.",
+            "en": "A campaign providing Eid clothes for children and families in need."
           }
         },
         {
@@ -134,6 +179,11 @@
             "ar": "زكاة الفطر",
             "fr": "Zakat el-Fitr",
             "en": "Zakat al-Fitr"
+          },
+          "description": {
+            "ar": "جمع زكاة الفطر وتوزيعها على مستحقيها قبل صلاة العيد.",
+            "fr": "Collecte et distribution de la Zakat el-Fitr aux ayants droit avant la prière de l'Aïd.",
+            "en": "Collecting and distributing Zakat al-Fitr to those entitled before the Eid prayer."
           }
         }
       ]
@@ -159,6 +209,11 @@
             "ar": "حفر الآبار",
             "fr": "Forage de puits",
             "en": "Well drilling"
+          },
+          "description": {
+            "ar": "حفر آبار لتوفير الماء الصالح للشرب للأسر والقرى المحتاجة.",
+            "fr": "Forage de puits pour fournir de l'eau potable aux familles et villages dans le besoin.",
+            "en": "Drilling wells to provide drinking water to families and villages in need."
           }
         },
         {
@@ -168,6 +223,11 @@
             "ar": "بناء الخزانات",
             "fr": "Construction de citernes",
             "en": "Building water tanks"
+          },
+          "description": {
+            "ar": "بناء خزانات لحفظ المياه وتوفيرها للأسر المحتاجة.",
+            "fr": "Construction de citernes pour stocker l'eau et la mettre à disposition des familles.",
+            "en": "Building tanks to store water and supply families in need."
           }
         },
         {
@@ -177,6 +237,11 @@
             "ar": "آلات تبريد المياه",
             "fr": "Refroidisseurs d'eau",
             "en": "Water coolers"
+          },
+          "description": {
+            "ar": "تركيب آلات تبريد المياه في الأماكن العامة وللأسر المحتاجة.",
+            "fr": "Installation de refroidisseurs d'eau dans les lieux publics et pour les familles démunies.",
+            "en": "Installing water coolers in public places and for families in need."
           }
         },
         {
@@ -186,6 +251,11 @@
             "ar": "توزيع المياه",
             "fr": "Distribution d'eau",
             "en": "Water distribution"
+          },
+          "description": {
+            "ar": "توزيع المياه على الأسر والمناطق التي تعاني من نقص الماء.",
+            "fr": "Distribution d'eau aux familles et aux zones qui manquent d'eau.",
+            "en": "Distributing water to families and areas facing water shortages."
           }
         }
       ]
@@ -226,6 +296,11 @@
             "ar": "بناء مدارس",
             "fr": "Construction d'écoles",
             "en": "Building schools"
+          },
+          "description": {
+            "ar": "مشروع لبناء مدارس جديدة للأطفال في المناطق المحتاجة.",
+            "fr": "Projet de construction de nouvelles écoles pour les enfants des zones défavorisées.",
+            "en": "A project to build new schools for children in underserved areas."
           }
         },
         {
@@ -235,6 +310,11 @@
             "ar": "ترميم مدارس",
             "fr": "Rénovation d'écoles",
             "en": "Renovating schools"
+          },
+          "description": {
+            "ar": "ترميم المدارس القديمة وتهيئتها لتوفير بيئة تعليمية مناسبة.",
+            "fr": "Rénovation d'anciennes écoles pour offrir un cadre d'apprentissage adapté.",
+            "en": "Renovating old schools to provide a suitable learning environment."
           }
         },
         {
@@ -244,6 +324,11 @@
             "ar": "تفريغ الآجر",
             "fr": "Déchargement des briques",
             "en": "Unloading bricks"
+          },
+          "description": {
+            "ar": "تفريغ شاحنات الآجر ضمن أشغال بناء المدرسة بمشاركة المتطوعين.",
+            "fr": "Déchargement de camions de briques pour le chantier de l'école, avec les bénévoles.",
+            "en": "Unloading brick trucks for the school construction site with volunteers."
           }
         },
         {
@@ -253,6 +338,11 @@
             "ar": "الإسمنت",
             "fr": "Ciment",
             "en": "Cement"
+          },
+          "description": {
+            "ar": "توفير الإسمنت اللازم لأشغال البناء والترميم.",
+            "fr": "Fourniture du ciment nécessaire aux travaux de construction et de rénovation.",
+            "en": "Supplying the cement needed for construction and renovation works."
           }
         },
         {
@@ -262,6 +352,11 @@
             "ar": "حديد البناء",
             "fr": "Fer à béton",
             "en": "Rebar"
+          },
+          "description": {
+            "ar": "توفير حديد البناء اللازم لتدعيم هياكل المدارس.",
+            "fr": "Fourniture du fer à béton nécessaire au renforcement des structures des écoles.",
+            "en": "Supplying the rebar needed to reinforce school structures."
           }
         },
         {
@@ -271,6 +366,11 @@
             "ar": "الرمل",
             "fr": "Sable",
             "en": "Sand"
+          },
+          "description": {
+            "ar": "توفير الرمل اللازم لأشغال بناء المدرسة.",
+            "fr": "Fourniture du sable nécessaire aux travaux de construction de l'école.",
+            "en": "Supplying the sand needed for the school construction works."
           }
         },
         {
@@ -280,6 +380,11 @@
             "ar": "الزليج",
             "fr": "Carrelage",
             "en": "Tiles"
+          },
+          "description": {
+            "ar": "تركيب الزليج لتجهيز أقسام المدرسة وإتمام الأشغال.",
+            "fr": "Pose du carrelage pour aménager les salles de classe et finaliser les travaux.",
+            "en": "Laying tiles to finish the classrooms and complete the works."
           }
         },
         {
@@ -289,6 +394,11 @@
             "ar": "هيكل البناء",
             "fr": "Structure du bâtiment",
             "en": "Building structure"
+          },
+          "description": {
+            "ar": "إنجاز هيكل بناء المدرسة وهو من أهم مراحل المشروع.",
+            "fr": "Réalisation de la structure du bâtiment de l'école, étape clé du projet.",
+            "en": "Building the school's structure, a key stage of the project."
           }
         }
       ]
@@ -314,6 +424,11 @@
             "ar": "توزيع قفف",
             "fr": "Distribution de couffins",
             "en": "Food basket distribution"
+          },
+          "description": {
+            "ar": "توزيع القفف الغذائية على الأسر المحتاجة في مفترقات الطرق والأحياء.",
+            "fr": "Distribution de couffins alimentaires aux familles dans le besoin dans les quartiers.",
+            "en": "Distributing food baskets to families in need across neighbourhoods."
           }
         },
         {
@@ -323,6 +438,11 @@
             "ar": "زكاة",
             "fr": "Zakat",
             "en": "Zakat"
+          },
+          "description": {
+            "ar": "جمع الزكاة وتوزيعها على مستحقيها بشفافية وأمانة.",
+            "fr": "Collecte et distribution de la Zakat aux ayants droit avec transparence et honnêteté.",
+            "en": "Collecting and distributing Zakat to those entitled with transparency and trust."
           }
         }
       ]

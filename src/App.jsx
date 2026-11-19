@@ -11,6 +11,8 @@ import ScrollToTopWrapper from './components/ScrollToTopWrapper';
 import ErrorPage from './pages/ErrorPage';
 import settings from './data/settings';
 import Maintenance from './pages/Maintenance';
+import Splash from './components/Splash';
+import Reveal from './components/Reveal';
 
 // ─── Lazy-load all pages ───────────────────────────────────────────────────
 // Each page only downloads when the user actually navigates to it.
@@ -34,6 +36,8 @@ function App() {
         <LanguageProvider>
             <ThemeProvider>
                     <DataProvider>
+                        <Splash />
+                        <Reveal />
                         <Router>
                             <ScrollToTopWrapper />
                             <ErrorBoundary>

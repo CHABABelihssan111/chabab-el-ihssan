@@ -48,7 +48,10 @@ const siteMeta = () => {
   }
 }
 
-// Mode "تعطيل الموقع" : réponse 503 quand activé dans /admin
+
+// Mode "تعطيل الموقع" : si activé dans /admin, le serveur répond 503 (au lieu de 200)
+// pour que Google comprenne que c'est temporaire et ne désindexe pas le site.
+// /admin, /oauth et les fichiers statiques restent accessibles.
 const maintenance503 = () => ({
   name: 'maintenance-503',
   apply: 'build',
@@ -70,7 +73,7 @@ const maintenance503 = () => ({
     let ht = fs.readFileSync(file, 'utf8')
     const marker = '  # --- OAuth'
     ht = ht.includes(marker) ? ht.replace(marker, block + marker) : ht
-    ht += '\n# صفحة 503 = نفس index.html\nErrorDocument 503 /index.html\n'
+    ht += '\n# صفحة 503 = نفس index.html (تعرض رسالة التعطيل)\nErrorDocument 503 /index.html\n'
     fs.writeFileSync(file, ht)
   },
 })

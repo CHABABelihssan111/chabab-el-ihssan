@@ -5,6 +5,7 @@ import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 
 import settings from '../data/settings';
+import InstallButton from './InstallButton';
 
 const LOGO = settings.logo_url;
 
@@ -47,6 +48,7 @@ const Header = () => {
                     <div className="flex items-center gap-4 flex-wrap justify-center sm:justify-start">
                         <span className="flex items-center gap-2 text-xs sm:text-base"><FaHandHoldingHeart /> <Link to="/donate" className="hover:text-[var(--brand-gold)] transition">{t.donate}</Link></span>
                         <span className="flex items-center gap-2 text-xs sm:text-base"><FaHandsHelping /> <Link to="/volunteer" className="hover:text-[var(--brand-gold)] transition">{t.volunteer}</Link></span>
+                        <InstallButton />
                     </div>
                     <div className="flex items-center gap-4 text-xs sm:text-base">
                         <button className={`hover:text-[var(--brand-gold)] transition ${language === 'ar' ? 'font-bold' : ''}`} onClick={() => changeLanguage('ar')}>العربية</button>
