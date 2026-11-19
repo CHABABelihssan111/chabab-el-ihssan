@@ -6,6 +6,7 @@ import { useTheme } from '../context/ThemeContext';
 
 import settings from '../data/settings';
 import InstallButton from './InstallButton';
+import { RamadanChip, RamadanLanterns } from './RamadanKit';
 
 const LOGO = settings.logo_url;
 
@@ -50,6 +51,7 @@ const Header = () => {
                         <span className="flex items-center gap-2 text-xs sm:text-base"><FaHandHoldingHeart /> <Link to="/donate" className="hover:text-[var(--brand-gold)] transition">{t.donate}</Link></span>
                         <span className="flex items-center gap-2 text-xs sm:text-base"><FaHandsHelping /> <Link to="/volunteer" className="hover:text-[var(--brand-gold)] transition">{t.volunteer}</Link></span>
                         <InstallButton />
+                        <RamadanChip />
                     </div>
                     <div className="flex items-center gap-2.5 sm:gap-4 text-xs sm:text-base flex-wrap justify-center">
                         <button className={`hover:text-[var(--brand-gold)] transition ${language === 'ar' ? 'font-bold' : ''}`} onClick={() => changeLanguage('ar')}>العربية</button>
@@ -62,7 +64,8 @@ const Header = () => {
             </div>
 
             {/* Branding: (right) خير الناس — logo — (left) أنفعهم للناس. Always Arabic, in every language. */}
-            <div className="bg-gradient-to-b from-white to-rose-50/60 dark:from-gray-800 dark:to-gray-800 py-3 md:py-5 overflow-hidden">
+            <div className="relative bg-gradient-to-b from-white to-rose-50/60 dark:from-gray-800 dark:to-gray-800 py-3 md:py-5 overflow-hidden">
+                <RamadanLanterns />
                 <div dir="ltr" className="container mx-auto px-2 sm:px-3 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-1.5 sm:gap-4">
                     <p className="text-center font-display text-[clamp(.8rem,4.1vw,1.25rem)] sm:text-3xl md:text-5xl text-[var(--brand-navy)] dark:text-white leading-snug fade-up" style={{ animationDelay: '.15s' }}>
                         أنفعهم للناس

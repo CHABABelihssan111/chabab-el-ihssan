@@ -77,9 +77,33 @@ const maintenance503 = () => ({
     fs.writeFileSync(file, ht)
   },
 })
+// Hors-ligne : génère /precache.json = fichiers à garder en cache par le service worker
+// (application + pages Accueil / Don / Bénévolat avec leurs dépendances + polices + CSS).
+const precacheList = () => ({
+  name: 'precache-list',
+  apply: 'build',
+  generateBundle(_, bundle) {
+    const wanted = /pages\/(Home|Donate|Volunteer)\.jsx$/
+    const files = new Set()
+    const add = (name) => {
+      if (files.has(name) || !bundle[name]) return
+      files.add(name)
+      const c = bundle[name]
+      if (c.type === 'chunk') (c.imports || []).forEach(add)
+    }
+    for (const [name, c] of Object.entries(bundle)) {
+      if (c.type === 'chunk' && (c.isEntry || wanted.test(c.facadeModuleId || ''))) add(name)
+      if (/\.(css|woff2)$/.test(name)) files.add(name)
+    }
+    this.emitFile({
+      type: 'asset', fileName: 'precache.json',
+      source: JSON.stringify({ files: [...files].map((f) => '/' + f) }),
+    })
+  },
+})
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), siteMeta(), maintenance503()],
+  plugins: [react(), tailwindcss(), siteMeta(), maintenance503(), precacheList()],
   build: {
     chunkSizeWarningLimit: 1400
   }

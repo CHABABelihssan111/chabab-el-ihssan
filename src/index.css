@@ -409,3 +409,51 @@ section .rounded-xl, section .rounded-2xl, section .rounded-lg {
 @media (min-width: 1536px) {
     .container { max-width: 1400px; }
 }
+
+
+/* ==========================================================================
+   Mode Ramadan (activé par <RamadanTheme/> : html[data-ramadan="on"])
+   Nuit indigo + or ; le logo et les boutons rouges restent les mêmes.
+   ========================================================================== */
+html[data-ramadan="on"] {
+    --brand-navy: #1d1b4f;
+    --brand-navy-dark: #100f33;
+    --brand-paper: #f4f2fb;
+    --color-blue-50: #eef0ff;
+    --color-blue-100: #e0e3ff;
+    --color-blue-200: #c4c9ff;
+    --color-blue-300: #9ba2f5;
+    --color-blue-400: #6f77e0;
+    --color-blue-500: #4b4fc4;
+    --color-blue-600: #3b3a9c;
+    --color-blue-700: #2e2c7a;
+    --color-blue-800: #25235f;
+    --color-blue-900: #1d1b4f;
+}
+html[data-ramadan="on"] .bg-brand-paper {
+    background-image: radial-gradient(rgba(29, 27, 79, 0.08) 1.5px, transparent 2px);
+}
+html[data-ramadan="on"] .nav-glass {
+    background: linear-gradient(180deg, rgba(29,27,79,.97), rgba(16,15,51,.97));
+}
+html[data-ramadan="on"] .bg-brand-grid {
+    background-image:
+        radial-gradient(1.6px 1.6px at 18% 22%, rgba(255,255,255,.75), transparent 60%),
+        radial-gradient(1.4px 1.4px at 64% 12%, rgba(242,183,5,.9), transparent 60%),
+        radial-gradient(1.8px 1.8px at 82% 48%, rgba(255,255,255,.7), transparent 60%),
+        radial-gradient(1.4px 1.4px at 36% 70%, rgba(242,183,5,.8), transparent 60%),
+        linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    background-size: auto, auto, auto, auto, 28px 28px, 28px 28px;
+}
+html[data-ramadan="on"] .ramadan-chip { animation: chip-glow 2.4s ease-in-out infinite; }
+
+.ramadan-lantern {
+    transform-origin: 50% 0;
+    animation: lantern-swing 4.8s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(242, 183, 5, .55));
+    height: auto;
+}
+@keyframes lantern-swing { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
+@keyframes chip-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(242,183,5,.0); } 50% { box-shadow: 0 0 12px 2px rgba(242,183,5,.55); } }
+@media (prefers-reduced-motion: reduce) { .ramadan-lantern, .ramadan-chip { animation: none !important; } }

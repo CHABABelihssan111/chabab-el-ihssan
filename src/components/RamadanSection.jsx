@@ -4,6 +4,9 @@ import { motion } from 'framer-motion';
 import { FaMoon, FaBoxOpen, FaUsers, FaMinus, FaPlus } from 'react-icons/fa';
 import { useLanguage } from '../context/LanguageContext';
 import { ramadan as r } from '../data/content';
+import {
+    getNow, nextEvent, fmtClock, fmtCountdown, imsakiya, duaForDay, IFTAR_DUA, RL,
+} from '../data/ramadanTools';
 
 const L = {
     ar: {
@@ -39,6 +42,81 @@ const TimeBox = ({ value, label }) => (
         <div className="mt-1 text-xs md:text-sm text-[var(--brand-gold)]">{label}</div>
     </div>
 );
+
+// Compte à rebours Iftar / Imsak + horaires du jour + invocation de l'iftar
+const IftarCard = ({ now, lb }) => {
+    const ev = nextEvent(now);
+    const label = ev.kind === 'iftar' ? lb.iftarIn : ev.kind === 'suhoor' ? lb.suhoorIn : lb.nightIn;
+    const iftarTime = now >= ev.t.maghrib - 1000 && now < ev.t.maghrib + 15 * 60000;
+    return (
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 text-center flex flex-col gap-4">
+            <p className="font-semibold text-gray-600 dark:text-gray-300">{iftarTime ? lb.iftarNow : label}</p>
+            <div dir="ltr" className="font-display text-5xl sm:text-6xl tabular-nums text-[var(--brand-navy)] dark:text-[var(--brand-gold)] leading-none">
+                {fmtCountdown(ev.at - now)}
+            </div>
+            <div className="grid grid-cols-2 gap-3 text-sm">
+                <div className="rounded-xl bg-gray-100 dark:bg-gray-700 py-2.5">
+                    <div className="text-gray-500 dark:text-gray-300">{lb.fajr}</div>
+                    <div dir="ltr" className="text-xl font-bold tabular-nums text-gray-900 dark:text-white">{fmtClock(ev.t.fajr)}</div>
+                </div>
+                <div className="rounded-xl bg-[var(--brand-gold)]/20 py-2.5">
+                    <div className="text-gray-600 dark:text-gray-200">{lb.maghrib}</div>
+                    <div dir="ltr" className="text-xl font-bold tabular-nums text-gray-900 dark:text-white">{fmtClock(ev.t.maghrib)}</div>
+                </div>
+            </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{lb.today} — {lb.approx}</p>
+            <div className="border-t border-dashed border-gray-300 dark:border-gray-600 pt-3">
+                <div className="text-sm font-semibold text-[var(--brand-red)] mb-1">{lb.iftarDua}</div>
+                <p dir="rtl" className="font-display text-lg leading-loose text-gray-800 dark:text-gray-100">{IFTAR_DUA.text}</p>
+                <p dir="rtl" className="text-xs text-gray-500 dark:text-gray-400">{IFTAR_DUA.src}</p>
+            </div>
+        </div>
+    );
+};
+
+// Invocation du jour
+const DuaCard = ({ dayNo, lb }) => {
+    const d = duaForDay(dayNo);
+    return (
+        <div className="relative overflow-hidden rounded-2xl shadow-xl p-6 text-center flex flex-col justify-center gap-3 bg-gradient-to-br from-[var(--brand-gold)] to-amber-300 text-[var(--brand-navy-dark)]">
+            <FaMoon aria-hidden="true" className="absolute -top-4 -start-4 text-8xl opacity-15" />
+            <div className="relative font-bold text-sm sm:text-base">{d.qadr ? lb.qadrTitle : lb.duaTitle(dayNo)}</div>
+            <p dir="rtl" lang="ar" className="relative font-display text-xl sm:text-2xl md:text-3xl leading-[2.1]">{d.text}</p>
+            <p dir="rtl" lang="ar" className="relative text-xs sm:text-sm opacity-80">{d.src}</p>
+        </div>
+    );
+};
+
+// Imsakiya (tableau des 30 jours), repliée par défaut
+const Imsakiya = ({ lb, language, today }) => {
+    const rows = imsakiya(r);
+    const loc = language === 'ar' ? 'ar-DZ-u-nu-latn' : language === 'fr' ? 'fr-FR' : 'en-GB';
+    return (
+        <details className="mt-6 max-w-4xl mx-auto bg-white/10 rounded-2xl text-white group">
+            <summary className="cursor-pointer select-none list-none flex items-center justify-between gap-3 px-5 py-4 font-bold text-lg">
+                <span>📅 {lb.table}</span>
+                <span className="transition-transform group-open:rotate-180" aria-hidden="true">⌄</span>
+            </summary>
+            <div className="overflow-x-auto px-3 pb-4">
+                <table className="w-full text-center text-sm">
+                    <thead className="text-[var(--brand-gold)]">
+                        <tr><th className="py-2">{lb.day}</th><th>{lb.date}</th><th>{lb.fajr}</th><th>{lb.maghrib}</th></tr>
+                    </thead>
+                    <tbody dir="ltr">
+                        {rows.map((d) => (
+                            <tr key={d.n} className={d.n === today ? 'bg-[var(--brand-gold)] text-[var(--brand-navy-dark)] font-bold' : 'odd:bg-white/5'}>
+                                <td className="py-1.5">{d.n}</td>
+                                <td>{d.date.toLocaleDateString(loc, { day: 'numeric', month: 'short', timeZone: 'UTC' })}</td>
+                                <td className="tabular-nums">{fmtClock(d.fajr)}</td>
+                                <td className="tabular-nums">{fmtClock(d.maghrib)}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </details>
+    );
+};
 
 const Stepper = ({ label, value, onChange, lb }) => (
     <div className="flex items-center justify-between gap-3">
@@ -81,9 +159,10 @@ const GiveCard = ({ icon, title, desc, qtyLabel, unitPrice, unitNote = '', lb })
 const RamadanSection = () => {
     const { language } = useLanguage();
     const lb = L[language] || L.ar;
-    const [now, setNow] = useState(() => Date.now());
+    const rl = RL[language] || RL.ar;
+    const [now, setNow] = useState(() => getNow());
     useEffect(() => {
-        const id = setInterval(() => setNow(Date.now()), 1000);
+        const id = setInterval(() => setNow(getNow()), 1000);
         return () => clearInterval(id);
     }, []);
 
@@ -121,6 +200,12 @@ const RamadanSection = () => {
                             </>
                         )}
                     </div>
+                    {started && (
+                        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-6">
+                            <IftarCard now={now} lb={rl} />
+                            <DuaCard dayNo={dayNo} lb={rl} />
+                        </div>
+                    )}
                     <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                         {Number(r.basket_price) > 0 && (
                             <GiveCard icon={<FaBoxOpen />} title={lb.basketTitle} desc={lb.basketDesc} qtyLabel={lb.qtyBasket} unitPrice={Number(r.basket_price)} lb={lb} />
@@ -129,6 +214,7 @@ const RamadanSection = () => {
                             <GiveCard icon={<FaUsers />} title={lb.fitrTitle} desc={lb.fitrDesc} qtyLabel={lb.qtyPersons} unitPrice={Number(r.fitr_amount)} unitNote={lb.perPerson} lb={lb} />
                         )}
                     </div>
+                    {started && <Imsakiya lb={rl} language={language} today={dayNo} />}
                 </motion.div>
             </div>
         </section>

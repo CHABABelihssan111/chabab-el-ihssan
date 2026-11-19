@@ -7,6 +7,8 @@ import AnnouncementBar from './AnnouncementBar';
 import Footer from './Footer';
 import ScrollToTop from './ScrollToTop';
 import { Toaster } from 'react-hot-toast';
+import OfflineBanner from './OfflineBanner';
+import { RamadanTheme } from './RamadanKit';
 
 import { useLanguage } from '../context/LanguageContext';
 
@@ -41,6 +43,8 @@ const Layout = () => {
             </main>
             <Footer />
             <ScrollToTop />
+            <RamadanTheme />
+            <OfflineBanner />
             <Toaster position="top-center" reverseOrder={false} />
         </div>
     );

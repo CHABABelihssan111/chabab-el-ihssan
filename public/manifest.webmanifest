@@ -22,5 +22,45 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
+  ],
+  "id": "/",
+  "categories": [
+    "social",
+    "lifestyle"
+  ],
+  "shortcuts": [
+    {
+      "name": "تبرّع الآن",
+      "short_name": "تبرّع",
+      "url": "/donate",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "تطوّع معنا",
+      "short_name": "تطوّع",
+      "url": "/volunteer",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "المعرض",
+      "short_name": "المعرض",
+      "url": "/gallery",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
   ]
 }
