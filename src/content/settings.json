@@ -29,9 +29,9 @@
     "rip": ""
   },
   "maintenance": {
-    "enabled": false,
+    "enabled": true,
     "message": {
-      "ar": "الموقع معطّل حالياً. سنعود قريباً.",
+      "ar": "الموقع قيد الصيانة حاليا، سنعود قريبا",
       "fr": "Le site est actuellement désactivé. Nous revenons bientôt.",
       "en": "The site is currently disabled. We will be back soon."
     }
