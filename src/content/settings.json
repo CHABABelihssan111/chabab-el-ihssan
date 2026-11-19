@@ -27,8 +27,7 @@
     "ccp_number": "",
     "ccp_key": "",
     "rip": ""
-  }
-},
+  },
   "maintenance": {
     "enabled": false,
     "message": {
@@ -37,3 +36,4 @@
       "en": "The site is currently disabled. We will be back soon."
     }
   }
+}
