@@ -4,8 +4,8 @@
   RewriteEngine On
 
   # --- إجبار https: شيل # من السطرين بعد ما يخدم SSL (قفل 🔒) ---
-  # RewriteCond %{HTTPS} off
-  # RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]
+   RewriteCond %{HTTPS} off
+   RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]
 
   # --- OAuth تاع لوحة /admin (لازم قبل قاعدة React) ---
   RewriteRule ^oauth/auth/?$ /oauth/auth.php [L,QSA]
