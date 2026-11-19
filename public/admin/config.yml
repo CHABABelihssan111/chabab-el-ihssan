@@ -11,7 +11,7 @@ backend:
   auth_endpoint: oauth/auth
 local_backend: true
 locale: ar
-logo_url: https://chababelihssan.com/wp-content/uploads/2025/03/1721052846963.png
+logo_url: /images/logo.png
 site_url: https://chababelihssan.com
 display_url: https://chababelihssan.com
 show_preview_links: false
