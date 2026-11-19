@@ -449,7 +449,7 @@
   function pinOk() { return sess('cei_pin_ok') === '1'; }
   function verifyToken() {
     return Promise.all([api('https://api.github.com/repos/' + REPO), api('https://api.github.com/user')]).then(function (r) {
-      if (!r[0].permissions || !r[0].permissions.push) { store(TOKEN_KEY, null); throw new Error('حسابك (@' + r[1].login + ') ليس له صلاحية التعديل على المستودع. اطلب إضافتك Collaborator.'); }
+      if (!(r[0].owner && r[1] && r[0].owner.login.toLowerCase() === r[1].login.toLowerCase()) && (!r[0].permissions || !r[0].permissions.push)) { store(TOKEN_KEY, null); throw new Error('حسابك (@' + r[1].login + ') ليس له صلاحية التعديل على المستودع. اطلب إضافتك Collaborator.'); }
       S.user = r[1];
     });
   }
