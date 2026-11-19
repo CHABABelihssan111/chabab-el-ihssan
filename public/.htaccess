@@ -1,29 +1,53 @@
+# شباب الإحسان - إعدادات Apache/cPanel
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # --- إجبار https: شيل # من السطرين بعد ما يخدم SSL (قفل 🔒) ---
+  # RewriteCond %{HTTPS} off
+  # RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]
+
+  # --- OAuth تاع لوحة /admin (لازم قبل قاعدة React) ---
   RewriteRule ^oauth/auth/?$ /oauth/auth.php [L,QSA]
   RewriteRule ^oauth/callback/?$ /oauth/callback.php [L,QSA]
 
+  # --- توجيه صفحات React ---
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^ /index.html [L]
 </IfModule>
 
+# --- ضغط الملفات ---
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
 </IfModule>
 
+# --- أمان وكاش ---
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+
+  # ملفات assets (أسماؤها تتبدل مع كل build): كاش طويل
   <FilesMatch "\.(js|css|woff2?)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # ملفات لوحة الأدمن: بلا كاش (باش التعديلات تظهر فورا)
+  <FilesMatch "^(admin|config)\.(js|css|yml)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+
+  <FilesMatch "\.(png|jpe?g|webp|svg|ico)$">
+    Header set Cache-Control "public, max-age=300, must-revalidate"
   </FilesMatch>
   <FilesMatch "^index\.html$">
     Header set Cache-Control "no-cache"
   </FilesMatch>
 </IfModule>
 
+# --- إخفاء ملف حالة رفع FTP ---
 <IfModule mod_authz_core.c>
   <Files ".ftp-deploy-sync-state.json">
     Require all denied
