@@ -29,7 +29,7 @@
     "rip": ""
   },
   "maintenance": {
-    "enabled": false,
+    "enabled": true,
     "message": {
       "ar": "الموقع معطّل حالياً. سنعود قريباً.",
       "fr": "Le site est actuellement désactivé. Nous revenons bientôt.",
