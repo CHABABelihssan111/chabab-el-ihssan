@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "text": {
+    "ar": "قافلة 29 على الابواب",
+    "fr": "",
+    "en": ""
+  },
+  "link": "/donate",
+  "button": {
+    "ar": "تبرّع الآن",
+    "fr": "Faire un don",
+    "en": "Donate"
+  },
+  "color": "gold",
+  "end_date": ""
+}
