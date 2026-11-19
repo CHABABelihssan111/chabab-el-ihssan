@@ -48,8 +48,35 @@ const siteMeta = () => {
   }
 }
 
+// Mode "تعطيل الموقع" : réponse 503 quand activé dans /admin
+const maintenance503 = () => ({
+  name: 'maintenance-503',
+  apply: 'build',
+  closeBundle() {
+    const settings = JSON.parse(
+      fs.readFileSync(new URL('./src/content/settings.json', import.meta.url), 'utf8')
+    )
+    if (!settings.maintenance?.enabled) return
+    const file = new URL('./dist/.htaccess', import.meta.url)
+    if (!fs.existsSync(file)) return
+    const block = [
+      '  # --- MAINTENANCE: الموقع معطّل (503) ---',
+      '  RewriteCond %{REQUEST_URI} !^/(admin|oauth|assets|images|fonts|\\.well-known)(/|$)',
+      '  RewriteCond %{REQUEST_URI} !^/index\\.html$',
+      '  RewriteCond %{REQUEST_URI} !\\.(js|css|png|jpe?g|webp|svg|ico|woff2?|json|xml|txt)$',
+      '  RewriteRule ^ - [R=503,L]',
+      '',
+    ].join('\n')
+    let ht = fs.readFileSync(file, 'utf8')
+    const marker = '  # --- OAuth'
+    ht = ht.includes(marker) ? ht.replace(marker, block + marker) : ht
+    ht += '\n# صفحة 503 = نفس index.html\nErrorDocument 503 /index.html\n'
+    fs.writeFileSync(file, ht)
+  },
+})
+
 export default defineConfig({
-  plugins: [react(), tailwindcss(), siteMeta()],
+  plugins: [react(), tailwindcss(), siteMeta(), maintenance503()],
   build: {
     chunkSizeWarningLimit: 1400
   }
