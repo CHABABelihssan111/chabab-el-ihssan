@@ -267,7 +267,10 @@
           { k: 'id', t: 'hidden' },
           { k: 'image', t: 'image', l: 'صورة المشروع' },
           L3('title', 'اسم المشروع', { req: true }),
-          L3('description', 'وصف المشروع (يظهر يسار الصورة عند الضغط عليها)', { area: true })
+          L3('description', 'وصف المشروع (يظهر يسار الصورة عند الضغط عليها)', { area: true }),
+          { k: 'images', t: 'list', l: 'صور إضافية للمشروع (سلايد)', add: 'صورة إضافية', lab: function (it) { return it.image ? 'صورة' : 'فارغة'; }, f: [
+            { k: 'image', t: 'image', l: 'الصورة' }
+          ] }
         ] }
       ] }
     ] },
@@ -564,7 +567,9 @@
     ].map(function (b, i) { return blk(i + 1, b[0], b[1], b[2], b[3], b[4], b[5]); }).join('');
     var other = blk('', '📰', 'الأخبار', 'صفحة «الأخبار» — إضافة، تعديل، جدولة', 'list|news', null, null) + blk('', '🎯', 'الأنشطة والمشاريع', 'صفحة «برامجنا»', 'list|activities', null, null) + blk('', '🤲', 'الصدقة الجارية', 'مشاريع صفحة «صدقة جارية»', 'ed|sadaqa', null, null) + blk('', '💳', 'معلومات التبرع', 'الحساب البنكي / البريدي', 'ed|payment', null, null);
     var rec = S.commits && S.commits.length ? '<h2>🕒 آخر التعديلات</h2><div class="rec">' + S.commits.map(function (c) { return '<div><span>' + esc((c.commit.message || '').split('\n')[0]) + '</span><small>' + ago(c.commit.author.date) + '</small></div>'; }).join('') + '</div>' : '';
-    return stats + quick + camp + '<h2>🔝 الشريط العلوي <small>(في كل الصفحات)</small></h2><div class="map">' + top + '</div>' +
+    var mOn = !!(ST.maintenance && ST.maintenance.enabled);
+    var mBar = '<div class="blk" data-open="ed|maintenance" tabindex="0" style="margin:0 0 14px;border:2px solid ' + (mOn ? '#c0392b' : '#27ae60') + '"><div class="th"><span>🛑</span></div><div class="tx"><b>🛑 تعطيل الموقع <u class="' + (mOn ? 'off' : 'on') + '">' + (mOn ? 'معطّل حالياً' : 'يعمل') + '</u></b><small>اضغط هنا لتعطيل الموقع أو إعادة تشغيله</small><span class="go">تعديل ‹</span></div></div>';
+    return mBar + stats + quick + camp + '<h2>🔝 الشريط العلوي <small>(في كل الصفحات)</small></h2><div class="map">' + top + '</div>' +
       '<h2>🗺️ خريطة الصفحة الرئيسية <small>(من الأعلى إلى الأسفل كما يراها الزائر — اضغط على أي قسم لتعديله)</small></h2><div class="map">' + order + '</div>' +
       '<h2>📄 صفحات أخرى</h2><div class="map">' + other + '</div>' + rec +
       '<div class="tipbox">💡 كل تعديل يُحفظ في <b>commit واحد</b> ويظهر في الموقع بعد حوالي دقيقة.<br>💡 الصور تُصغَّر تلقائياً — ارفعها كما هي من الهاتف.<br>💡 أخطأت؟ زر «↩️ تراجع عن آخر تغيير» يعيد آخر قسم عدّلته كما كان.</div>';

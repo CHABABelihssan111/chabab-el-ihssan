@@ -21,6 +21,31 @@ const SafeImg = ({ src, alt, className = '', fit = 'object-cover' }) => {
     return <img src={src} alt={alt} className={`${className} ${fit}`} loading="lazy" onError={() => setFailed(true)} />;
 };
 
+// Diaporama d'images d'un sous-projet (flèches + points)
+const ImageSlider = ({ images, alt }) => {
+    const [i, setI] = useState(0);
+    const n = images.length;
+    const go = (d) => setI((i + d + n) % n);
+    const btn = 'absolute top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-black/50 hover:bg-black/80 text-white transition';
+    return (
+        <div className="relative w-full h-64 md:h-[26rem] rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800">
+            <SafeImg src={images[i]} alt={alt} className="w-full h-full" />
+            {n > 1 && (
+                <>
+                    <button type="button" onClick={() => go(-1)} className={`${btn} left-2`} aria-label="Previous image"><FaChevronLeft /></button>
+                    <button type="button" onClick={() => go(1)} className={`${btn} right-2`} aria-label="Next image"><FaChevronRight /></button>
+                    <div className="absolute bottom-3 inset-x-0 flex justify-center gap-2">
+                        {images.map((_, k) => (
+                            <button key={k} type="button" onClick={() => setI(k)} aria-label={`Image ${k + 1}`}
+                                className={`w-2.5 h-2.5 rounded-full transition ${k === i ? 'bg-white scale-125' : 'bg-white/50'}`} />
+                        ))}
+                    </div>
+                </>
+            )}
+        </div>
+    );
+};
+
 // Détail d'un sous-projet : image à droite, description à gauche
 const Lightbox = ({ items, index, onChange, onClose, getTitle, getDesc, dir }) => {
     const count = items.length;
@@ -60,7 +85,7 @@ const Lightbox = ({ items, index, onChange, onClose, getTitle, getDesc, dir }) =
                 {/* Image à droite, description à gauche (ordre visuel fixe) */}
                 <div dir="ltr" className="flex flex-col md:flex-row-reverse gap-6 items-stretch pt-8 md:pt-2">
                     <div className="md:w-1/2 shrink-0">
-                        <SafeImg src={item.image} alt={getTitle(item)} className="w-full h-64 md:h-[26rem] rounded-xl" />
+                        <ImageSlider key={item.id} images={[item.image, ...(item.images || []).map((x) => x.image)].filter(Boolean)} alt={getTitle(item)} />
                     </div>
                     <div dir={dir} className="md:w-1/2 flex flex-col justify-center text-start">
                         <h4 className="text-2xl md:text-3xl font-bold text-[var(--brand-navy)] dark:text-white mb-4">{getTitle(item)}</h4>
