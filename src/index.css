@@ -457,3 +457,6 @@ html[data-ramadan="on"] .ramadan-chip { animation: chip-glow 2.4s ease-in-out in
 @keyframes lantern-swing { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
 @keyframes chip-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(242,183,5,.0); } 50% { box-shadow: 0 0 12px 2px rgba(242,183,5,.55); } }
 @media (prefers-reduced-motion: reduce) { .ramadan-lantern, .ramadan-chip { animation: none !important; } }
+
+/* Amiri Quran (خط النسخ المشكّل، كخط المصحف) — محلي، لكلمة «أبشر» في الفوتر */
+@font-face { font-family: 'Amiri Quran'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/amiri-quran-arabic.woff2') format('woff2'); unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC; }
