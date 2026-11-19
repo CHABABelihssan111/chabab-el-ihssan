@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import settings from '../data/settings';
 import { LanguageContext } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
@@ -9,6 +9,17 @@ const ErrorPage = ({ error, resetErrorBoundary, is404 = false }) => {
     const ctx = useContext(LanguageContext);
     const stored = (() => { try { return localStorage.getItem('language'); } catch { return null; } })();
     const language = ctx?.language || stored || 'en';
+
+    // صفحة غير موجودة: نطلب من Google ألا يفهرسها (الخادم يعيد 200 لأن الموقع SPA)
+    useEffect(() => {
+        if (!is404) return undefined;
+        const m = document.createElement('meta');
+        m.name = 'robots';
+        m.content = 'noindex';
+        document.head.appendChild(m);
+        return () => { m.remove(); };
+    }, [is404]);
+
     // Textes de secours (le Provider peut lui-même être la cause de l'erreur)
     const FALLBACK = {
         ar: { page_not_found: 'الصفحة غير موجودة', error_title: 'حدث خطأ ما', home: 'الرئيسية', try_again: 'إعادة المحاولة' },
