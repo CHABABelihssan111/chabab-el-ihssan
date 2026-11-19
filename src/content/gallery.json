@@ -435,6 +435,106 @@
         "en": "Interior works on the building site"
       },
       "is_featured": false
+    },
+    {
+      "category": "ramadan",
+      "image_url": "/images/gallery/ramadan/iftar-table.webp",
+      "caption": {
+        "ar": "مائدة إفطار الصائمين",
+        "fr": "Table d'iftar",
+        "en": "Iftar table"
+      },
+      "is_featured": false
+    },
+    {
+      "category": "ramadan",
+      "image_url": "/images/gallery/ramadan/iftar-marmite.webp",
+      "caption": {
+        "ar": "تحضير وجبة الإفطار",
+        "fr": "Préparation du repas d'iftar",
+        "en": "Preparing the iftar meal"
+      },
+      "is_featured": false
+    },
+    {
+      "category": "ramadan",
+      "image_url": "/images/gallery/ramadan/iftar-service.webp",
+      "caption": {
+        "ar": "متطوع يقدّم الإفطار",
+        "fr": "Un bénévole sert l'iftar",
+        "en": "A volunteer serves iftar"
+      },
+      "is_featured": false
+    },
+    {
+      "category": "ramadan",
+      "image_url": "/images/gallery/ramadan/iftar-soupe.webp",
+      "caption": {
+        "ar": "طبق الإفطار",
+        "fr": "Plats d'iftar",
+        "en": "Iftar dishes"
+      },
+      "is_featured": false
+    },
+    {
+      "category": "eid",
+      "image_url": "/images/gallery/eid/aid-vetements-enfants.webp",
+      "caption": {
+        "ar": "لبسة العيد للأطفال",
+        "fr": "Habits de l'Aïd pour enfants",
+        "en": "Eid clothes for children"
+      },
+      "is_featured": false
+    },
+    {
+      "category": "eid",
+      "image_url": "/images/gallery/eid/colis-lebsat-aid.webp",
+      "caption": {
+        "ar": "طرود لبسة العيد",
+        "fr": "Colis des habits de l'Aïd",
+        "en": "Eid clothes parcels"
+      },
+      "is_featured": false
+    },
+    {
+      "category": "eid",
+      "image_url": "/images/gallery/eid/aid-adha-mouton.webp",
+      "caption": {
+        "ar": "أضاحي عيد الأضحى",
+        "fr": "Moutons de l'Aïd al-Adha",
+        "en": "Eid al-Adha sheep"
+      },
+      "is_featured": false
+    },
+    {
+      "category": "water",
+      "image_url": "/images/gallery/water/fontaine-eau-quartier.webp",
+      "caption": {
+        "ar": "سبيل ماء في الحي",
+        "fr": "Fontaine d'eau dans le quartier",
+        "en": "Neighbourhood water fountain"
+      },
+      "is_featured": false
+    },
+    {
+      "category": "aid",
+      "image_url": "/images/gallery/okfoulni/maison-construction.webp",
+      "caption": {
+        "ar": "بيت جديد لأسرة محتاجة",
+        "fr": "Nouvelle maison pour une famille",
+        "en": "New home for a family"
+      },
+      "is_featured": false
+    },
+    {
+      "category": "aid",
+      "image_url": "/images/gallery/okfoulni/appareils-installation.webp",
+      "caption": {
+        "ar": "تركيب الأجهزة",
+        "fr": "Installation des appareils",
+        "en": "Installing appliances"
+      },
+      "is_featured": false
     }
   ]
 }

@@ -284,7 +284,8 @@
         { k: 'cpa_account', t: 'text', l: 'رقم حساب CPA', dir: 'ltr' },
         { k: 'ccp_number', t: 'text', l: 'رقم CCP', dir: 'ltr' },
         { k: 'ccp_key', t: 'text', l: 'مفتاح CCP', dir: 'ltr' },
-        { k: 'rip', t: 'text', l: 'RIP', dir: 'ltr' }
+        { k: 'rip', t: 'text', l: 'RIP', dir: 'ltr' },
+        { k: 'iban_eur', t: 'text', l: 'IBAN EUR (يورو)', dir: 'ltr' }
       ] }
     ] },
     branches: { icon: '📍', title: 'الفروع والخريطة', sub: 'المقرات، العناوين، الهاتف', file: 'src/content/branches.json', f: [

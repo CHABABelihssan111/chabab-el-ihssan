@@ -27,6 +27,14 @@ const Footer = () => {
     return (
         <footer id="contact" className="bg-[var(--brand-navy-dark)] dark:bg-black text-white pt-12 pb-6 transition-colors duration-300 border-t-8 border-[var(--brand-gold)]">
             <div className="container mx-auto px-4">
+                <div className="text-center mb-10">
+                    <span
+                        className="text-[var(--brand-gold)] select-none"
+                        style={{ fontFamily: "'Aref Ruqaa', 'Noto Kufi Arabic', serif", fontWeight: 700, fontSize: 'clamp(3rem, 12vw, 5.5rem)', lineHeight: 1.3, textShadow: '0 2px 12px rgba(0,0,0,.35)' }}
+                    >
+                        أبشر
+                    </span>
+                </div>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
                     <div>
                         <h3 className="font-display text-2xl mb-4">

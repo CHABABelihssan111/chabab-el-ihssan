@@ -27,6 +27,7 @@ const copyText = async (text) => {
 const CopyRow = ({ label, value, copyLabel, copiedLabel }) => {
     const [done, setDone] = useState(false);
     const onCopy = async () => {
+        if (!value) return;
         if (await copyText(value)) {
             setDone(true);
             toast.success(copiedLabel);
@@ -38,13 +39,14 @@ const CopyRow = ({ label, value, copyLabel, copiedLabel }) => {
             <div className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1">{label}</div>
             <div className="flex items-stretch gap-2">
                 <div dir="ltr" className="flex-1 min-w-0 bg-gray-100 dark:bg-gray-700 rounded-lg px-3 py-3 font-mono text-sm sm:text-base text-gray-900 dark:text-white break-all select-all text-center">
-                    {value}
+                    {value || '—'}
                 </div>
                 <button
                     type="button"
                     onClick={onCopy}
+                    disabled={!value}
                     aria-label={`${copyLabel}: ${label}`}
-                    className="shrink-0 min-w-[96px] min-h-[48px] px-4 rounded-lg bg-[var(--brand-navy)] hover:bg-[var(--brand-navy-dark)] text-white font-bold flex items-center justify-center gap-2 transition active:scale-95"
+                    className="shrink-0 min-w-[96px] min-h-[48px] px-4 rounded-lg bg-[var(--brand-navy)] hover:bg-[var(--brand-navy-dark)] text-white font-bold flex items-center justify-center gap-2 transition active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                     {done ? <FaCheck /> : <FaCopy />}
                     <span>{done ? copiedLabel : copyLabel}</span>

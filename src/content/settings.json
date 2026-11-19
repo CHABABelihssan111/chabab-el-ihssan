@@ -26,7 +26,9 @@
     "cpa_account": "00400175410023032076",
     "ccp_number": "",
     "ccp_key": "",
-    "rip": ""
+    "rip": "",
+    "iban_eur": "",
+    "messenger_url": "https://m.me/chababelihssan3"
   },
   "maintenance": {
     "enabled": false,

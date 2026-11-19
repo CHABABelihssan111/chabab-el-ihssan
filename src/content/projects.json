@@ -85,12 +85,26 @@
             "fr": "Des caravanes solidaires qui apportent de l'aide aux régions isolées et aux familles démunies.",
             "en": "Charity caravans bringing aid to remote areas and families in need."
           }
+        },
+        {
+          "id": "s3",
+          "image": "/images/gallery/eid/aid-adha-mouton.webp",
+          "title": {
+            "ar": "عيد الأضحى",
+            "fr": "Aïd al-Adha",
+            "en": "Eid al-Adha"
+          },
+          "description": {
+            "ar": "حملة أضحية العيد: نوزّع لحم الأضاحي على الأسر المحتاجة لنُدخل الفرحة إلى بيوتهم.",
+            "fr": "Campagne du sacrifice de l'Aïd : nous distribuons la viande aux familles dans le besoin.",
+            "en": "Eid sacrifice campaign: we distribute the meat to families in need."
+          }
         }
       ]
     },
     {
       "id": "ramadan",
-      "image": "/images/gallery/eid/aid-vetements-fille.webp",
+      "image": "/images/gallery/ramadan/iftar-table.webp",
       "title": {
         "ar": "حملات رمضان",
         "fr": "Campagnes du Ramadan",
@@ -104,7 +118,7 @@
       "items": [
         {
           "id": "r1",
-          "image": "/images/gallery/ramadan/paniers-prets.webp",
+          "image": "/images/gallery/ramadan/iftar-service.webp",
           "title": {
             "ar": "مطعم إحسان",
             "fr": "Restaurant Ihssan",
@@ -118,7 +132,7 @@
         },
         {
           "id": "r2",
-          "image": "/images/gallery/ramadan/distribution-paniers.webp",
+          "image": "/images/gallery/ramadan/iftar-soupe.webp",
           "title": {
             "ar": "السحور",
             "fr": "Repas du Suhoor",
@@ -146,7 +160,7 @@
         },
         {
           "id": "r4",
-          "image": "/images/gallery/ramadan/paniers-prets.webp",
+          "image": "/images/gallery/eid/colis-lebsat-aid.webp",
           "title": {
             "ar": "قفة العيد",
             "fr": "Couffin de l'Aïd",
@@ -160,7 +174,7 @@
         },
         {
           "id": "r5",
-          "image": "/images/gallery/eid/aid-vetements-garcon.webp",
+          "image": "/images/gallery/eid/aid-vetements-enfants.webp",
           "title": {
             "ar": "لبسة العيد",
             "fr": "Vêtements de l'Aïd",
@@ -174,7 +188,7 @@
         },
         {
           "id": "r6",
-          "image": "/images/gallery/eid/viande-aid.webp",
+          "image": "/images/gallery/eid/zakat-saa.svg",
           "title": {
             "ar": "زكاة الفطر",
             "fr": "Zakat el-Fitr",
@@ -232,7 +246,7 @@
         },
         {
           "id": "q3",
-          "image": "/images/gallery/water/fontaine-sadaqa-jariya.webp",
+          "image": "/images/gallery/water/fontaine-eau-quartier.webp",
           "title": {
             "ar": "آلات تبريد المياه",
             "fr": "Refroidisseurs d'eau",
@@ -262,7 +276,7 @@
     },
     {
       "id": "okfoulni",
-      "image": "/images/gallery/aid/mascotte-enfants.webp",
+      "image": "/images/gallery/okfoulni/maison-construction.webp",
       "title": {
         "ar": "مشاريع اكفلني",
         "fr": "Projets Okfoulni",
@@ -273,7 +287,36 @@
         "fr": "Les projets de parrainage.",
         "en": "Sponsorship projects."
       },
-      "items": []
+      "items": [
+        {
+          "id": "k1",
+          "image": "/images/gallery/okfoulni/maison-construction.webp",
+          "title": {
+            "ar": "بناء بيت لأسرة محتاجة",
+            "fr": "Construction d'une maison pour une famille",
+            "en": "Building a home for a family in need"
+          },
+          "description": {
+            "ar": "نبني بيتاً كريماً لأسرة محتاجة ونجهّزه ليكون مأوى آمناً.",
+            "fr": "Nous construisons une maison digne pour une famille démunie.",
+            "en": "We build a decent home for a family in need."
+          }
+        },
+        {
+          "id": "k2",
+          "image": "/images/gallery/okfoulni/appareils-installation.webp",
+          "title": {
+            "ar": "تجهيز البيت بالأجهزة",
+            "fr": "Équipement en appareils",
+            "en": "Home appliances"
+          },
+          "description": {
+            "ar": "نوفّر ونركّب الأجهزة الكهرومنزلية للأسر المكفولة.",
+            "fr": "Nous fournissons et installons les appareils électroménagers.",
+            "en": "We supply and install home appliances for sponsored families."
+          }
+        }
+      ]
     },
     {
       "id": "wartil",
@@ -433,7 +476,7 @@
         },
         {
           "id": "m2",
-          "image": "/images/gallery/aid/livraison-couvertures-huile.webp",
+          "image": "/images/gallery/eid/zakat-saa.svg",
           "title": {
             "ar": "زكاة",
             "fr": "Zakat",

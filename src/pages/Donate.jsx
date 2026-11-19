@@ -2,9 +2,10 @@ import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { motion } from 'framer-motion';
-import { FaHeart, FaUniversity, FaMobileAlt } from 'react-icons/fa';
+import { FaHeart, FaUniversity, FaMobileAlt, FaEuroSign } from 'react-icons/fa';
 import PageHeader from '../components/PageHeader';
 import PayCard from '../components/PayCard';
+import ReceiptForm from '../components/ReceiptForm';
 import settings from '../data/settings';
 
 const L = {
@@ -14,6 +15,8 @@ const L = {
         ccpNumber: 'رقم الحساب البريدي CCP', ccpKey: 'المفتاح (Clé)', rip: 'RIP',
         cpaTitle: 'تحويل بنكي (CPA)', cpaAccount: 'رقم الحساب', holder: 'اسم صاحب الحساب',
         amountBanner: (a) => `مبلغ تبرعك: ${a} دج — حوّله إلى أحد الحسابين أدناه`,
+        euroTitle: 'حساب باليورو (IBAN EUR)', iban: 'IBAN EUR',
+        note: 'يرجى إرسال وصل الدفع إلى حساب Messenger الخاص بالجمعية',
         steps: 'كيف أتبرع؟ ١) انسخ رقم الحساب ٢) حوّل المبلغ من تطبيق بريدي موب أو بنكك ٣) أرسل لنا الوصل على بريدنا الإلكتروني لنوثّق تبرعك.',
     },
     fr: {
@@ -22,6 +25,8 @@ const L = {
         ccpNumber: 'Numéro de compte CCP', ccpKey: 'Clé', rip: 'RIP',
         cpaTitle: 'Virement bancaire (CPA)', cpaAccount: 'N° de compte', holder: 'Titulaire du compte',
         amountBanner: (a) => `Votre don : ${a} DA — à virer sur l'un des comptes ci-dessous`,
+        euroTitle: 'Compte en euros (IBAN EUR)', iban: 'IBAN EUR',
+        note: "Merci d'envoyer le reçu de paiement sur le compte Messenger de l'association",
         steps: '1) Copiez le numéro de compte 2) Faites le virement depuis BaridiMob ou votre banque 3) Envoyez-nous le reçu par e-mail pour que nous enregistrions votre don.',
     },
     en: {
@@ -30,6 +35,8 @@ const L = {
         ccpNumber: 'CCP account number', ccpKey: 'Key (Clé)', rip: 'RIP',
         cpaTitle: 'Bank transfer (CPA)', cpaAccount: 'Account number', holder: 'Account holder',
         amountBanner: (a) => `Your donation: ${a} DZD — send it to one of the accounts below`,
+        euroTitle: 'Euro account (IBAN EUR)', iban: 'IBAN EUR',
+        note: "Please send the payment receipt to the association's Messenger account",
         steps: '1) Copy the account number 2) Transfer from BaridiMob or your bank 3) Email us the receipt so we can record your gift.',
     },
 };
@@ -55,7 +62,11 @@ const Donate = () => {
         pay.cpa_account && { label: lb.cpaAccount, value: pay.cpa_account },
         pay.account_name && { label: lb.holder, value: pay.account_name },
     ].filter(Boolean);
-
+    const euroRows = [
+        { label: lb.iban, value: pay.iban_eur || '' },
+        pay.account_name && { label: lb.holder, value: pay.account_name },
+    ].filter(Boolean);
+    const messenger = pay.messenger_url || 'https://m.me/chababelihssan3';
 
     return (
         <motion.div
@@ -93,6 +104,22 @@ const Donate = () => {
                             copiedLabel={lb.copied}
                         />
                     )}
+
+                    <p className="text-center text-green-600 dark:text-green-400 font-bold leading-relaxed">
+                        <a href={messenger} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">
+                            {lb.note}
+                        </a>
+                    </p>
+
+                    <PayCard
+                        icon={<FaEuroSign />}
+                        title={lb.euroTitle}
+                        rows={euroRows}
+                        copyLabel={lb.copy}
+                        copiedLabel={lb.copied}
+                    />
+
+                    <ReceiptForm />
                 </div>
 
                 <div className="mt-16 text-center bg-blue-50 dark:bg-gray-800 p-8 md:p-10 rounded-2xl max-w-4xl mx-auto transition-colors duration-300">
