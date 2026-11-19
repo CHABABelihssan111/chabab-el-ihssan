@@ -9,6 +9,8 @@ import ScrollToTopWrapper from './components/ScrollToTopWrapper';
 // ErrorPage is statically imported (not lazy) because ErrorBoundary uses it
 // synchronously — lazy() here would conflict with the static import and produce a Vite warning.
 import ErrorPage from './pages/ErrorPage';
+import settings from './data/settings';
+import Maintenance from './pages/Maintenance';
 
 // ─── Lazy-load all pages ───────────────────────────────────────────────────
 // Each page only downloads when the user actually navigates to it.
@@ -27,6 +29,7 @@ const SadaqaJariya = lazy(() => import('./pages/SadaqaJariya'));
 // Le Suspense (squelette de page) est dans Layout : en-tête et pied de page restent visibles.
 
 function App() {
+    if (settings.maintenance?.enabled) return <Maintenance message={settings.maintenance.message} />;
     return (
         <LanguageProvider>
             <ThemeProvider>

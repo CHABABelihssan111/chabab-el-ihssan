@@ -218,6 +218,12 @@
       { k: 'color', t: 'select', l: 'اللون', o: [['red', 'أحمر'], ['green', 'أخضر'], ['gold', 'ذهبي'], ['dark', 'أسود']] },
       { k: 'end_date', t: 'date', l: 'يختفي تلقائياً بعد يوم', h: 'اتركه فارغاً ليبقى ظاهراً', nullable: false }
     ] },
+    maintenance: { icon: '🛑', title: 'تعطيل الموقع', sub: 'إيقاف الموقع مؤقتاً مع رسالة «الموقع معطّل حالياً»', file: 'src/content/settings.json', f: [
+      { k: 'maintenance', t: 'group', l: 'تعطيل الموقع', f: [
+        { k: 'enabled', t: 'bool', l: '🛑 تعطيل الموقع (الزوار يرون أنه معطّل حالياً)', h: 'أوقف هذا الخيار لإعادة الموقع للعمل بشكل عادي.' },
+        L3('message', 'رسالة تظهر للزوار', { area: true })
+      ] }
+    ] },
     hero: { icon: '🏠', title: 'الواجهة الكبيرة', sub: 'أول صورة يراها الزائر (+ فيديو اختياري)', file: 'src/content/media.json', f: [
       { k: 'heroImage', t: 'image', l: 'الصورة الكبيرة', h: '📐 الأفضل: أفقية 1600×900 أو أكبر' },
       { k: 'heroVideo', t: 'group', l: '🎬 فيديو الصفحة الرئيسية (اختياري)', f: [
@@ -260,7 +266,8 @@
         { k: 'items', t: 'list', l: 'المشاريع داخل الفئة', add: 'مشروع جديد', lab: function (it) { return T3(it.title); }, f: [
           { k: 'id', t: 'hidden' },
           { k: 'image', t: 'image', l: 'صورة المشروع' },
-          L3('title', 'اسم المشروع', { req: true })
+          L3('title', 'اسم المشروع', { req: true }),
+          L3('description', 'وصف المشروع (يظهر يسار الصورة عند الضغط عليها)', { area: true })
         ] }
       ] }
     ] },
@@ -541,7 +548,7 @@
     var cb = CA ? (CA.enabled === false ? ['off', 'مخفية'] : ['on', 'ظاهرة']) : null;
     var rm = cached('src/content/ramadan.json'), rb = rm ? (rm.enabled ? ['on', 'مفعّل'] : ['off', 'متوقف']) : null;
     var sf = ST.social_feed, sb = sf ? (sf.enabled === false ? ['off', 'مخفي'] : ['on', 'ظاهر']) : null;
-    var top = blk('', '📢', 'شريط الإعلان', 'يظهر أعلى كل صفحات الموقع', 'ed|announce', null, annB) + blk('', '🏷️', 'الشعار والاتصال', 'الشعار، الهاتف، البريد، العنوان', 'ed|contact', ST.logo_url, null);
+    var top = blk('', '📢', 'شريط الإعلان', 'يظهر أعلى كل صفحات الموقع', 'ed|announce', null, annB) + blk('', '🏷️', 'الشعار والاتصال', 'الشعار، الهاتف، البريد، العنوان', 'ed|contact', ST.logo_url, null) + blk('', '🛑', 'تعطيل الموقع', 'إيقاف / تشغيل الموقع بضغطة واحدة', 'ed|maintenance', null, (ST.maintenance && ST.maintenance.enabled) ? ['off', 'معطّل حالياً'] : ['on', 'يعمل']);
     var order = [
       ['🏠', 'الواجهة الكبيرة', 'أول صورة يراها الزائر (+ فيديو اختياري)', 'ed|hero', M.heroImage, null],
       ['🌙', 'وضع رمضان', 'العدّ التنازلي + سلة رمضان + زكاة الفطر', 'ed|ramadan', null, rb],
