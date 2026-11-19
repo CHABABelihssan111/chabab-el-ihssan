@@ -28,4 +28,12 @@
     "ccp_key": "",
     "rip": ""
   }
-}
+},
+  "maintenance": {
+    "enabled": false,
+    "message": {
+      "ar": "الموقع معطّل حالياً. سنعود قريباً.",
+      "fr": "Le site est actuellement désactivé. Nous revenons bientôt.",
+      "en": "The site is currently disabled. We will be back soon."
+    }
+  }
