@@ -127,7 +127,7 @@
       "is_featured": false
     },
     {
-      "category": "ramadan",
+      "category": "aid",
       "image_url": "/images/gallery/ramadan/panier-legumes-preparation.webp",
       "caption": {
         "ar": "قفة الخضر",
@@ -257,7 +257,7 @@
       "is_featured": false
     },
     {
-      "category": "eid",
+      "category": "caravans",
       "image_url": "/images/gallery/eid/viande-aid.webp",
       "caption": {
         "ar": "توزيع اللحوم",
@@ -507,7 +507,7 @@
       "is_featured": false
     },
     {
-      "category": "eid",
+      "category": "aid",
       "image_url": "/images/gallery/eid/aid-adha-mouton.webp",
       "caption": {
         "ar": "أضاحي عيد الأضحى",
