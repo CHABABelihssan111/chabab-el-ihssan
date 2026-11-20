@@ -67,6 +67,46 @@
   ],
   "images": [
     {
+      "image_url": "/images/uploads/img-mwoztnayiwh.webp",
+      "caption": {
+        "ar": "",
+        "fr": "",
+        "en": ""
+      },
+      "category": "eid",
+      "is_featured": false
+    },
+    {
+      "image_url": "/images/uploads/img-mwoztnhrjyc.webp",
+      "caption": {
+        "ar": "",
+        "fr": "",
+        "en": ""
+      },
+      "category": "eid",
+      "is_featured": false
+    },
+    {
+      "image_url": "/images/uploads/img-mwoztbvdhek.webp",
+      "caption": {
+        "ar": "",
+        "fr": "",
+        "en": ""
+      },
+      "category": "aid",
+      "is_featured": false
+    },
+    {
+      "image_url": "/images/uploads/img-mwozsw3dt7q.webp",
+      "caption": {
+        "ar": "",
+        "fr": "",
+        "en": ""
+      },
+      "category": "ramadan",
+      "is_featured": false
+    },
+    {
       "image_url": "/images/uploads/img-mwomwcoff5u.webp",
       "caption": {
         "ar": "",
