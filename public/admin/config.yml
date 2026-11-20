@@ -944,6 +944,10 @@ collections:
         name: cpa_account
         widget: string
         required: false
+      - label: حساب اليورو (IBAN EUR)
+        name: iban_eur
+        widget: string
+        required: false
     - label: العنوان
       name: address
       widget: object

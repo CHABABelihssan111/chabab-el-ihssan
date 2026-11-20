@@ -132,7 +132,7 @@
         },
         {
           "id": "r2",
-          "image": "/images/gallery/ramadan/iftar-soupe.webp",
+          "image": "/images/gallery/ramadan/suhoor-distribution.webp",
           "title": {
             "ar": "السحور",
             "fr": "Repas du Suhoor",
@@ -188,7 +188,7 @@
         },
         {
           "id": "r6",
-          "image": "/images/gallery/eid/zakat-saa.svg",
+          "image": "/images/gallery/ramadan/paniers-prets.webp",
           "title": {
             "ar": "زكاة الفطر",
             "fr": "Zakat el-Fitr",
@@ -476,7 +476,7 @@
         },
         {
           "id": "m2",
-          "image": "/images/gallery/eid/zakat-saa.svg",
+          "image": "/images/gallery/ramadan/paniers-prets.webp",
           "title": {
             "ar": "زكاة",
             "fr": "Zakat",

@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { FaHeart, FaUniversity, FaMobileAlt, FaEuroSign } from 'react-icons/fa';
 import PageHeader from '../components/PageHeader';
 import PayCard from '../components/PayCard';
-import ReceiptForm from '../components/ReceiptForm';
 import settings from '../data/settings';
 
 const L = {
@@ -16,7 +15,7 @@ const L = {
         cpaTitle: 'تحويل بنكي (CPA)', cpaAccount: 'رقم الحساب', holder: 'اسم صاحب الحساب',
         amountBanner: (a) => `مبلغ تبرعك: ${a} دج — حوّله إلى أحد الحسابين أدناه`,
         euroTitle: 'حساب باليورو (IBAN EUR)', iban: 'IBAN EUR',
-        note: 'يرجى إرسال وصل الدفع إلى حساب Messenger الخاص بالجمعية',
+        note: 'يرجى إرسال صورة وصل الدفع إلى حساب Messenger الخاص بالجمعية، مع ذكر المبلغ الذي أرسلته والحملة التي تريد التبرع لها.',
         steps: 'كيف أتبرع؟ ١) انسخ رقم الحساب ٢) حوّل المبلغ من تطبيق بريدي موب أو بنكك ٣) أرسل لنا الوصل على بريدنا الإلكتروني لنوثّق تبرعك.',
     },
     fr: {
@@ -26,7 +25,7 @@ const L = {
         cpaTitle: 'Virement bancaire (CPA)', cpaAccount: 'N° de compte', holder: 'Titulaire du compte',
         amountBanner: (a) => `Votre don : ${a} DA — à virer sur l'un des comptes ci-dessous`,
         euroTitle: 'Compte en euros (IBAN EUR)', iban: 'IBAN EUR',
-        note: "Merci d'envoyer le reçu de paiement sur le compte Messenger de l'association",
+        note: "Merci d'envoyer la photo du reçu de paiement sur le compte Messenger de l'association, en précisant le montant versé et la campagne que vous souhaitez soutenir.",
         steps: '1) Copiez le numéro de compte 2) Faites le virement depuis BaridiMob ou votre banque 3) Envoyez-nous le reçu par e-mail pour que nous enregistrions votre don.',
     },
     en: {
@@ -36,7 +35,7 @@ const L = {
         cpaTitle: 'Bank transfer (CPA)', cpaAccount: 'Account number', holder: 'Account holder',
         amountBanner: (a) => `Your donation: ${a} DZD — send it to one of the accounts below`,
         euroTitle: 'Euro account (IBAN EUR)', iban: 'IBAN EUR',
-        note: "Please send the payment receipt to the association's Messenger account",
+        note: "Please send a photo of the payment receipt to the association's Messenger account, stating the amount you sent and which campaign you want to donate to.",
         steps: '1) Copy the account number 2) Transfer from BaridiMob or your bank 3) Email us the receipt so we can record your gift.',
     },
 };
@@ -111,15 +110,16 @@ const Donate = () => {
                         </a>
                     </p>
 
-                    <PayCard
-                        icon={<FaEuroSign />}
-                        title={lb.euroTitle}
-                        rows={euroRows}
-                        copyLabel={lb.copy}
-                        copiedLabel={lb.copied}
-                    />
+                    {pay.iban_eur && (
+                        <PayCard
+                            icon={<FaEuroSign />}
+                            title={lb.euroTitle}
+                            rows={euroRows}
+                            copyLabel={lb.copy}
+                            copiedLabel={lb.copied}
+                        />
+                    )}
 
-                    <ReceiptForm />
                 </div>
 
                 <div className="mt-16 text-center bg-blue-50 dark:bg-gray-800 p-8 md:p-10 rounded-2xl max-w-4xl mx-auto transition-colors duration-300">

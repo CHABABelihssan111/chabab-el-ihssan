@@ -113,7 +113,7 @@ const Footer = () => {
                     <div className="text-gray-400 text-sm text-center">
                         <p>{{ ar: 'جميع الحقوق محفوظة', fr: 'Tous droits réservés', en: 'All rights reserved' }[language] || 'All rights reserved'}</p>
                         <p dir="ltr" className="mt-1">
-                            {{ ar: 'المطور', fr: 'Développeur', en: 'Developer' }[language] || 'Developer'}: <span className="text-white font-semibold">Ferhat Zehani</span>
+                            {{ ar: 'المطور', fr: 'Développeur', en: 'Developer' }[language] || 'Developer'}: <span className="text-white font-semibold">Zehani</span>
                         </p>
                     </div>
                     <div className="flex gap-6">
