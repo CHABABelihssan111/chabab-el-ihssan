@@ -67,6 +67,16 @@
   ],
   "images": [
     {
+      "image_url": "/images/uploads/img-mwomwcoff5u.webp",
+      "caption": {
+        "ar": "",
+        "fr": "",
+        "en": ""
+      },
+      "category": "aid",
+      "is_featured": false
+    },
+    {
       "category": "construction",
       "image_url": "/images/gallery/construction/chantier-structure.webp",
       "caption": {
