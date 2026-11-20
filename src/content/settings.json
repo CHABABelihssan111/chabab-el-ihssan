@@ -31,7 +31,7 @@
     "messenger_url": "https://m.me/chababelihssan3"
   },
   "maintenance": {
-    "enabled": false,
+    "enabled": true,
     "message": {
       "ar": "الموقع قيد الصيانة حاليا، سنعود قريبا ",
       "fr": "Le site est actuellement désactivé. Nous revenons bientôt.",
