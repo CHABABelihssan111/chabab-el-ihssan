@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, lazy } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
 import { branches } from '../data/siteData';
-import BranchMap from './BranchMap';
+import LazyOnView from './LazyOnView';
+
+const BranchMap = lazy(() => import('./BranchMap'));
 
 const Branches = () => {
     const { t } = useLanguage();
@@ -33,11 +35,13 @@ const Branches = () => {
                     <div className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md h-[500px] flex flex-col">
                         <div className="relative bg-gray-200 dark:bg-gray-600 rounded-lg overflow-hidden flex-grow z-0">
                             {branches.length > 0 ? (
-                                <BranchMap
-                                    branches={branches}
-                                    selectedCity={selectedCity}
-                                    onSelectBranch={(branch) => setSelectedCity(branch.city.toLowerCase())}
-                                />
+                                <LazyOnView>
+                                    <BranchMap
+                                        branches={branches}
+                                        selectedCity={selectedCity}
+                                        onSelectBranch={(branch) => setSelectedCity(branch.city.toLowerCase())}
+                                    />
+                                </LazyOnView>
                             ) : (
                                 <div className="flex items-center justify-center h-full text-gray-500 dark:text-gray-400">
                                     {t.no_branches || "No branches configured"}

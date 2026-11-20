@@ -105,6 +105,17 @@ const precacheList = () => ({
 export default defineConfig({
   plugins: [react(), tailwindcss(), siteMeta(), maintenance503(), precacheList()],
   build: {
-    chunkSizeWarningLimit: 1400
+    chunkSizeWarningLimit: 600,
+    cssCodeSplit: true,
+    target: 'es2020',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ['react', 'react-dom', 'react-router-dom'],
+          motion: ['framer-motion'],
+          leaflet: ['leaflet', 'react-leaflet'],
+        },
+      },
+    },
   }
 })
