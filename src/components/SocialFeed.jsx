@@ -282,7 +282,7 @@ const SocialFeed = () => {
                 <div className="text-center mb-12">
                     <h2 className="font-display text-3xl md:text-4xl text-[var(--brand-navy)] dark:text-gray-100 mb-4">{lb.title}</h2>
                     <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">{lb.desc}</p>
-                    <div className="w-24 h-1.5 rounded-full -rotate-2 bg-[var(--brand-red)] mx-auto mt-4"></div>
+                    <div className="heading-bar mx-auto mt-4"></div>
                 </div>
                 <motion.div
                     initial={{ opacity: 0, y: 24 }}

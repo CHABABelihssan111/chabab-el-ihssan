@@ -1,103 +1,141 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { FaHeart, FaHandHoldingHeart, FaStar, FaHandsHelping, FaPlay } from 'react-icons/fa';
-import { heroVideo, heroImage } from '../data/media';
+import { FaPlay, FaHandHoldingHeart, FaHandsHelping, FaChevronDown } from 'react-icons/fa';
+import { heroVideo, heroSlides } from '../data/media';
 import VideoModal from './VideoModal';
 
-// Poster-style hero matching the 2026 Instagram identity: navy grid paper,
-// torn white paper title, red accents, taped polaroid photo.
+const INTERVAL = 5200;
+const DOTS = Array.from({ length: 14 }, (_, i) => ({ x: (i * 37) % 100, s: 4 + ((i * 5) % 8), d: 8 + ((i * 3) % 9), t: -((i * 2.3) % 10) }));
+
+// Accueil : fond en fondu + zoom lent, texte à gauche/droite, pile de photos qui tournent.
 const Hero = () => {
     const { language, t } = useLanguage();
     const [playing, setPlaying] = useState(false);
+    const [idx, setIdx] = useState(0);
+    const [paused, setPaused] = useState(false);
+    const n = heroSlides.length;
+    const tilt = useRef(null);
+    const onMove = (e) => {
+        const el = tilt.current;
+        if (!el || e.pointerType === 'touch') return;
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--ry', `${((e.clientX - r.left) / r.width - 0.5) * 12}deg`);
+        el.style.setProperty('--rx', `${-((e.clientY - r.top) / r.height - 0.5) * 10}deg`);
+    };
+    const onLeave = () => { setPaused(false); tilt.current?.style.setProperty('--rx', '0deg'); tilt.current?.style.setProperty('--ry', '0deg'); };
     const hasVideo = !!(heroVideo.src || heroVideo.youtubeId);
     const watchLabel = { ar: 'شاهد الفيديو', fr: 'Voir la vidéo', en: 'Watch the video' }[language] || 'Watch the video';
 
+    useEffect(() => {
+        if (paused || n < 2) return undefined;
+        if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return undefined;
+        const id = setTimeout(() => setIdx((i) => (i + 1) % n), INTERVAL);
+        return () => clearTimeout(id);
+    }, [idx, paused, n]);
+
+    // Position de chaque carte dans la pile : 0 = devant, 1-2 = derrière, le reste caché.
+    const cardStyle = (i) => {
+        const o = (i - idx + n) % n;
+        const pos = [
+            'translate3d(0,0,0) rotate(0deg) scale(1)',
+            'translate3d(7%,-5%,0) rotate(6deg) scale(.92)',
+            'translate3d(-7%,-9%,0) rotate(-6deg) scale(.85)',
+        ][o] || 'translate3d(0,-12%,0) scale(.75)';
+        return { transform: pos, opacity: o === 0 ? 1 : o < 3 ? 0.9 - o * 0.2 : 0, zIndex: n - o };
+    };
+
     return (
-        <section id="home" className="relative overflow-hidden bg-brand-grid text-white py-10 md:py-20">
-            {/* ===== Decorative background layers ===== */}
-            <div aria-hidden="true" className="absolute inset-0 pointer-events-none select-none">
-                {/* Faint photo texture */}
-                <img src={heroImage} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-[0.12] mix-blend-luminosity" />
-                {/* Soft colour glows */}
-                <div className="absolute -top-32 -start-32 w-[28rem] h-[28rem] rounded-full bg-[var(--brand-red)] opacity-40 blur-3xl" />
-                <div className="absolute top-1/3 -end-40 w-[30rem] h-[30rem] rounded-full bg-[var(--brand-gold)] opacity-20 blur-3xl" />
-                <div className="absolute -bottom-24 start-1/3 w-[24rem] h-[24rem] rounded-full bg-[var(--brand-navy-dark)] opacity-60 blur-3xl" />
-                {/* Dark vignette on the edges */}
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(40,0,15,0.55)_100%)]" />
-                {/* Rings */}
-                <div className="absolute top-10 end-1/4 w-40 h-40 rounded-full border-4 border-dashed border-[var(--brand-gold)]/30 animate-[spin_40s_linear_infinite]" />
-                <div className="absolute bottom-24 start-8 w-24 h-24 rounded-full border-4 border-white/15" />
-                {/* Floating icons */}
-                <motion.div animate={{ y: [0, -18, 0], rotate: [0, 8, 0] }} transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }} className="absolute top-16 start-[8%] text-[var(--brand-gold)]/40 text-5xl"><FaHeart /></motion.div>
-                <motion.div animate={{ y: [0, 20, 0], rotate: [0, -10, 0] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }} className="absolute top-1/2 end-[6%] text-white/20 text-6xl"><FaHandHoldingHeart /></motion.div>
-                <motion.div animate={{ y: [0, -14, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }} className="absolute bottom-1/3 start-[4%] text-white/20 text-4xl"><FaHandsHelping /></motion.div>
-                <motion.div animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 3, repeat: Infinity }} className="absolute top-24 end-[40%] text-[var(--brand-gold)] text-xl"><FaStar /></motion.div>
-                <motion.div animate={{ scale: [1, 1.4, 1], opacity: [0.2, 0.6, 0.2] }} transition={{ duration: 4, repeat: Infinity, delay: 1 }} className="absolute top-1/2 start-[45%] text-white text-sm"><FaStar /></motion.div>
-                <motion.div animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 3.5, repeat: Infinity, delay: 2 }} className="absolute bottom-40 end-[30%] text-[var(--brand-gold)] text-lg"><FaStar /></motion.div>
+        <section id="home" className="hero relative isolate overflow-hidden text-white pt-12 pb-32 md:pt-20 md:pb-44">
+            {/* Fond : photo courante + dégradé bordeaux + halos */}
+            <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[var(--brand-navy-dark)]">
+                {heroSlides.map((src, i) => (
+                    <img
+                        key={src}
+                        src={src}
+                        alt=""
+                        decoding="async"
+                        loading={i === 0 ? 'eager' : 'lazy'}
+                        className={`hero-bg ${i === idx ? 'is-on' : ''}`}
+                    />
+                ))}
+                <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(77,10,33,.94)_8%,rgba(122,16,52,.78)_55%,rgba(77,10,33,.55))]" />
+                <div className="hero-blob -top-24 -start-24 w-[26rem] h-[26rem] bg-[var(--brand-red)]" />
+                <div className="hero-blob top-1/2 -end-32 w-[24rem] h-[24rem] bg-[var(--brand-gold)] opacity-20" style={{ animationDelay: '-6s' }} />
+                {DOTS.map((d, i) => (
+                    <i key={i} className="hero-dot" style={{ left: `${d.x}%`, width: d.s, height: d.s, animationDuration: `${d.d}s`, animationDelay: `${d.t}s` }} />
+                ))}
+                <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[var(--hero-fade)] to-transparent" />
             </div>
 
-            {/* Red dotted band, like the posters' bottom half */}
-            <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/3 bg-brand-dots opacity-90 [clip-path:polygon(0_18%,8%_10%,17%_16%,26%_8%,36%_14%,47%_6%,58%_13%,69%_7%,80%_15%,90%_9%,100%_14%,100%_100%,0_100%)]" />
-
-            <div className="container mx-auto px-4 relative flex flex-col md:flex-row items-center gap-10">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7 }}
-                    className="md:w-1/2 w-full"
-                >
-                    <div className="paper-torn px-5 py-8 sm:px-6 md:px-10 md:py-10 -rotate-1">
-                        <h2 className="font-display text-[clamp(1.55rem,6.4vw,2.2rem)] sm:text-4xl md:text-5xl leading-[1.5] text-[var(--brand-navy)]">
-                            {t.hero_title}
-                        </h2>
-                        <p className="mt-4 text-base md:text-lg text-gray-700 font-medium">
-                            {t.hero_desc}
-                        </p>
-                    </div>
-                    <div className="flex flex-col sm:flex-row gap-4 mt-8">
-                        <Link to="/volunteer" className="btn-brand py-3 px-7 text-center text-lg">
-                            {t.join_us}
+            <div className="container mx-auto px-4 grid lg:grid-cols-2 items-center gap-12 lg:gap-8">
+                <div className="hero-rise">
+                    <span className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur px-4 py-1.5 text-sm font-semibold ring-1 ring-white/20">
+                        <span className="w-2 h-2 rounded-full bg-[var(--brand-gold)] animate-pulse" />
+                        {t.association_name}
+                    </span>
+                    <h2 className="font-display mt-5 text-[clamp(1.9rem,6.2vw,3.6rem)] leading-[1.35]">
+                        {String(t.hero_title).split(' ').map((w, i) => (
+                            <span key={i} className="hero-word" style={{ animationDelay: `${0.15 + i * 0.07}s` }}>{w}&nbsp;</span>
+                        ))}
+                    </h2>
+                    <div className="mt-5 h-1 w-24 rounded-full bg-gradient-to-r from-[var(--brand-gold)] to-[var(--brand-red)]" />
+                    <p className="mt-5 max-w-xl text-base md:text-lg text-white/85 leading-relaxed">{t.hero_desc}</p>
+                    <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
+                        <Link to="/donate" className="btn-brand btn-pulse py-3 px-8 text-center text-lg inline-flex items-center justify-center gap-2">
+                            <FaHandHoldingHeart /> {t.donate}
                         </Link>
-                        <Link to="/donate" className="btn-brand-light py-3 px-7 text-center text-lg">
-                            {t.donate}
+                        <Link to="/volunteer" className="btn-glass py-3 px-8 text-center text-lg inline-flex items-center justify-center gap-2">
+                            <FaHandsHelping /> {t.join_us}
                         </Link>
                     </div>
-                </motion.div>
+                </div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.15 }}
-                    className="md:w-1/2 w-full flex justify-center"
-                >
-                    <figure className="brand-tape bg-white p-3 pb-10 rotate-2 shadow-2xl max-w-md w-full">
-                        <div className="relative">
-                            <img
-                                src={heroImage}
-                                alt={t.hero_title}
-                                className="w-full aspect-[3/2] object-cover"
-                                fetchpriority="high"
-                            />
-                            {hasVideo && (
-                                <button
-                                    type="button"
-                                    onClick={() => setPlaying(true)}
-                                    aria-label={watchLabel}
-                                    className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-black/25 hover:bg-black/40 transition group"
-                                >
-                                    <span className="relative flex items-center justify-center w-20 h-20 rounded-full bg-[var(--brand-red)] text-white text-2xl shadow-xl group-hover:scale-110 transition">
-                                        <span className="absolute inset-0 rounded-full bg-[var(--brand-red)] opacity-50 animate-ping" />
-                                        <FaPlay className="relative ms-1" />
-                                    </span>
-                                    <span className="relative text-white text-sm font-semibold drop-shadow">{watchLabel}</span>
-                                </button>
-                            )}
-                        </div>
-                    </figure>
-                </motion.div>
+                <div className="hero-rise flex flex-col items-center" style={{ animationDelay: '.15s' }}>
+                    <div
+                        ref={tilt}
+                        className="hero-tilt relative w-full max-w-md aspect-[4/3]"
+                        onMouseEnter={() => setPaused(true)}
+                        onMouseMove={onMove}
+                        onMouseLeave={onLeave}
+                        onTouchStart={() => setPaused(true)}
+                        onTouchEnd={() => setPaused(false)}
+                    >
+                        {heroSlides.map((src, i) => (
+                            <button
+                                key={src}
+                                type="button"
+                                tabIndex={i === idx ? 0 : -1}
+                                aria-label={`${i + 1} / ${n}`}
+                                onClick={() => setIdx((i === idx ? idx + 1 : i) % n)}
+                                style={cardStyle(i)}
+                                className="hero-card absolute inset-0 rounded-3xl overflow-hidden ring-[6px] ring-white/90 shadow-2xl"
+                            >
+                                <img src={src} alt={i === idx ? t.hero_title : ''} decoding="async" loading={i < 2 ? 'eager' : 'lazy'} className="w-full h-full object-cover" />
+                            </button>
+                        ))}
+                        {hasVideo && (
+                            <button
+                                type="button"
+                                onClick={() => setPlaying(true)}
+                                aria-label={watchLabel}
+                                className="absolute z-20 bottom-4 end-4 flex items-center gap-2 rounded-full bg-[var(--brand-red)] px-4 py-2 text-sm font-bold shadow-xl hover:scale-105 transition"
+                            >
+                                <FaPlay /> {watchLabel}
+                            </button>
+                        )}
+                    </div>
+                    <div className="mt-8 flex gap-2 w-full max-w-xs" role="tablist">
+                        {heroSlides.map((_, i) => (
+                            <button key={i} type="button" role="tab" aria-selected={i === idx} aria-label={`${i + 1} / ${n}`} onClick={() => setIdx(i)} className="hero-bar">
+                                <i style={i === idx ? { animationDuration: `${INTERVAL}ms`, animationPlayState: paused ? 'paused' : 'running' } : undefined} className={i === idx ? 'on' : i < idx ? 'done' : ''} />
+                            </button>
+                        ))}
+                    </div>
+                </div>
             </div>
+
+            <FaChevronDown aria-hidden="true" className="hidden md:block absolute bottom-24 inset-x-0 mx-auto text-white/60 animate-bounce" />
             {playing && <VideoModal video={heroVideo} onClose={() => setPlaying(false)} />}
         </section>
     );

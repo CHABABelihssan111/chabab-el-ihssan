@@ -513,18 +513,21 @@
   /* ---------------- الشاشات ---------------- */
   function logoUrl() { var s = S.cache['src/content/settings.json']; return s && s.data.logo_url; }
   function logoImg() { var u = logoUrl(); return u ? '<img src="' + esc(imgSrc(u)) + '" alt="" onerror="this.style.display=\'none\'">' : '<span>🤝</span>'; }
+  function gateFoot() {
+    return '<div class="gfoot"><div class="gbrand"><span class="gl">' + logoImg() + '</span><b>جمعية شباب الإحسان</b></div><span class="gsep"></span><span class="gab">أبشر</span></div><div class="gdev">المطور: Ferhat Zehani</div>';
+  }
   function vLogin() {
     return '<div class="gate"><div class="gbox"><div class="lg">' + logoImg() + '</div><h1>لوحة تحكم شباب الإحسان</h1><p>سجّل الدخول بحساب GitHub المصرّح له، ثم أدخل الرقم السري.</p>' +
       (S.loginErr ? '<div class="err">⚠️ ' + esc(S.loginErr) + '</div>' : '') +
       '<button class="btn red big" type="button" data-act="login">🔐 الدخول بحساب GitHub</button>' +
-      '<details class="adv"><summary>لديك مفتاح GitHub (Personal Access Token)؟</summary><input id="tok" type="password" dir="ltr" placeholder="ghp_… أو github_pat_…" autocomplete="off"><button class="btn ghost" type="button" data-act="token">دخول بالمفتاح</button><small>للحالات التي لا تعمل فيها نافذة GitHub. المفتاح يحتاج صلاحية «repo» (أو Contents: Read and write).</small></details></div></div>';
+      '<details class="adv"><summary>لديك مفتاح GitHub (Personal Access Token)؟</summary><input id="tok" type="password" dir="ltr" placeholder="ghp_… أو github_pat_…" autocomplete="off"><button class="btn ghost" type="button" data-act="token">دخول بالمفتاح</button><small>للحالات التي لا تعمل فيها نافذة GitHub. المفتاح يحتاج صلاحية «repo» (أو Contents: Read and write).</small></details></div>' + gateFoot() + '</div>';
   }
   function vPin() {
     var keys = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(function (n) { return '<button type="button" data-act="key" data-k="' + n + '">' + n + '</button>'; }).join('') +
       '<button type="button" class="soft" data-act="logout" title="خروج">⎋</button><button type="button" data-act="key" data-k="0">0</button><button type="button" class="soft" data-act="key" data-k="del">⌫</button>';
     var u = S.user ? '<div class="who">' + (S.user.avatar_url ? '<img src="' + esc(S.user.avatar_url) + '" alt="">' : '') + '<span>@' + esc(S.user.login) + '</span></div>' : '';
     return '<div class="gate"><div class="gbox pinbox"><div class="lk">🔒</div><h1>الرقم السري</h1>' + u + '<p>أدخل الرقم السري المكوّن من 4 أرقام للمتابعة.</p>' +
-      '<div class="dots"><i></i><i></i><i></i><i></i></div><div id="pinmsg" class="pm">' + (lockLeft() ? '🔒 محاولات كثيرة — انتظر ' + lockLeft() + ' ثانية' : '') + '</div><div class="pad">' + keys + '</div></div></div>';
+      '<div class="dots"><i></i><i></i><i></i><i></i></div><div id="pinmsg" class="pm">' + (lockLeft() ? '🔒 محاولات كثيرة — انتظر ' + lockLeft() + ' ثانية' : '') + '</div><div class="pad">' + keys + '</div></div>' + gateFoot() + '</div>';
   }
   function cached(f) { var c = S.cache[f]; return c && c.data; }
   function vHead() {

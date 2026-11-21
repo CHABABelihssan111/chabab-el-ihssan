@@ -14,7 +14,7 @@ const ICONS = {
 import { animate, useInView } from "framer-motion";
 import { useEffect, useRef } from 'react';
 
-const AnimatedNumber = ({ value }) => {
+export const AnimatedNumber = ({ value }) => {
     const ref = useRef(null);
     const inView = useInView(ref, { once: true, margin: "-50px" });
 
@@ -51,34 +51,36 @@ const Impact = () => {
     });
 
     return (
-        <section id="impact" className="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
+        <section id="impact" className="relative z-10 -mt-20 md:-mt-28 pb-16 md:pb-20">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-12">
-                    <h2 className="font-display text-3xl md:text-4xl text-[var(--brand-navy)] dark:text-gray-100 mb-4">
-                        {getLocalizedContent(impact.title, language)}
-                    </h2>
-                    {impact.description && getLocalizedContent(impact.description, language) && (
-                        <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                            {getLocalizedContent(impact.description, language)}
-                        </p>
-                    )}
-                    <div className="w-24 h-1.5 rounded-full -rotate-2 bg-[var(--brand-red)] mx-auto mt-4"></div>
-                </div>
-
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {stats.map((stat, index) => (
-                        <div key={index} className="relative bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl shadow-md text-center transition hover:-translate-y-1 hover:shadow-xl border-b-4 border-[var(--brand-red)] overflow-hidden">
-                            <div className="mx-auto mb-5 w-16 h-16 rounded-full bg-[var(--brand-navy)] text-[var(--brand-gold)] flex items-center justify-center text-3xl shadow-lg">
-                                {stat.icon}
-                            </div>
-                            <h3 className="font-display text-5xl mb-3 text-[var(--brand-red)] dark:text-white">
-                                <AnimatedNumber value={stat.number} />
-                            </h3>
-                            <p className="text-gray-700 dark:text-gray-300 font-medium leading-snug">
-                                {stat.text}
+                <div className="impact-panel rounded-[2rem] px-5 py-8 md:px-12 md:py-12">
+                    <div className="text-center mb-8 md:mb-10">
+                        <h2 className="font-display text-2xl md:text-4xl text-[var(--brand-navy)] dark:text-white">
+                            {getLocalizedContent(impact.title, language)}
+                        </h2>
+                        {impact.description && getLocalizedContent(impact.description, language) && (
+                            <p className="mt-3 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                                {getLocalizedContent(impact.description, language)}
                             </p>
-                        </div>
-                    ))}
+                        )}
+                        <div className="heading-bar" />
+                    </div>
+
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4">
+                        {stats.map((stat, index) => (
+                            <div key={index} className="impact-stat text-center px-2">
+                                <div className="mx-auto mb-3 w-14 h-14 md:w-16 md:h-16 rounded-2xl rotate-6 bg-gradient-to-br from-[var(--brand-navy)] to-[var(--brand-red)] text-[var(--brand-gold)] flex items-center justify-center text-2xl md:text-3xl shadow-lg">
+                                    <span className="-rotate-6">{stat.icon}</span>
+                                </div>
+                                <h3 className="font-display text-3xl md:text-5xl text-[var(--brand-red)] dark:text-white leading-tight" dir="ltr">
+                                    <AnimatedNumber value={stat.number} />
+                                </h3>
+                                <p className="mt-1 text-sm md:text-base text-gray-700 dark:text-gray-300 font-medium leading-snug">
+                                    {stat.text}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

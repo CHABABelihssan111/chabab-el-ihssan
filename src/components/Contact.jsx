@@ -45,7 +45,7 @@ const Contact = () => {
                     <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                         {t.contact_desc}
                     </p>
-                    <div className="w-24 h-1.5 rounded-full -rotate-2 bg-[var(--brand-red)] mx-auto mt-4"></div>
+                    <div className="heading-bar mx-auto mt-4"></div>
                 </div>
 
                 <div className="max-w-4xl mx-auto bg-white dark:bg-gray-900 p-8 rounded-lg shadow-md">

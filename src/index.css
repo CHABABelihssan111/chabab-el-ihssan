@@ -168,32 +168,6 @@ body {
     transform: rotate(-1.5deg);
 }
 
-/* Poster-style buttons */
-.btn-brand {
-    background: var(--brand-red);
-    color: #fff;
-    font-weight: 700;
-    border-radius: 0.6rem;
-    box-shadow: 4px 4px 0 var(--brand-navy-dark);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-.btn-brand:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 var(--brand-navy-dark);
-}
-.btn-brand-light {
-    background: #fff;
-    color: var(--brand-navy);
-    font-weight: 700;
-    border-radius: 0.6rem;
-    box-shadow: 4px 4px 0 var(--brand-red);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-.btn-brand-light:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 var(--brand-red);
-}
-
 /* ==========================================================================
    Admin tables — one consistent style, scrollable on phones and tablets.
    Unlayered on purpose so it wins over Tailwind utility classes on the cells.
@@ -331,39 +305,6 @@ body {
 }
 @keyframes underline-draw { from { transform: scaleX(0) rotate(-1.5deg); } to { transform: scaleX(1) rotate(-1.5deg); } }
 
-/* Boutons : reflet lumineux au survol */
-.btn-brand, .btn-brand-light {
-    position: relative;
-    overflow: hidden;
-    isolation: isolate;
-    font-family: var(--font-head);
-    font-weight: 700;
-    border-radius: 0.8rem;
-}
-.btn-brand::after, .btn-brand-light::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.45) 50%, transparent 70%);
-    transform: translateX(-120%);
-}
-.btn-brand:hover::after, .btn-brand-light:hover::after { transform: translateX(120%); transition: transform .8s ease; }
-.btn-brand:active, .btn-brand-light:active { transform: translateY(1px) scale(.98); box-shadow: 2px 2px 0 var(--brand-navy-dark); }
-
-/* Cartes : relief + élévation douce au survol (écrans avec souris) */
-section .rounded-xl, section .rounded-2xl, section .rounded-lg {
-    transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease;
-}
-@media (hover: hover) {
-    section .shadow-md:hover, section .shadow-lg:hover, section .shadow-xl:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 18px 40px -12px rgba(122, 16, 52, .35);
-    }
-    section img { transition: transform .6s cubic-bezier(.2,.7,.2,1); }
-    section .overflow-hidden:hover > img, section a:hover > img, section figure:hover > img { transform: scale(1.05); }
-}
-
 /* Liens du menu : trait doré animé */
 .nav-link { position: relative; padding-block: .35rem; font-family: var(--font-head); font-weight: 600; font-size: .95rem; }
 .nav-link::after {
@@ -398,12 +339,7 @@ section .rounded-xl, section .rounded-2xl, section .rounded-lg {
 /* Marque (logo) : halo doré discret */
 .logo-glow { filter: drop-shadow(0 6px 14px rgba(122, 16, 52, .25)); }
 
-/* Petits écrans : tailles de texte et espacements plus compacts */
-@media (max-width: 480px) {
-    section { scroll-margin-top: 4.5rem; }
-    .btn-brand, .btn-brand-light { box-shadow: 3px 3px 0 var(--brand-navy-dark); }
-    .btn-brand-light { box-shadow: 3px 3px 0 var(--brand-red); }
-}
+@media (max-width: 480px) { section { scroll-margin-top: 4.5rem; } }
 
 /* Grands écrans : contenu centré, largeur confortable */
 @media (min-width: 1536px) {
@@ -460,3 +396,127 @@ html[data-ramadan="on"] .ramadan-chip { animation: chip-glow 2.4s ease-in-out in
 
 /* Amiri Quran (خط النسخ المشكّل، كخط المصحف) — محلي، لكلمة «أبشر» في الفوتر */
 @font-face { font-family: 'Amiri Quran'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/amiri-quran-arabic.woff2') format('woff2'); unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC; }
+
+
+/* ==========================================================================
+   Design v2 — « verre & dégradés » : même palette (bordeaux / rouge / or),
+   coins arrondis, ombres douces, mouvement léger. Remplace le style « affiche ».
+   ========================================================================== */
+:root {
+    --hero-fade: #fbf8f5;
+    --shadow-soft: 0 1px 2px rgba(77, 10, 33, .06), 0 14px 34px -14px rgba(77, 10, 33, .25);
+    --shadow-lift: 0 2px 4px rgba(77, 10, 33, .08), 0 28px 50px -18px rgba(77, 10, 33, .4);
+    --ease: cubic-bezier(.2, .7, .2, 1);
+}
+.dark { --hero-fade: #111827; }
+body { background-color: #fbf8f5; }
+.dark body { background-color: #111827; }
+
+/* Fonds de marque (anciennement « papier quadrillé ») */
+.bg-brand-grid {
+    background-color: var(--brand-navy-dark);
+    background-image:
+        radial-gradient(48rem 24rem at 90% -10%, rgba(200, 16, 46, .55), transparent 60%),
+        radial-gradient(34rem 20rem at 0% 110%, rgba(242, 183, 5, .18), transparent 60%),
+        linear-gradient(135deg, var(--brand-navy), var(--brand-navy-dark));
+}
+.bg-brand-dots { background-color: var(--brand-red); background-image: radial-gradient(rgba(255, 255, 255, .2) 2px, transparent 2.5px); background-size: 24px 24px; }
+.bg-brand-paper { background-color: var(--brand-paper); background-image: radial-gradient(rgba(122, 16, 52, .06) 1.5px, transparent 2px); background-size: 24px 24px; }
+.paper-torn { clip-path: none; border-radius: 1.5rem; box-shadow: var(--shadow-lift); }
+.brand-tape::before { display: none; }
+
+/* Sections : alternance douce */
+main section:is(.bg-white, .bg-gray-50, .bg-gray-100):nth-of-type(even):not(#home) { background: linear-gradient(180deg, #fdf6f3, #faf2ee); }
+.dark main section:is(.bg-white, .bg-gray-50, .bg-gray-100):nth-of-type(even):not(#home) { background: #0f1623; }
+.heading-bar { width: 5rem; height: .38rem; margin: 1rem auto 0; border-radius: 99px; background: linear-gradient(90deg, var(--brand-gold), var(--brand-red)); animation: bar-in .9s .2s var(--ease) both; transform-origin: center; }
+@keyframes bar-in { from { transform: scaleX(0); } }
+
+/* Boutons */
+.btn-brand, .btn-glass, .btn-brand-light {
+    position: relative; overflow: hidden; isolation: isolate; border-radius: 999px;
+    font-family: var(--font-head); font-weight: 700; color: #fff;
+    transition: transform .25s var(--ease), box-shadow .25s ease, background .25s ease;
+}
+.btn-brand { background: linear-gradient(135deg, var(--brand-red), #9d0c25); box-shadow: 0 12px 26px -10px rgba(200, 16, 46, .75); }
+.btn-brand-light { background: #fff; color: var(--brand-navy); box-shadow: var(--shadow-soft); }
+.btn-glass { background: rgba(255, 255, 255, .12); backdrop-filter: blur(8px); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .35); }
+.btn-brand::after, .btn-glass::after, .btn-brand-light::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, .4) 50%, transparent 70%); transform: translateX(-120%); }
+.btn-brand:hover::after, .btn-glass:hover::after, .btn-brand-light:hover::after { transform: translateX(120%); transition: transform .8s ease; }
+.btn-brand:hover, .btn-brand-light:hover, .btn-glass:hover { transform: translateY(-3px); }
+.btn-glass:hover { background: rgba(255, 255, 255, .22); }
+.btn-brand:active, .btn-brand-light:active, .btn-glass:active { transform: scale(.97); }
+
+/* Cartes */
+section :is(.rounded-xl, .rounded-2xl) { border-radius: 1.4rem; transition: transform .4s var(--ease), box-shadow .4s ease; }
+section :is(.shadow-md, .shadow-lg, .shadow-xl) { box-shadow: var(--shadow-soft); }
+@media (hover: hover) {
+    section :is(.shadow-md, .shadow-lg, .shadow-xl):hover { transform: translateY(-6px); box-shadow: var(--shadow-lift); }
+    section img { transition: transform .7s var(--ease); }
+    section :is(.overflow-hidden, a, figure):hover > img { transform: scale(1.06); }
+}
+
+/* Hero */
+.hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.4s ease; }
+.hero-bg.is-on { opacity: 1; animation: kenburns 9s ease-out both; }
+@keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.12); } }
+.hero-blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .35; animation: blob 14s ease-in-out infinite alternate; }
+@keyframes blob { to { transform: translate3d(40px, 30px, 0) scale(1.15); } }
+.hero-rise { animation: fade-up .9s var(--ease) both; }
+.hero-card { transition: transform .9s var(--ease), opacity .9s ease; will-change: transform; cursor: pointer; }
+.hero-bar { flex: 1; height: 5px; border-radius: 99px; background: rgba(255, 255, 255, .25); overflow: hidden; padding: 0; }
+.hero-bar i { display: block; height: 100%; width: 0; background: var(--brand-gold); }
+.hero-bar i.done { width: 100%; }
+.hero-bar i.on { animation: bar-fill linear forwards; }
+@keyframes bar-fill { to { width: 100%; } }
+
+/* Compteurs */
+.impact-panel { background: rgba(255, 255, 255, .92); backdrop-filter: blur(14px); box-shadow: var(--shadow-lift); border: 1px solid rgba(122, 16, 52, .08); }
+.dark .impact-panel { background: rgba(31, 41, 55, .92); border-color: rgba(255, 255, 255, .08); }
+.impact-stat { transition: transform .35s var(--ease); }
+.impact-stat:hover { transform: translateY(-4px); }
+
+/* Navigation : verre dépoli flottant */
+.nav-glass { border-radius: 1rem; }
+
+/* Pied de page */
+.footer-modern { background: radial-gradient(40rem 20rem at 100% 0, rgba(200, 16, 46, .35), transparent 60%), linear-gradient(160deg, var(--brand-navy-dark), #2a0612); border-top: 4px solid var(--brand-gold); border-radius: 2rem 2rem 0 0; }
+.dark .footer-modern { background: radial-gradient(40rem 20rem at 100% 0, rgba(200, 16, 46, .25), transparent 60%), #05060a; }
+.footer-title { position: relative; padding-bottom: .6rem; }
+.footer-title::after { content: ''; position: absolute; bottom: 0; inset-inline-start: 0; width: 2.5rem; height: 3px; border-radius: 3px; background: var(--brand-gold); }
+.social-btn { display: inline-grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; color: #e5e7eb; background: rgba(255, 255, 255, .08); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12); transition: transform .25s var(--ease), background .25s; }
+.social-btn:hover { background: var(--brand-red); color: #fff; transform: translateY(-3px) rotate(-6deg); }
+
+/* Hero : particules, mots en cascade, inclinaison 3D, bouton pulsant */
+.hero-dot { position: absolute; bottom: -10px; border-radius: 50%; background: var(--brand-gold); opacity: .55; animation: dot-rise linear infinite; }
+@keyframes dot-rise { to { transform: translateY(-110vh) translateX(30px); opacity: 0; } }
+.hero-word { display: inline-block; animation: word-in .7s var(--ease) both; }
+@keyframes word-in { from { opacity: 0; transform: translateY(20px) rotate(2deg); } }
+.hero-tilt { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .25s ease-out; }
+.btn-pulse { animation: pulse-ring 2.4s ease-out infinite; }
+@keyframes pulse-ring { 0% { box-shadow: 0 12px 26px -10px rgba(200, 16, 46, .75), 0 0 0 0 rgba(242, 183, 5, .55); } 70%, 100% { box-shadow: 0 12px 26px -10px rgba(200, 16, 46, .75), 0 0 0 16px rgba(242, 183, 5, 0); } }
+
+/* Pied de page : logo blanc centré */
+.footer-brand { text-align: center; padding: 1.5rem 0 2rem; }
+.footer-logo { height: 5.5rem; width: auto; margin-inline: auto; filter: brightness(0) invert(1); opacity: .95; transition: transform .5s var(--ease); }
+.footer-logo:hover { transform: scale(1.06); }
+@media (min-width: 768px) { .footer-logo { height: 7rem; } }
+
+/* Barre d'icônes mobile */
+.mnav-item { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: .35rem 0; border-radius: .75rem; color: #fff; font-size: 1.15rem; transition: background .2s, color .2s, transform .2s; }
+.mnav-item span { font-size: .6rem; line-height: 1.1; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--font-head); font-weight: 600; }
+.mnav-item:active { transform: scale(.92); }
+.mnav-item.on, .mnav-item:hover { color: var(--brand-gold); background: rgba(255, 255, 255, .1); }
+
+/* Mobile : rythme plus compact, moins de fatigue visuelle */
+@media (max-width: 640px) {
+    main section.py-16 { padding-block: 2.75rem; }
+    main section .mb-12 { margin-bottom: 1.75rem; }
+    main section .mb-16 { margin-bottom: 2rem; }
+    main section h2.font-display { font-size: 1.6rem; }
+    .hero { padding-top: 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-bg.is-on, .hero-blob, .hero-dot, .btn-pulse { animation: none; }
+    .hero-tilt { transform: none; }
+}

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { FaHandHoldingHeart, FaHandsHelping, FaBars, FaTimes, FaMoon, FaSun } from 'react-icons/fa';
+import { FaHandHoldingHeart, FaHandsHelping, FaMoon, FaSun, FaHome, FaInfoCircle, FaTasks, FaMapMarkerAlt, FaImages, FaEnvelope } from 'react-icons/fa';
 import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 
@@ -13,9 +13,6 @@ const LOGO = settings.logo_url;
 const Header = () => {
     const { language, changeLanguage, t } = useLanguage();
     const { theme, toggleTheme } = useTheme();
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-    const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
     const handleScrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
     const sadaqaLabel = { ar: 'الصدقة الجارية', fr: 'Sadaqa Jariya', en: 'Sadaqa Jariya' }[language] || 'Sadaqa Jariya';
@@ -39,17 +36,15 @@ const Header = () => {
     const navBtn = 'nav-link text-white hover:text-[var(--brand-gold)] transition-colors cursor-pointer';
     const navLinkClass = ({ isActive }) =>
         `nav-link text-white transition-colors hover:text-[var(--brand-gold)] ${isActive ? 'active text-[var(--brand-gold)]' : ''}`;
-    const mobBtn = 'block w-full py-3 px-2 text-white text-start text-base font-semibold rounded-lg hover:bg-white/10 hover:text-[var(--brand-gold)] transition-colors';
-    const mobLink = 'block py-3 px-2 text-white text-base font-semibold rounded-lg hover:bg-white/10 hover:text-[var(--brand-gold)] transition-colors';
 
     return (
         <>
             {/* Top Bar */}
-            <div className="bg-[var(--brand-navy-dark)] text-white text-sm py-2 border-b-[3px] border-[var(--brand-gold)]">
-                <div className="container mx-auto px-3 sm:px-4 flex flex-col sm:flex-row justify-between items-center gap-1.5 sm:gap-2">
+            <div className="bg-[var(--brand-navy-dark)] text-white text-sm py-1.5">
+                <div className="container mx-auto px-3 sm:px-4 flex flex-row justify-between items-center gap-2">
                     <div className="flex items-center gap-3 sm:gap-4 flex-wrap justify-center sm:justify-start">
-                        <span className="flex items-center gap-2 text-xs sm:text-base"><FaHandHoldingHeart /> <Link to="/donate" className="hover:text-[var(--brand-gold)] transition">{t.donate}</Link></span>
-                        <span className="flex items-center gap-2 text-xs sm:text-base"><FaHandsHelping /> <Link to="/volunteer" className="hover:text-[var(--brand-gold)] transition">{t.volunteer}</Link></span>
+                        <span className="hidden sm:flex items-center gap-2 text-xs sm:text-base"><FaHandHoldingHeart /> <Link to="/donate" className="hover:text-[var(--brand-gold)] transition">{t.donate}</Link></span>
+                        <span className="hidden sm:flex items-center gap-2 text-xs sm:text-base"><FaHandsHelping /> <Link to="/volunteer" className="hover:text-[var(--brand-gold)] transition">{t.volunteer}</Link></span>
                         <InstallButton />
                         <RamadanChip />
                     </div>
@@ -64,27 +59,28 @@ const Header = () => {
             </div>
 
             {/* Branding: (right) خير الناس — logo — (left) أنفعهم للناس. Always Arabic, in every language. */}
-            <div className="relative bg-gradient-to-b from-white to-rose-50/60 dark:from-gray-800 dark:to-gray-800 py-3 md:py-5 overflow-hidden">
+            <div className="relative bg-gradient-to-b from-white via-rose-50/50 to-transparent dark:from-gray-800 dark:to-gray-900 pt-3 pb-2 md:pt-5 md:pb-3 overflow-hidden">
                 <RamadanLanterns />
                 <div dir="ltr" className="container mx-auto px-2 sm:px-3 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-1.5 sm:gap-4">
-                    <p className="text-center font-display text-[clamp(.8rem,4.1vw,1.25rem)] sm:text-3xl md:text-5xl text-[var(--brand-navy)] dark:text-white leading-snug fade-up" style={{ animationDelay: '.15s' }}>
+                    <p className="text-center font-display text-[clamp(.8rem,4.1vw,1.25rem)] sm:text-2xl md:text-4xl text-[var(--brand-navy)] dark:text-white leading-snug fade-up" style={{ animationDelay: '.15s' }}>
                         أنفعهم للناس
                     </p>
                     <Link to="/" onClick={handleScrollToTop} className="shrink-0 justify-self-center">
-                        <img src={LOGO} alt="شباب الإحسان" fetchpriority="high" decoding="async" className="logo-glow h-[5.5rem] min-[400px]:h-24 sm:h-32 md:h-40 w-auto object-contain" />
+                        <img src={LOGO} alt="شباب الإحسان" fetchpriority="high" decoding="async" className="logo-glow h-[4.5rem] min-[400px]:h-20 sm:h-24 md:h-32 w-auto object-contain" />
                     </Link>
-                    <p className="text-center font-display text-[clamp(.8rem,4.1vw,1.25rem)] sm:text-3xl md:text-5xl text-[var(--brand-navy)] dark:text-white leading-snug fade-up" style={{ animationDelay: '.3s' }}>
+                    <p className="text-center font-display text-[clamp(.8rem,4.1vw,1.25rem)] sm:text-2xl md:text-4xl text-[var(--brand-navy)] dark:text-white leading-snug fade-up" style={{ animationDelay: '.3s' }}>
                         خير الناس
                     </p>
                 </div>
-                <h1 dir="rtl" className="mt-1 md:mt-2 px-3 text-center font-display text-[clamp(1.05rem,5.4vw,1.5rem)] sm:text-3xl md:text-4xl text-[var(--brand-red)] fade-up" style={{ animationDelay: '.45s' }}>
+                <h1 dir="rtl" className="mx-auto mt-2 w-fit max-w-full px-5 py-1 rounded-full bg-[var(--brand-red)]/10 text-center font-display text-[clamp(.95rem,4.6vw,1.25rem)] sm:text-2xl md:text-3xl text-[var(--brand-red)] fade-up" style={{ animationDelay: '.45s' }}>
                     الجمعية الولائية شباب الإحسان
                 </h1>
             </div>
 
             {/* Sticky navigation bar */}
-            <div className="nav-glass dark:bg-[var(--brand-navy-dark)] shadow-lg sticky top-0 z-50 border-b-[3px] border-[var(--brand-gold)]">
-                <div className="container mx-auto px-3 sm:px-4 py-2 md:py-3 flex justify-between items-center">
+            <div className="sticky top-0 z-50 px-2 sm:px-4 pt-2">
+              <div className="nav-glass container mx-auto rounded-2xl shadow-xl ring-1 ring-white/10">
+                <div className="hidden md:flex px-5 py-2.5 justify-between items-center">
                     <nav className="hidden md:block">
                         <ul className="flex items-center gap-5 lg:gap-8">
                             <li><button onClick={(e) => handleNavigation(e, 'hero')} className={navBtn}>{t.home}</button></li>
@@ -97,7 +93,7 @@ const Header = () => {
                         </ul>
                     </nav>
 
-                    <div className="flex items-center gap-4 ms-auto md:ms-0">
+                    <div className="flex items-center gap-4">
                         <button
                             onClick={toggleTheme}
                             className="text-[var(--brand-gold)] text-xl p-2 rounded-full hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--brand-gold)]"
@@ -105,26 +101,32 @@ const Header = () => {
                         >
                             {theme === 'light' ? <FaMoon /> : <FaSun />}
                         </button>
-                        <button className="md:hidden text-white text-2xl p-2 rounded-lg hover:bg-white/10 transition-colors" onClick={toggleMobileMenu} aria-label="Toggle menu" aria-expanded={isMobileMenuOpen}>
-                            {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
-                        </button>
                     </div>
                 </div>
 
-                {/* Mobile Menu */}
-                {isMobileMenuOpen && (
-                    <div className="mobile-menu md:hidden w-full py-2 px-3 border-t border-white/20 max-h-[70vh] overflow-y-auto">
-                        <ul className="flex flex-col gap-2">
-                            <li><button className={mobBtn} onClick={(e) => { toggleMobileMenu(); handleNavigation(e, 'hero'); }}>{t.home}</button></li>
-                            <li><button className={mobBtn} onClick={(e) => { toggleMobileMenu(); handleNavigation(e, 'about'); }}>{t.about}</button></li>
-                            <li><button className={mobBtn} onClick={(e) => { toggleMobileMenu(); handleNavigation(e, 'programs'); }}>{t.programs}</button></li>
-                            <li><button className={mobBtn} onClick={(e) => { toggleMobileMenu(); handleNavigation(e, 'branches'); }}>{t.branches}</button></li>
-                            <li><NavLink to="/sadaqa-jariya" className={mobLink} onClick={toggleMobileMenu}>{sadaqaLabel}</NavLink></li>
-                            <li><NavLink to="/gallery" className={mobLink} onClick={toggleMobileMenu}>{t.gallery}</NavLink></li>
-                            <li><button className={mobBtn} onClick={(e) => { toggleMobileMenu(); handleNavigation(e, 'contact'); }}>{t.contact_us}</button></li>
-                        </ul>
-                    </div>
-                )}
+                {/* Mobile : barre d'icônes toujours visible */}
+                <nav className="md:hidden flex items-stretch justify-between px-1 py-1.5" aria-label="Navigation">
+                    {[
+                        { k: 'home', icon: <FaHome />, label: t.home, go: (e) => handleNavigation(e, 'home') },
+                        { k: 'about', icon: <FaInfoCircle />, label: t.about, go: (e) => handleNavigation(e, 'about') },
+                        { k: 'programs', icon: <FaTasks />, label: t.programs, go: (e) => handleNavigation(e, 'programs') },
+                        { k: 'branches', icon: <FaMapMarkerAlt />, label: t.branches, go: (e) => handleNavigation(e, 'branches') },
+                        { k: 'sadaqa', icon: <FaHandHoldingHeart />, label: sadaqaLabel, to: '/sadaqa-jariya' },
+                        { k: 'gallery', icon: <FaImages />, label: t.gallery, to: '/gallery' },
+                        { k: 'contact', icon: <FaEnvelope />, label: t.contact_us, go: (e) => handleNavigation(e, 'contact') },
+                    ].map(({ k, icon, label, go, to }) => {
+                        const cls = 'mnav-item';
+                        return to ? (
+                            <NavLink key={k} to={to} onClick={handleScrollToTop} className={({ isActive }) => `${cls} ${isActive ? 'on' : ''}`}>{icon}<span>{label}</span></NavLink>
+                        ) : (
+                            <button key={k} type="button" onClick={go} className={cls}>{icon}<span>{label}</span></button>
+                        );
+                    })}
+                    <button type="button" onClick={toggleTheme} className="mnav-item text-[var(--brand-gold)]" aria-label="Toggle Theme">
+                        {theme === 'light' ? <FaMoon /> : <FaSun />}<span>{theme === 'light' ? '🌙' : '☀️'}</span>
+                    </button>
+                </nav>
+              </div>
             </div>
         </>
     );

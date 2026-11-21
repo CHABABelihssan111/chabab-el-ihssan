@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
-import { FaHandsHelping, FaHandHoldingUsd, FaHandshake } from 'react-icons/fa';
+import { FaHandsHelping, FaHandHoldingUsd } from 'react-icons/fa';
 
 const GetInvolved = () => {
     const { t } = useLanguage();
@@ -16,10 +16,10 @@ const GetInvolved = () => {
                     <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                         {t.help_desc}
                     </p>
-                    <div className="w-24 h-1.5 rounded-full -rotate-2 bg-[var(--brand-red)] mx-auto mt-4"></div>
+                    <div className="heading-bar mx-auto mt-4"></div>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-8">
+                <div className="grid sm:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
                     <div className="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-md text-center hover:shadow-lg transition">
                         <div className="text-blue-900 dark:text-blue-300 mb-4 flex justify-center">
                             <FaHandsHelping className="text-5xl" />
@@ -47,21 +47,6 @@ const GetInvolved = () => {
                         </p>
                         <Link to="/donate" className="bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-6 rounded-lg inline-block transition">
                             {t.donate}
-                        </Link>
-                    </div>
-
-                    <div className="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-md text-center hover:shadow-lg transition">
-                        <div className="text-blue-900 dark:text-blue-300 mb-4 flex justify-center">
-                            <FaHandshake className="text-5xl" />
-                        </div>
-                        <h3 className="text-xl font-bold mb-4 text-blue-900 dark:text-white">
-                            {t.partner_title}
-                        </h3>
-                        <p className="text-gray-700 dark:text-gray-200 mb-6">
-                            {t.partner_desc}
-                        </p>
-                        <Link to="/" state={{ scrollTo: 'contact' }} className="bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-6 rounded-lg inline-block transition">
-                            {t.contact_us}
                         </Link>
                     </div>
                 </div>

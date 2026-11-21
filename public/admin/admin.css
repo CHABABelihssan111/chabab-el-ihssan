@@ -39,7 +39,7 @@ body.dark .btn.add { color: var(--gold); }
 .btn.add:hover { border-color: var(--red); }
 
 /* ---------- شاشتا الدخول والرقم السري ---------- */
-.gate { min-height: 100vh; display: grid; place-items: center; padding: 20px; background: linear-gradient(135deg, #1a0a10 0%, #5c0a1a 55%, #7a1034 100%); }
+.gate { min-height: 100vh; min-height: 100dvh; display: grid; place-items: center; align-content: center; gap: 22px; padding: 20px 20px 96px; position: relative; overflow: hidden; background: linear-gradient(135deg, #1a0a10 0%, #5c0a1a 55%, #7a1034 100%); }
 .gbox { width: 100%; max-width: 420px; background: var(--card); border-radius: 22px; padding: 30px 26px; text-align: center; box-shadow: 0 20px 60px rgba(0, 0, 0, .45); border-top: 6px solid var(--gold); }
 .gbox .lg { width: 84px; height: 84px; margin: -64px auto 10px; border-radius: 50%; background: #fff; display: grid; place-items: center; box-shadow: 0 6px 20px rgba(0, 0, 0, .25); overflow: hidden; font-size: 36px; }
 .gbox .lg img { width: 100%; height: 100%; object-fit: contain; }
@@ -211,3 +211,45 @@ body.dark .can-drop.over { background: #3a1820; }
   .img .th { width: 100%; height: 150px; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* ===== طبقة خلفية أنيقة لشاشات الدخول (تُضاف فوق التدرّج الأصلي) ===== */
+.gate::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .9;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(242, 183, 5, .18), transparent 38%),
+    radial-gradient(circle at 85% 80%, rgba(200, 16, 46, .35), transparent 42%),
+    linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
+  background-size: auto, auto, 32px 32px, 32px 32px; animation: gdrift 24s ease-in-out infinite alternate; }
+.gate::after { content: ''; position: absolute; width: 520px; height: 520px; top: -180px; inset-inline-end: -160px; border-radius: 50%; border: 2px dashed rgba(242, 183, 5, .28); pointer-events: none; animation: spin 60s linear infinite; }
+@keyframes gdrift { to { transform: scale(1.06) translateY(-10px); } }
+.gate > * { position: relative; z-index: 1; }
+.gbox { animation: gin .6s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes gin { from { opacity: 0; transform: translateY(18px) scale(.97); } }
+.gfoot { position: absolute; bottom: 38px; inset-inline: 0; margin: 0 auto; width: max-content; max-width: calc(100% - 32px); display: flex; align-items: center; gap: 14px; padding: 8px 18px 8px 10px; border-radius: 99px; color: #fff; background: rgba(255, 255, 255, .1); backdrop-filter: blur(8px); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .2); }
+.gbrand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.gbrand b { font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.gl { width: 34px; height: 34px; border-radius: 50%; background: #fff; display: grid; place-items: center; overflow: hidden; flex: none; }
+.gl img { width: 100%; height: 100%; object-fit: contain; }
+.gsep { width: 1.5px; height: 22px; background: rgba(255, 255, 255, .35); flex: none; }
+.gab { font: 400 22px 'Lalezar', 'Cairo', sans-serif; color: var(--gold); line-height: 1; }
+.gdev { position: absolute; bottom: 12px; inset-inline: 0; text-align: center; font-size: 11px; color: rgba(255, 255, 255, .6); z-index: 1; }
+
+/* ===== تحسينات اللوحة: تفاعل، وصول، واستجابة ===== */
+.btn:focus-visible, .chip:focus-visible, .pad button:focus-visible, .stats button:focus-visible, .quick button:focus-visible { outline: 3px solid rgba(242, 183, 5, .8); outline-offset: 2px; }
+.btn:active { transform: translateY(0) scale(.98); }
+.top { backdrop-filter: blur(6px); }
+.top .acts { overflow-x: auto; scrollbar-width: none; max-width: 100%; } .top .acts::-webkit-scrollbar { display: none; }
+main > * { animation: mfade .35s ease both; } @keyframes mfade { from { opacity: 0; transform: translateY(8px); } }
+.stats button, .quick button, .blk, .lcard, .panel, .g { transition: transform .2s, box-shadow .2s, border-color .2s; }
+.panel, .lcard, .blk, .fd, .grp, .lst { border: 1px solid var(--line); }
+.lcard:hover, .blk:hover { box-shadow: 0 10px 28px rgba(77, 10, 33, .18); }
+.savebar { backdrop-filter: blur(8px); background: color-mix(in srgb, var(--card) 92%, transparent); padding-bottom: calc(10px + env(safe-area-inset-bottom)); }
+@media (max-width: 760px) {
+  .top { position: sticky; top: 0; } .brand h1 { font-size: 16px; } .brand p { display: none; }
+  .acts { flex-wrap: nowrap; width: 100%; } .acts .btn { flex: none; }
+  .cards { grid-template-columns: 1fr 1fr; gap: 10px; } .ggrid { grid-template-columns: repeat(2, 1fr); }
+  .cf input { width: 100%; } .cf label { flex: 1 1 140px; }
+  .li > summary { padding: 10px; } .pad button { height: 54px; }
+  .gfoot { bottom: 34px; padding: 6px 14px 6px 8px; gap: 10px; } .gbrand b { font-size: 12px; } .gab { font-size: 19px; }
+}
+@media (max-width: 420px) { .cards { grid-template-columns: 1fr; } .stats b { font-size: 28px; } }

@@ -17,7 +17,7 @@ const Partners = () => {
                     <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                         {t.partners_desc}
                     </p>
-                    <div className="w-24 h-1.5 rounded-full -rotate-2 bg-[var(--brand-red)] mx-auto mt-4"></div>
+                    <div className="heading-bar mx-auto mt-4"></div>
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-8 md:gap-12">

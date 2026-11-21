@@ -52,12 +52,12 @@ const Home = () => {
             transition={{ duration: 0.5 }}
         >
             <Hero />
+            <Impact />
             <RamadanSection />
             <About />
-            <FeaturedCampaign />
-            <Impact />
             <Mission />
             <Programs />
+            <FeaturedCampaign />
             <BeforeAfter />
             <AchievementsMap />
             <GalleryPreview />

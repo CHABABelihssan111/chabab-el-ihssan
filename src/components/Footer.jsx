@@ -25,7 +25,7 @@ const Footer = () => {
     };
 
     return (
-        <footer id="contact" className="bg-[var(--brand-navy-dark)] dark:bg-black text-white pt-12 pb-6 transition-colors duration-300 border-t-8 border-[var(--brand-gold)]">
+        <footer id="contact" className="footer-modern text-white pt-14 pb-6">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-10">
                     <span
@@ -37,35 +37,35 @@ const Footer = () => {
                 </div>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
                     <div>
-                        <h3 className="font-display text-2xl mb-4">
+                        <h3 className="font-display text-xl mb-4 footer-title">
                             {t.association_name}
                         </h3>
                         <p className="text-gray-400 mb-4">
                             {t.footer_about_desc}
                         </p>
                         <div className="flex flex-row items-center gap-4">
-                            <a href={social.facebook} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition p-1">
-                                <FaFacebookF className="text-2xl" />
+                            <a href={social.facebook} target="_blank" rel="noopener noreferrer" className="social-btn">
+                                <FaFacebookF />
                             </a>
-                            <a href={social.x} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-6 h-6 fill-current">
+                            <a href={social.x} target="_blank" rel="noopener noreferrer" className="social-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-4 h-4 fill-current">
                                     <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
                                 </svg>
                             </a>
-                            <a href={social.instagram} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition p-1">
-                                <FaInstagram className="text-2xl" />
+                            <a href={social.instagram} target="_blank" rel="noopener noreferrer" className="social-btn">
+                                <FaInstagram />
                             </a>
-                            <a href={social.youtube} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition p-1">
-                                <FaYoutube className="text-2xl" />
+                            <a href={social.youtube} target="_blank" rel="noopener noreferrer" className="social-btn">
+                                <FaYoutube />
                             </a>
-                            <a href={social.tiktok} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition p-1">
-                                <FaTiktok className="text-2xl" />
+                            <a href={social.tiktok} target="_blank" rel="noopener noreferrer" className="social-btn">
+                                <FaTiktok />
                             </a>
                         </div>
                     </div>
 
                     <div>
-                        <h3 className="font-display text-2xl mb-4">
+                        <h3 className="font-display text-xl mb-4 footer-title">
                             {t.quick_links}
                         </h3>
                         <ul className="space-y-2">
@@ -79,7 +79,7 @@ const Footer = () => {
                     </div>
 
                     <div>
-                        <h3 className="font-display text-2xl mb-4">
+                        <h3 className="font-display text-xl mb-4 footer-title">
                             {t.help_title}
                         </h3>
                         <ul className="space-y-2">
@@ -89,7 +89,7 @@ const Footer = () => {
                     </div>
 
                     <div>
-                        <h3 className="font-display text-2xl mb-4">
+                        <h3 className="font-display text-xl mb-4 footer-title">
                             {t.contact_us}
                         </h3>
                         <ul className="space-y-4">
@@ -109,12 +109,14 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div className="footer-brand">
+                    <img src="/images/logo-full.png" alt="شباب الإحسان" loading="lazy" decoding="async" className="footer-logo" />
+                    <p className="mt-3 text-sm md:text-base text-white/75">{t.association_name}</p>
+                </div>
+
+                <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
                     <div className="text-gray-400 text-sm text-center">
                         <p>{{ ar: 'جميع الحقوق محفوظة', fr: 'Tous droits réservés', en: 'All rights reserved' }[language] || 'All rights reserved'}</p>
-                        <p dir="ltr" className="mt-1">
-                            {{ ar: 'المطور', fr: 'Développeur', en: 'Developer' }[language] || 'Developer'}: <span className="text-white font-semibold">Zehani</span>
-                        </p>
                     </div>
                     <div className="flex gap-6">
                         <Link to="/privacy-policy" className="text-gray-400 hover:text-white text-sm transition">{t.privacy_policy}</Link>
@@ -122,6 +124,9 @@ const Footer = () => {
                         <Link to="/report-problem" className="text-gray-400 hover:text-white text-sm transition">{t.report_problem}</Link>
                     </div>
                 </div>
+            </div>
+            <div className="mt-6 pt-3 border-t border-white/10 text-center text-[11px] text-white/50">
+                <p dir="auto">{{ ar: 'المطور', fr: 'Développeur', en: 'Developer' }[language] || 'Developer'}: Ferhat Zehani</p>
             </div>
         </footer>
     );
