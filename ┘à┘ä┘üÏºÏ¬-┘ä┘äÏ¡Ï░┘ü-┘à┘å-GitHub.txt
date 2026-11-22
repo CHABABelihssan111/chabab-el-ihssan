@@ -1,7 +1,0 @@
-احذف هذه الملفات/المجلدات من مستودع GitHub (لم تعد مستعملة):
-netlify.toml
-wrangler.jsonc
-worker/          (مجلد كامل)
-functions/       (مجلد كامل)
-public/_headers
-OPTIMIZATIONS-README.md
