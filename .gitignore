@@ -1,0 +1,8 @@
+node_modules
+dist
+.env
+.env.*
+*.log
+.DS_Store
+cei-oauth-config.php
+.ftp-deploy-sync-state.json
