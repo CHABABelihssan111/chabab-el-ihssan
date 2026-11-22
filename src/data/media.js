@@ -15,4 +15,5 @@ const defaultSlides = [
     '/images/gallery/caravans/kafila-sahara-rencontre.webp',
     '/images/gallery/ramadan/distribution-paniers.webp',
 ];
-export const heroSlides = [...new Set([heroImage, ...((media.heroImages && media.heroImages.length ? media.heroImages : defaultSlides))])].filter(Boolean);
+const extraSlides = (media.heroImages && media.heroImages.length ? media.heroImages : defaultSlides).map((x) => (typeof x === 'string' ? x : x && x.image));
+export const heroSlides = [...new Set([heroImage, ...extraSlides])].filter(Boolean);

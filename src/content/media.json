@@ -1,5 +1,16 @@
 {
   "heroImage": "/images/gallery/team/benevoles-en-route.webp",
+  "heroImages": [
+    {
+      "image": "/images/gallery/water/eau-jaillit.webp"
+    },
+    {
+      "image": "/images/gallery/caravans/kafila-sahara-rencontre.webp"
+    },
+    {
+      "image": "/images/gallery/ramadan/distribution-paniers.webp"
+    }
+  ],
   "heroVideo": {
     "src": "",
     "youtubeId": "",
@@ -7,8 +18,8 @@
   },
   "beforeAfter": [
     {
-      "before": "/images/uploads/img-mwkw827169y.webp",
-      "after": "/images/gallery/water/eau-jaillit.webp",
+      "before": "/images/ba-before-puits.webp",
+      "after": "/images/ba-after-puits.webp",
       "title": {
         "ar": "حفر بئر ارتوازية",
         "fr": "Forage d'un puits artésien",

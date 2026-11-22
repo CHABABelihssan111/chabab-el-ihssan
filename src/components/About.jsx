@@ -38,11 +38,11 @@ const About = () => {
               Ah, I only read up to 850. Maybe the second column is after 850.
               I should check if there is more content for About.
           */}
-                    <div className="hidden md:block">
+                    <div className="soft-in">
                         {/* Placeholder for now or check next lines */}
                         <SmartImage loading="lazy" decoding="async"
-                            src="/images/gallery/team/benevoles-en-route.webp"
-                            alt="About Us"
+                            src="/images/about-equipe-camion.webp"
+                            alt={t.about}
                             className="rounded-lg shadow-lg w-full h-auto object-cover"
                         />
                     </div>

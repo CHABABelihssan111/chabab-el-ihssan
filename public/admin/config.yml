@@ -311,6 +311,14 @@ collections:
         📍 تظهر في: أعلى الصفحة الرئيسية (الخلفية الكبيرة)
         📐 المقاس المناسب: أفقية كبيرة 1920×1080
         ⬆️ اضغط «اختر صورة» ثم «رفع» — يتم تصغير الصورة تلقائياً.
+    - label: 🖼️ صور الواجهة الأخرى (تتبدّل تلقائيًا)
+      name: heroImages
+      widget: list
+      required: false
+      fields:
+      - label: الصورة
+        name: image
+        widget: image
     - label: ↔️ قبل / بعد (شريط تمرير)
       name: beforeAfter
       widget: list

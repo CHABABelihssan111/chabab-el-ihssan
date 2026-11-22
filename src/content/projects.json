@@ -450,9 +450,9 @@
       "id": "mouftaraqat",
       "image": "/images/gallery/aid/livraison-couvertures-huile.webp",
       "title": {
-        "ar": "مفترقات",
-        "fr": "Mouftaraqat",
-        "en": "Mouftaraqat"
+        "ar": "متفرقات",
+        "fr": "Divers",
+        "en": "Miscellaneous"
       },
       "description": {
         "ar": "توزيع القفف والزكاة.",
@@ -469,7 +469,7 @@
             "en": "Food basket distribution"
           },
           "description": {
-            "ar": "توزيع القفف الغذائية على الأسر المحتاجة في مفترقات الطرق والأحياء.",
+            "ar": "توزيع القفف الغذائية على الأسر المحتاجة في مختلف الأحياء.",
             "fr": "Distribution de couffins alimentaires aux familles dans le besoin dans les quartiers.",
             "en": "Distributing food baskets to families in need across neighbourhoods."
           }

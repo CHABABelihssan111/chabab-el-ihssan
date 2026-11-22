@@ -520,3 +520,10 @@ section :is(.shadow-md, .shadow-lg, .shadow-xl) { box-shadow: var(--shadow-soft)
     .hero-bg.is-on, .hero-blob, .hero-dot, .btn-pulse { animation: none; }
     .hero-tilt { transform: none; }
 }
+
+/* Finitions : apparition douce des photos + titres plus raffinés */
+@keyframes soft-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.soft-in { animation: soft-in .8s cubic-bezier(.2, .7, .2, 1) both; }
+.font-display { font-weight: 700; text-wrap: balance; }
+h1, h2, h3 { text-wrap: balance; }
+@media (prefers-reduced-motion: reduce) { .soft-in { animation: none; } }
