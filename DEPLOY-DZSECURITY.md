@@ -37,4 +37,3 @@ cPanel ← **حسابات FTP** (FTP Accounts) ← أنشئ حسابًا أو ا
   2. داخل المجلد: `git filter-repo --invert-paths --path public/images/uploads/<اسم-الملف>` (كرّره لكل ملف حساس؛ الأداة: https://github.com/newren/git-filter-repo).
   3. ادفع: `git push --force --mirror`، ثم اطلب من GitHub Support مسح الـ cache للـ commits القديمة إن لزم.
   4. إن كانت الوثيقة تحوي أرقامًا أو بيانات حساسة فاعتبرها مكشوفة وغيّر ما يمكن تغييره.
-- Cloudflare ما زال ممكنًا (`wrangler.jsonc`) لكنه غير لازم لـ DZSecurity.

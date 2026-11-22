@@ -33,8 +33,8 @@ npm run build     # الناتج في مجلد dist/
 كل «حفظ ونشر» = **commit واحد** على GitHub (النصوص + الصور معاً) ثم يُعاد نشر الموقع تلقائياً خلال دقيقة. زر «تراجع» يعيد آخر قسم عُدّل، و«معاينة حيّة» تُري الموقع على الكمبيوتر والهاتف.
 
 ### الإعداد (مرة واحدة فقط) — لم يتغيّر
-1. المستودع على GitHub والموقع على Cloudflare/Netlify (انظر `wrangler.jsonc` و`netlify.toml`).
-2. GitHub ← Settings ← Developer settings ← OAuth Apps: Callback URL = `https://موقعكم/oauth/callback`، ثم ضعوا `GITHUB_CLIENT_SECRET` في متغيرات البيئة (و`GITHUB_CLIENT_ID` موجود في `wrangler.jsonc`).
+1. المستودع على GitHub والموقع على DZSecurity (cPanel) عبر `.github/workflows/deploy-dzsecurity.yml`.
+2. GitHub ← Settings ← Developer settings ← OAuth Apps: Callback URL = `https://موقعكم/oauth/callback`، ثم ضعوا `client_id` و`client_secret` في `cei-oauth-config.php` (انظر `cei-oauth-config.php.example`).
 3. افتحوا `https://موقعكم/admin`.
 4. لإضافة عضو: أضيفوه **Collaborator** في المستودع.
 5. إن لم تعمل نافذة GitHub يمكن الدخول بمفتاح شخصي (Personal Access Token بصلاحية `repo`) من «لديك مفتاح GitHub؟».
@@ -77,7 +77,7 @@ public/images/uploads/ الصور المرفوعة من اللوحة
 ## 4) تحسينات v9 الأخرى
 
 - SEO: عنوان ووصف يتبدّلان مع اللغة، Open Graph/Twitter للمعاينة عند المشاركة، بيانات منظّمة (JSON-LD) لـ Google، `sitemap.xml` و`robots.txt` تُولَّدان عند البناء من `site_url` في الإعدادات.
-- الأداء: الخطوط لا تحجب العرض، ترويسات كاش وأمان في `netlify.toml`، حذف صور غير مستعملة.
+- الأداء: الخطوط لا تحجب العرض، ترويسات كاش وأمان في `public/.htaccess`، حذف صور غير مستعملة.
 - الإتاحة: رابط «انتقل إلى المحتوى»، مؤشر تركيز واضح، احترام «تقليل الحركة».
 - إصلاح: شعار وصورة خلفية كانا يخصّان جمعية أخرى (AABV) وتم استبدالهما بصور الجمعية.
 
