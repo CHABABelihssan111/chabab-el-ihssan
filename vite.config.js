@@ -33,8 +33,14 @@ const siteMeta = () => {
     },
     generateBundle() {
       const today = new Date().toISOString().slice(0, 10)
+      // lastmod réel : date du dernier article (pour /news), sinon date fixe — évite de dire « modifié aujourd'hui » pour tout à chaque build
+      let lastNews = today
+      try {
+        const names = fs.readdirSync(new URL('./src/content/news/', import.meta.url)).map((f) => f.slice(0, 10)).filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d)).sort()
+        if (names.length) lastNews = names[names.length - 1]
+      } catch { /* pas de dossier news : on garde today */ }
       const urls = pages.map((p) =>
-        `  <url><loc>${base}${p || '/'}</loc><lastmod>${today}</lastmod><priority>${p ? '0.6' : '1.0'}</priority></url>`
+        `  <url><loc>${base}${p || '/'}</loc><lastmod>${p === '/news' || p === '' ? lastNews : '2026-01-01'}</lastmod><priority>${p ? '0.6' : '1.0'}</priority></url>`
       ).join('\n')
       this.emitFile({
         type: 'asset', fileName: 'sitemap.xml',

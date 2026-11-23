@@ -4,6 +4,17 @@ header('Cache-Control: no-store');
 header('Content-Type: application/json; charset=utf-8');
 $ua = $_SERVER['HTTP_USER_AGENT'] ?? '';
 if ($ua === '' || preg_match('/bot|crawl|spider|slurp|preview|monitor|curl|wget|headless/i', $ua)) { echo '{"ok":0}'; exit; }
+
+// --- حدّ الطلبات: 250 طلب/دقيقة لكل عنوان (كريم لأن شبكات الهاتف تتشارك عنواناً واحداً). لا يُخزَّن الـ IP نفسه بل بصمته فقط.
+// إن تعذّرت الكتابة في المجلد المؤقت يستمر العدّاد بشكل عادي (لا يتعطل شيء).
+$rl = sys_get_temp_dir() . '/cei-rl-hit-' . substr(hash('sha256', 'cei-rl:' . ($_SERVER['REMOTE_ADDR'] ?? 'x')), 0, 24);
+$now = time();
+$hits = is_file($rl) ? json_decode((string)@file_get_contents($rl), true) : [];
+$hits = array_values(array_filter(is_array($hits) ? $hits : [], function ($t) use ($now) { return $t > $now - 60; }));
+if (count($hits) >= 250) { http_response_code(429); echo '{"ok":0}'; exit; }
+$hits[] = $now;
+@file_put_contents($rl, json_encode($hits), LOCK_EX);
+
 $file = (is_writable(dirname($_SERVER['DOCUMENT_ROOT'] ?? __DIR__)) ? dirname($_SERVER['DOCUMENT_ROOT']) : __DIR__) . '/cei-stats.json';
 $day = date('Y-m-d');
 $visit = (($_POST['v'] ?? $_GET['v'] ?? '0') === '1');

@@ -22,9 +22,9 @@ const ErrorPage = ({ error, resetErrorBoundary, is404 = false }) => {
 
     // Textes de secours (le Provider peut lui-même être la cause de l'erreur)
     const FALLBACK = {
-        ar: { page_not_found: 'الصفحة غير موجودة', error_title: 'حدث خطأ ما', home: 'الرئيسية', try_again: 'إعادة المحاولة' },
-        fr: { page_not_found: 'Page introuvable', error_title: 'Une erreur est survenue', home: 'Accueil', try_again: 'Réessayer' },
-        en: { page_not_found: 'Page not found', error_title: 'Something went wrong', home: 'Home', try_again: 'Try again' },
+        ar: { page_not_found: 'الصفحة غير موجودة', error_title: 'حدث خطأ ما', home: 'الرئيسية', donate: 'تبرع الآن', programs: 'برامجنا', news: 'أخبار وفعاليات', try_again: 'إعادة المحاولة' },
+        fr: { page_not_found: 'Page introuvable', error_title: 'Une erreur est survenue', home: 'Accueil', donate: 'Faire un don', programs: 'Programmes', news: 'Actualités', try_again: 'Réessayer' },
+        en: { page_not_found: 'Page not found', error_title: 'Something went wrong', home: 'Home', donate: 'Donate', programs: 'Programs', news: 'News', try_again: 'Try again' },
     };
     const t = { ...(FALLBACK[language] || FALLBACK.en), ...(ctx?.t || {}) };
 
@@ -85,6 +85,15 @@ const ErrorPage = ({ error, resetErrorBoundary, is404 = false }) => {
                         </button>
                     )}
                 </div>
+
+                {/* Liens utiles (404 uniquement) : <a> et non <Link> pour ne jamais dépendre du Router */}
+                {is404 && (
+                    <div className="flex flex-wrap items-center justify-center gap-3 mb-6 relative z-10">
+                        {[['/donate', t.donate], ['/programs', t.programs], ['/news', t.news]].map(([href, label]) => (
+                            <a key={href} href={href} className="px-4 py-2 rounded-lg bg-white/70 dark:bg-gray-700 text-gray-800 dark:text-white border border-gray-200 dark:border-gray-600 hover:underline font-medium">{label}</a>
+                        ))}
+                    </div>
+                )}
 
                 {/* Contact Info */}
                 <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700 relative z-10">
