@@ -23,11 +23,11 @@
   },
   "payment": {
     "account_name": "Association chbab el ihssan",
-    "cpa_account": "XXXXXXXXXXXXXXXXXX",
+    "cpa_account": "XXXXXXXXXXXXXXXXXX:",
     "ccp_number": "",
     "ccp_key": "",
     "rip": "",
-    "iban_eur": "XXXXXXXXXXXXXXX",
+    "iban_eur": "XXXXXXXXXXXXXXXm",
     "messenger_url": "https://m.me/chababelihssan3"
   },
   "maintenance": {
