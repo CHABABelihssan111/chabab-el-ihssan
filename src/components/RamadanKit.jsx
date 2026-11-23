@@ -70,14 +70,56 @@ const Lantern = ({ id, className = '', delay = '0s' }) => (
     </svg>
 );
 
-// Deux fanous suspendus dans l'en-tête (seulement pendant la période du thème)
+// Guirlande de fanous suspendus dans l'en-tête (seulement pendant la période du thème)
 export const RamadanLanterns = () => {
     const now = useNow(60000);
     if (!ramadanState(r, now)?.themeOn) return null;
+    const items = [
+        ['lg1', 'w-5 sm:w-8 md:w-10', '0s', ''],
+        ['lg2', 'w-4 sm:w-6 md:w-8', '-1.4s', 'hidden sm:block'],
+        ['lg3', 'w-6 sm:w-10 md:w-14', '-2.6s', ''],
+        ['lg4', 'w-4 sm:w-6 md:w-8', '-0.8s', 'hidden md:block'],
+        ['lg5', 'w-5 sm:w-8 md:w-10', '-3.3s', ''],
+    ];
     return (
-        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 z-[1] flex justify-between px-1 sm:px-8 md:px-16">
-            <Lantern id="lg1" className="w-5 sm:w-9 md:w-12" />
-            <Lantern id="lg2" className="w-5 sm:w-9 md:w-12" delay="-2s" />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 z-[1] flex justify-between px-1 sm:px-8 md:px-16 ramadan-garland">
+            {items.map(([id, w, d, vis], i) => (
+                <div key={id} className={vis} style={{ marginTop: i % 2 ? 4 : 0 }}><Lantern id={id} className={w} delay={d} /></div>
+            ))}
         </div>
+    );
+};
+
+// Ciel étoilé + croissant (couche fixe, uniquement pendant Ramadan)
+export const RamadanSky = () => {
+    const now = useNow(60000);
+    if (!ramadanState(r, now)?.themeOn) return null;
+    const stars = [[8, 14], [22, 6], [35, 18], [48, 9], [61, 16], [74, 7], [88, 13], [94, 24], [14, 30], [67, 32]];
+    return (
+        <div aria-hidden="true" className="ramadan-sky">
+            {stars.map(([x, y], i) => (
+                <span key={i} className="ramadan-star" style={{ left: `${x}%`, top: `${y}%`, animationDelay: `${(i * 0.37) % 3}s` }} />
+            ))}
+            <svg className="ramadan-moon" viewBox="0 0 64 64" focusable="false"><path d="M44 8a26 26 0 1 0 12 46A22 22 0 0 1 44 8z" fill="#f2b705" /></svg>
+        </div>
+    );
+};
+
+const GREET = {
+    ar: { top: 'رمضان مبارك', sub: 'تقبّل الله منا ومنكم صالح الأعمال — ساهموا في إفطار صائم وإدخال الفرحة على الأسر' },
+    fr: { top: 'Ramadan Moubarak', sub: 'Que Dieu accepte nos bonnes œuvres — offrez un iftar et apportez la joie aux familles' },
+    en: { top: 'Ramadan Mubarak', sub: 'May God accept our good deeds — sponsor an iftar and bring joy to families' },
+};
+export const RamadanGreeting = () => {
+    const now = useNow(60000);
+    const { language } = useLanguage();
+    if (!ramadanState(r, now)?.themeOn) return null;
+    const g = GREET[language] || GREET.en;
+    return (
+        <section className="ramadan-greeting" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+            <FaMoon className="ramadan-greeting-moon" />
+            <h2 className="ramadan-shimmer font-display text-3xl md:text-5xl">{g.top}</h2>
+            <p className="text-white/80 text-sm md:text-base mt-2 max-w-2xl mx-auto px-4">{g.sub}</p>
+        </section>
     );
 };

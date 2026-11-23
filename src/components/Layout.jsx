@@ -6,9 +6,10 @@ import Header from './Header';
 import AnnouncementBar from './AnnouncementBar';
 import Footer from './Footer';
 import ScrollToTop from './ScrollToTop';
+import Tracker from './Tracker';
 import { Toaster } from 'react-hot-toast';
 import OfflineBanner from './OfflineBanner';
-import { RamadanTheme } from './RamadanKit';
+import { RamadanTheme, RamadanSky } from './RamadanKit';
 
 import { useLanguage } from '../context/LanguageContext';
 
@@ -43,7 +44,9 @@ const Layout = () => {
             </main>
             <Footer />
             <ScrollToTop />
+            <Tracker />
             <RamadanTheme />
+            <RamadanSky />
             <OfflineBanner />
             <Toaster position="top-center" reverseOrder={false} />
         </div>

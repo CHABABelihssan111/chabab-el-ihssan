@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>إحصائيات الزيارات — شباب الإحسان</title>
+<style>
+:root{--bg:#f4f2ef;--card:#fff;--ink:#1f2937;--mut:#6b7280;--red:#c8102e;--navy:#1e3a8a}
+@media(prefers-color-scheme:dark){:root{--bg:#111827;--card:#1f2937;--ink:#f3f4f6;--mut:#9ca3af}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Cairo,Tahoma,sans-serif;padding:16px;padding-bottom:env(safe-area-inset-bottom)}
+.wrap{max-width:900px;margin:auto}.card{background:var(--card);border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);margin-bottom:14px}
+h1{font-size:22px;margin:0 0 14px}a{color:var(--navy)}
+input{font:inherit;padding:12px;border-radius:12px;border:1.5px solid #cbd5e1;width:100%;text-align:center;letter-spacing:8px;font-size:22px;background:transparent;color:inherit}
+button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:10px 16px;background:var(--navy);color:#fff;font-weight:700;transition:transform .15s}button:active{transform:scale(.96)}
+.tabs{display:flex;gap:8px;margin-bottom:10px}.tabs button{background:transparent;color:var(--ink);border:1.5px solid #cbd5e1}.tabs button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}@media(min-width:640px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{background:var(--bg);border-radius:12px;padding:12px;text-align:center}.stat b{display:block;font-size:26px;color:var(--red)}.stat small{color:var(--mut)}
+svg{width:100%;height:auto;display:block}.lg{display:flex;gap:16px;justify-content:center;margin-top:8px;font-size:14px}.lg i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-inline-end:6px}
+#err{color:var(--red);text-align:center;min-height:22px;margin-top:8px}
+@keyframes draw{to{stroke-dashoffset:0}}path.ln{stroke-dasharray:2000;stroke-dashoffset:2000;animation:draw 1.4s ease forwards}
+</style></head>
+<body><div class="wrap">
+<div id="gate" class="card" style="max-width:340px;margin:12vh auto"><h1 style="text-align:center">🔒 إحصائيات الزيارات</h1>
+<input id="code" type="password" inputmode="numeric" maxlength="8" placeholder="••••" autofocus>
+<button id="go" style="width:100%;margin-top:12px">دخول</button><div id="err"></div></div>
+<div id="app" hidden>
+<div class="card"><h1>📈 زوار الموقع</h1>
+<div class="tabs"><button data-n="7">7 أيام</button><button data-n="30" class="on">30 يومًا</button><button data-n="90">90 يومًا</button></div>
+<div class="stats"><div class="stat"><b id="sToday">0</b><small>زيارات اليوم</small></div><div class="stat"><b id="sVisits">0</b><small>زيارات الفترة</small></div><div class="stat"><b id="sViews">0</b><small>مشاهدات الصفحات</small></div><div class="stat"><b id="sAvg">0</b><small>المعدل اليومي</small></div></div></div>
+<div class="card"><svg id="chart" viewBox="0 0 700 320"></svg><div class="lg"><span><i style="background:#c8102e"></i>زيارات</span><span><i style="background:#1e3a8a"></i>مشاهدات</span></div></div>
+<p style="text-align:center"><a href="/admin/">← لوحة التحكم</a></p></div></div>
+<script>
+var DAYS={},TODAY='',N=30,CODE='';
+function $(i){return document.getElementById(i)}
+function load(code){return fetch('/stats/data.php',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'code='+encodeURIComponent(code)}).then(function(r){if(!r.ok)throw 0;return r.json()})}
+function unlock(code){load(code).then(function(j){CODE=code;try{sessionStorage.setItem('cei_st',code)}catch(e){}DAYS=j.days||{};TODAY=j.today;$('gate').hidden=true;$('app').hidden=false;draw()}).catch(function(){$('err').textContent='الكود غير صحيح أو الخدمة غير متاحة'})}
+$('go').onclick=function(){unlock($('code').value)};$('code').onkeydown=function(e){if(e.key==='Enter')unlock(this.value)};
+document.querySelectorAll('.tabs button').forEach(function(b){b.onclick=function(){N=+b.dataset.n;document.querySelectorAll('.tabs button').forEach(function(x){x.classList.toggle('on',x===b)});draw()}});
+function fmt(d){return d.toISOString().slice(0,10)}
+function draw(){
+ var end=new Date(TODAY+'T00:00:00Z'),pts=[];
+ for(var i=N-1;i>=0;i--){var d=new Date(end-i*864e5),k=fmt(d),v=DAYS[k]||{views:0,visits:0};pts.push({k:k,vis:v.visits||0,vw:v.views||0})}
+ var sv=0,sw=0;pts.forEach(function(p){sv+=p.vis;sw+=p.vw});
+ $('sToday').textContent=pts[pts.length-1].vis;$('sVisits').textContent=sv;$('sViews').textContent=sw;$('sAvg').textContent=(sv/N).toFixed(1);
+ var W=700,H=320,L=40,R=14,T=16,B=34,max=Math.max(5,Math.max.apply(null,pts.map(function(p){return p.vw}))),x=function(i){return L+i*(W-L-R)/Math.max(1,N-1)},y=function(v){return T+(H-T-B)*(1-v/max)};
+ var s='';
+ for(var g=0;g<=4;g++){var gv=Math.round(max*g/4),gy=y(gv);s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+gy+'" y2="'+gy+'" stroke="currentColor" opacity=".12"/><text x="'+(L-6)+'" y="'+(gy+4)+'" font-size="11" text-anchor="end" fill="currentColor" opacity=".6">'+gv+'</text>'}
+ var step=Math.ceil(N/7);pts.forEach(function(p,i){if(i%step===0||i===N-1)s+='<text x="'+x(i)+'" y="'+(H-10)+'" font-size="11" text-anchor="middle" fill="currentColor" opacity=".6">'+p.k.slice(5)+'</text>'});
+ function line(key,col,fill){var d=pts.map(function(p,i){return(i?'L':'M')+x(i).toFixed(1)+' '+y(p[key]).toFixed(1)}).join(' ');
+  if(fill)s+='<path d="'+d+' L'+x(N-1)+' '+y(0)+' L'+x(0)+' '+y(0)+'Z" fill="'+col+'" opacity=".10"/>';
+  s+='<path class="ln" d="'+d+'" fill="none" stroke="'+col+'" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>';
+  if(N<=31)pts.forEach(function(p,i){s+='<circle cx="'+x(i)+'" cy="'+y(p[key])+'" r="3.5" fill="'+col+'"><title>'+p.k+': '+p[key]+'</title></circle>'})}
+ line('vw','#1e3a8a',true);line('vis','#c8102e',true);
+ $('chart').innerHTML=s}
+try{var c=sessionStorage.getItem('cei_st');if(c)unlock(c)}catch(e){}
+</script></body></html>

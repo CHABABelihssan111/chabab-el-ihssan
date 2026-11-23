@@ -192,3 +192,22 @@ export const RL = {
         chipIftar: 'Iftar in', chipSuhoor: 'Fast begins in', chipNight: 'Fajr in',
     },
 };
+
+// ─── Les 5 prières + lever du soleil (Alger) ───
+export const ISHA_ANGLE = 17; // angle utilisé en Algérie pour l'Isha
+export const prayerTimesFor = (ms) => {
+    const p = ymd(ms);
+    const base = dayStart(p);
+    const { decl, eqTime } = sunParams(julian(p.y, p.m, p.d) + 0.5 - CITY.tz / 24);
+    const noon = 720 - 4 * CITY.lon - eqTime + CITY.tz * 60;
+    const asrAlt = Math.atan(1 / (1 + Math.tan(Math.abs(CITY.lat - decl) * RAD))) / RAD;
+    const at = (min) => base + min * 60000;
+    return {
+        fajr: at(Math.floor(eventMinutes(p.y, p.m, p.d, FAJR_ANGLE, true))),
+        sunrise: at(Math.floor(eventMinutes(p.y, p.m, p.d, 0.833, true))),
+        dhuhr: at(Math.ceil(noon) + 1),
+        asr: at(Math.ceil(eventMinutes(p.y, p.m, p.d, -asrAlt, false))),
+        maghrib: at(Math.ceil(eventMinutes(p.y, p.m, p.d, 0.833, false)) + MAGHRIB_OFFSET),
+        isha: at(Math.ceil(eventMinutes(p.y, p.m, p.d, ISHA_ANGLE, false))),
+    };
+};

@@ -7,6 +7,8 @@ import Programs from '../components/Programs';
 import Impact from '../components/Impact';
 import FeaturedCampaign from '../components/FeaturedCampaign';
 import RamadanSection from '../components/RamadanSection';
+import PrayerTimes from '../components/PrayerTimes';
+import { RamadanGreeting } from '../components/RamadanKit';
 import Branches from '../components/Branches';
 import GetInvolved from '../components/GetInvolved';
 import About from '../components/About';
@@ -52,7 +54,9 @@ const Home = () => {
             transition={{ duration: 0.5 }}
         >
             <Hero />
+            <RamadanGreeting />
             <Impact />
+            <PrayerTimes />
             <RamadanSection />
             <About />
             <Mission />

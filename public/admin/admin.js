@@ -562,7 +562,7 @@
     var cb = CA ? (CA.enabled === false ? ['off', 'مخفية'] : ['on', 'ظاهرة']) : null;
     var rm = cached('src/content/ramadan.json'), rb = rm ? (rm.enabled ? ['on', 'مفعّل'] : ['off', 'متوقف']) : null;
     var sf = ST.social_feed, sb = sf ? (sf.enabled === false ? ['off', 'مخفي'] : ['on', 'ظاهر']) : null;
-    var top = blk('', '📢', 'شريط الإعلان', 'يظهر أعلى كل صفحات الموقع', 'ed|announce', null, annB) + blk('', '🏷️', 'الشعار والاتصال', 'الشعار، الهاتف، البريد، العنوان', 'ed|contact', ST.logo_url, null) + blk('', '🛑', 'تعطيل الموقع', 'إيقاف / تشغيل الموقع بضغطة واحدة', 'ed|maintenance', null, (ST.maintenance && ST.maintenance.enabled) ? ['off', 'معطّل حالياً'] : ['on', 'يعمل']);
+    var top = blk('', '📢', 'شريط الإعلان', 'يظهر أعلى كل صفحات الموقع', 'ed|announce', null, annB) + blk('', '🏷️', 'الشعار والاتصال', 'الشعار، الهاتف، البريد، العنوان', 'ed|contact', ST.logo_url, null) + blk('', '📈', 'إحصائيات الزيارات', 'منحنى عدد الزوار (بالكود)', 'link|/admin/stats.html', null, null) + blk('', '🛑', 'تعطيل الموقع', 'إيقاف / تشغيل الموقع بضغطة واحدة', 'ed|maintenance', null, (ST.maintenance && ST.maintenance.enabled) ? ['off', 'معطّل حالياً'] : ['on', 'يعمل']);
     var order = [
       ['🏠', 'الواجهة الكبيرة', 'أول صورة يراها الزائر (+ فيديو اختياري)', 'ed|hero', M.heroImage, null],
       ['🌙', 'وضع رمضان', 'العدّ التنازلي + سلة رمضان + زكاة الفطر', 'ed|ramadan', null, rb],
@@ -686,6 +686,7 @@
   }
   function openAny(s) {
     var a = s.split('|');
+    if (a[0] === 'link') { location.href = a[1]; return; }
     go(function () {
       if (a[0] === 'ed') openEd(a[1]); else if (a[0] === 'gallery') openEd('gallery');
       else if (a[0] === 'list') openList(a[1]); else if (a[0] === 'entry') openEntry(a[1], a[2] || null); else goHome();
