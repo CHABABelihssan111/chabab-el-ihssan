@@ -16,12 +16,13 @@ function table(id,map,limit,key){var o=agg(window._rows,map),ks=Object.keys(o).s
  var mx=o[ks[0]];el.innerHTML=ks.map(function(k){return'<div class="row"><span>'+esc(lab(key||map,k))+'</span><div class="bar"><i style="width:'+(o[k]/mx*100).toFixed(1)+'%"></i></div><span><b>'+o[k]+'</b> <small>'+(t?Math.round(o[k]/t*100):0)+'%</small></span></div>'}).join('')}
 function dur(s){s=Math.round(s);return s>=60?Math.floor(s/60)+'د '+(s%60)+'ث':s+'ث'}
 function draw(){
+ try{
  var rows=range();window._rows=rows;
  var sv=0,sw=0,sd=0,sdn=0,nw=0,rt=0,best={k:'-',n:-1};
  rows.forEach(function(r){var v=r.v;sv+=v.visits||0;sw+=v.views||0;sd+=v.dur||0;sdn+=v.durn||0;nw+=(v.new||{}).n||0;rt+=(v.ret||{}).n||0;if((v.visits||0)>best.n)best={k:r.k,n:v.visits||0}});
  var today=rows[rows.length-1].v,k=[[today.visits||0,'زيارات اليوم'],[sv,'زيارات الفترة'],[sw,'مشاهدات الصفحات'],[(sv/N).toFixed(1),'المعدل اليومي'],[sv?(sw/sv).toFixed(1):0,'صفحات / زيارة'],[sdn?dur(sd/sdn):'-','متوسط مدة البقاء'],[(nw+rt)?Math.round(nw/(nw+rt)*100)+'%':'-','زوار جدد'],[(nw+rt)?Math.round(rt/(nw+rt)*100)+'%':'-','زوار عائدون'],[best.n>0?best.k.slice(5)+' ('+best.n+')':'-','أفضل يوم']];
  $('kpi').innerHTML=k.map(function(x){return'<div class="stat"><b>'+x[0]+'</b><small>'+x[1]+'</small></div>'}).join('');
- table('tSrc','src',20);table('tPg','pg',12);table('tRef','ref',10);table('tDev','dev');table('tOs','os');table('tBr','br');table('tLang','lang');table('tScr','scr');table('tTz','tz',8);
+ [['tSrc','src',20],['tPg','pg',12],['tRef','ref',10],['tDev','dev'],['tOs','os'],['tBr','br'],['tLang','lang'],['tScr','scr'],['tTz','tz',8]].forEach(function(a){try{table(a[0],a[1],a[2])}catch(e){console.error('table',a[0],e)}});
  // ساعات الذروة
  var h=agg(rows,'hr'),hm=Math.max(1,Math.max.apply(null,Object.keys(h).map(function(x){return h[x]})).valueOf()||1),s='';
  for(var i=0;i<24;i++){var v=h[i]||0,bh=v/hm*130,bx=10+i*28;s+='<rect x="'+bx+'" y="'+(140-bh)+'" width="20" height="'+bh+'" rx="4" fill="#1e3a8a"><title>'+i+':00 → '+v+'</title></rect><text x="'+(bx+10)+'" y="162" font-size="10" text-anchor="middle" fill="currentColor" opacity=".6">'+i+'</text>'}
@@ -32,9 +33,21 @@ function draw(){
  // الجدول اليومي
  var cols=['facebook','instagram','whatsapp','tiktok','google','direct'];
  $('tDay').innerHTML='<tr><th>التاريخ</th><th>زيارات</th><th>مشاهدات</th>'+cols.map(function(c){return'<th>'+(ICON[c]||c).split(' ')[0]+'</th>'}).join('')+'</tr>'+rows.slice().reverse().map(function(r){var v=r.v,sr=v.src||{};return'<tr><td>'+r.k+'</td><td>'+(v.visits||0)+'</td><td>'+(v.views||0)+'</td>'+cols.map(function(c){return'<td>'+(sr[c]||0)+'</td>'}).join('')+'</tr>'}).join('');
- chart(rows)}
-$('csv').onclick=function(){var rows=range(),c=['date,visits,views,avg_seconds,new,returning,facebook,instagram,whatsapp,tiktok,google,direct'];rows.forEach(function(r){var v=r.v,s=v.src||{};c.push([r.k,v.visits||0,v.views||0,v.durn?Math.round(v.dur/v.durn):0,(v.new||{}).n||0,(v.ret||{}).n||0,s.facebook||0,s.instagram||0,s.whatsapp||0,s.tiktok||0,s.google||0,s.direct||0].join(','))});
- var a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+c.join('\n')],{type:'text/csv'}));a.download='stats-'+TODAY+'.csv';a.click()};
+ chart(rows);
+ }catch(e){ console.error('draw error', e); }
+}
+$('csv').onclick=function(){
+ try{
+  var rows=(window._rows&&window._rows.length)?window._rows:range();
+  var c=['date,visits,views,avg_seconds,new,returning,facebook,instagram,whatsapp,tiktok,google,direct'];
+  rows.forEach(function(r){var v=r.v,s=v.src||{};c.push([r.k,v.visits||0,v.views||0,v.durn?Math.round(v.dur/v.durn):0,(v.new||{}).n||0,(v.ret||{}).n||0,s.facebook||0,s.instagram||0,s.whatsapp||0,s.tiktok||0,s.google||0,s.direct||0].join(','))});
+  var blob=new Blob(['\ufeff'+c.join('\r\n')],{type:'text/csv;charset=utf-8;'});
+  var url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download='stats-'+(TODAY||'export')+'.csv';a.style.display='none';
+  document.body.appendChild(a);a.click();
+  setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(url)},1000);
+ }catch(e){ alert('تعذّر تصدير CSV: '+(e&&e.message?e.message:e)); }
+};
 function chart(rows){var pts=rows.map(function(r){return{k:r.k,vis:r.v.visits||0,vw:r.v.views||0}}),n=pts.length;
  var W=700,H=320,L=40,R=14,T=16,B=34,max=Math.max(5,Math.max.apply(null,pts.map(function(p){return p.vw}))),x=function(i){return L+i*(W-L-R)/Math.max(1,n-1)},y=function(v){return T+(H-T-B)*(1-v/max)},s='';
  for(var g=0;g<=4;g++){var gv=Math.round(max*g/4),gy=y(gv);s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+gy+'" y2="'+gy+'" stroke="currentColor" opacity=".12"/><text x="'+(L-6)+'" y="'+(gy+4)+'" font-size="11" text-anchor="end" fill="currentColor" opacity=".6">'+gv+'</text>'}
