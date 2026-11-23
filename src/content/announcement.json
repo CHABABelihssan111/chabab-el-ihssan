@@ -1,5 +1,5 @@
 {
-  "enabled": true,
+  "enabled": false,
   "text": {
     "ar": "قافلة 29 على الابواب",
     "fr": "",
@@ -11,6 +11,6 @@
     "fr": "Faire un don",
     "en": "Donate"
   },
-  "color": "gold",
+  "color": "red",
   "end_date": ""
 }
