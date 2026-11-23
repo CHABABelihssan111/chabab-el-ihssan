@@ -11,6 +11,7 @@ import ScrollToTopWrapper from './components/ScrollToTopWrapper';
 import ErrorPage from './pages/ErrorPage';
 import settings from './data/settings';
 import Maintenance from './pages/Maintenance';
+import Tracker from './components/Tracker';
 import Splash from './components/Splash';
 import Reveal from './components/Reveal';
 
@@ -31,7 +32,7 @@ const SadaqaJariya = lazy(() => import('./pages/SadaqaJariya'));
 // Le Suspense (squelette de page) est dans Layout : en-tête et pied de page restent visibles.
 
 function App() {
-    if (settings.maintenance?.enabled) return <Maintenance message={settings.maintenance.message} />;
+    if (settings.maintenance?.enabled) return <Router><Tracker /><Maintenance message={settings.maintenance.message} /></Router>;
     return (
         <LanguageProvider>
             <ThemeProvider>

@@ -7,8 +7,8 @@
 :root{--bg:#f4f2ef;--card:#fff;--ink:#1f2937;--mut:#6b7280;--red:#c8102e;--navy:#1e3a8a}
 @media(prefers-color-scheme:dark){:root{--bg:#111827;--card:#1f2937;--ink:#f3f4f6;--mut:#9ca3af}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Cairo,Tahoma,sans-serif;padding:16px;padding-bottom:env(safe-area-inset-bottom)}
-.wrap{max-width:900px;margin:auto}.card{background:var(--card);border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);margin-bottom:14px}
-h1{font-size:22px;margin:0 0 14px}a{color:var(--navy)}
+.wrap{max-width:1000px;margin:auto}.card{background:var(--card);border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);margin-bottom:14px}
+h1{font-size:22px;margin:0 0 14px}h2{font-size:16px;margin:0 0 12px}.grid2{display:grid;gap:14px;grid-template-columns:1fr}@media(min-width:760px){.grid2{grid-template-columns:1fr 1fr}}.row{display:grid;grid-template-columns:minmax(80px,32%) 1fr auto;gap:8px;align-items:center;margin:7px 0;font-size:14px}.bar{height:10px;border-radius:6px;background:var(--bg);overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#c8102e,#1e3a8a);border-radius:6px}.row b{font-variant-numeric:tabular-nums}.row small{color:var(--mut)}.hint{font-size:13px;color:var(--mut);margin:10px 0 0}code{background:var(--bg);padding:1px 6px;border-radius:6px;direction:ltr;display:inline-block}table{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap}th,td{padding:6px 8px;text-align:center;border-bottom:1px solid rgba(128,128,128,.2)}.empty{color:var(--mut);font-size:14px;text-align:center;padding:8px}a{color:var(--navy)}
 input{font:inherit;padding:12px;border-radius:12px;border:1.5px solid #cbd5e1;width:100%;text-align:center;letter-spacing:8px;font-size:22px;background:transparent;color:inherit}
 button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:10px 16px;background:var(--navy);color:#fff;font-weight:700;transition:transform .15s}button:active{transform:scale(.96)}
 .tabs{display:flex;gap:8px;margin-bottom:10px}.tabs button{background:transparent;color:var(--ink);border:1.5px solid #cbd5e1}.tabs button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
@@ -24,8 +24,22 @@ svg{width:100%;height:auto;display:block}.lg{display:flex;gap:16px;justify-conte
 <button id="go" style="width:100%;margin-top:12px">دخول</button><div id="err"></div></div>
 <div id="app" hidden>
 <div class="card"><h1>📈 زوار الموقع</h1>
-<div class="tabs"><button data-n="7">7 أيام</button><button data-n="30" class="on">30 يومًا</button><button data-n="90">90 يومًا</button></div>
-<div class="stats"><div class="stat"><b id="sToday">0</b><small>زيارات اليوم</small></div><div class="stat"><b id="sVisits">0</b><small>زيارات الفترة</small></div><div class="stat"><b id="sViews">0</b><small>مشاهدات الصفحات</small></div><div class="stat"><b id="sAvg">0</b><small>المعدل اليومي</small></div></div></div>
-<div class="card"><svg id="chart" viewBox="0 0 700 320"></svg><div class="lg"><span><i style="background:#c8102e"></i>زيارات</span><span><i style="background:#1e3a8a"></i>مشاهدات</span></div></div>
+<div class="tabs"><button data-n="1">اليوم</button><button data-n="7">7 أيام</button><button data-n="30" class="on">30 يومًا</button><button data-n="90">90 يومًا</button><button data-n="365">سنة</button></div>
+<div class="stats" id="kpi"></div></div>
+<div class="card"><h2>الزيارات والمشاهدات يوميًا</h2><svg id="chart" viewBox="0 0 700 320"></svg><div class="lg"><span><i style="background:#c8102e"></i>زيارات</span><span><i style="background:#1e3a8a"></i>مشاهدات</span></div></div>
+<div class="card"><h2>🌐 من أين جاء الزوار (المصدر)</h2><div id="tSrc"></div><p class="hint">💡 واتساب وتيك توك غالبًا لا يرسلان مصدرًا. ضع في رابط كل منصة وسمًا: <code>?src=whatsapp</code> أو <code>?src=facebook</code> أو <code>?src=instagram</code> أو <code>?src=tiktok</code> وسيُسجَّل بدقة.</p></div>
+<div class="grid2">
+<div class="card"><h2>📄 أكثر الصفحات مشاهدة</h2><div id="tPg"></div></div>
+<div class="card"><h2>🔗 المواقع المُحيلة</h2><div id="tRef"></div></div>
+<div class="card"><h2>📱 الأجهزة</h2><div id="tDev"></div></div>
+<div class="card"><h2>🖥️ نظام التشغيل</h2><div id="tOs"></div></div>
+<div class="card"><h2>🧭 المتصفح</h2><div id="tBr"></div></div>
+<div class="card"><h2>🗣️ اللغة</h2><div id="tLang"></div></div>
+<div class="card"><h2>📐 حجم الشاشة</h2><div id="tScr"></div></div>
+<div class="card"><h2>🌍 المنطقة الزمنية (تقريب للبلد)</h2><div id="tTz"></div></div>
+<div class="card"><h2>🕒 ساعات الذروة (مشاهدات)</h2><svg id="cHr" viewBox="0 0 700 180"></svg></div>
+<div class="card"><h2>📅 أيام الأسبوع (زيارات)</h2><div id="tWd"></div></div>
+</div>
+<div class="card"><h2>🗓️ الجدول اليومي</h2><div style="overflow-x:auto"><table id="tDay"></table></div><button id="csv" style="margin-top:10px">⬇️ تصدير CSV</button></div>
 <p style="text-align:center"><a href="/admin/">← لوحة التحكم</a></p></div></div>
 <script src="/admin/stats.js"></script></body></html>
