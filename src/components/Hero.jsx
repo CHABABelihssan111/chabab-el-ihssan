@@ -24,6 +24,12 @@ const Hero = () => {
         el.style.setProperty('--rx', `${-((e.clientY - r.top) / r.height - 0.5) * 10}deg`);
     };
     const onLeave = () => { setPaused(false); tilt.current?.style.setProperty('--rx', '0deg'); tilt.current?.style.setProperty('--ry', '0deg'); };
+    // Phrase clé du titre (dernière phrase) : soulignée en rouge avec une animation de tracé.
+    const titleWords = (() => {
+        const parts = String(t.hero_title).match(/[^.؟?!]+[.؟?!]?/g) || [String(t.hero_title)];
+        const last = parts.length > 1 ? parts.length - 1 : -1;
+        return parts.flatMap((p, pi) => p.trim().split(/\s+/).filter(Boolean).map((text) => ({ text, key: pi === last })));
+    })();
     const hasVideo = !!(heroVideo.src || heroVideo.youtubeId);
     const watchLabel = { ar: 'شاهد الفيديو', fr: 'Voir la vidéo', en: 'Watch the video' }[language] || 'Watch the video';
 
@@ -70,13 +76,13 @@ const Hero = () => {
 
             <div className="container mx-auto px-4 grid lg:grid-cols-2 items-center gap-12 lg:gap-8">
                 <div className="hero-rise">
-                    <span className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur px-4 py-1.5 text-sm font-semibold ring-1 ring-white/20">
+                    <span className="hero-badge inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur px-4 py-1.5 text-sm font-semibold ring-1 ring-white/20">
                         <span className="w-2 h-2 rounded-full bg-[var(--brand-gold)] animate-pulse" />
                         {t.association_name}
                     </span>
                     <h2 className="font-display mt-5 text-[clamp(1.9rem,6.2vw,3.6rem)] leading-[1.35]">
-                        {String(t.hero_title).split(' ').map((w, i) => (
-                            <span key={i} className="hero-word" style={{ animationDelay: `${0.15 + i * 0.07}s` }}>{w}&nbsp;</span>
+                        {titleWords.map((w, i) => (
+                            <span key={i} className={`hero-word${w.key ? ' hero-mark' : ''}`} style={{ animationDelay: `${0.15 + i * 0.07}s`, '--mk': `${0.9 + i * 0.09}s` }}>{w.text}&nbsp;</span>
                         ))}
                     </h2>
                     <div className="mt-5 h-1 w-24 rounded-full bg-gradient-to-r from-[var(--brand-gold)] to-[var(--brand-red)]" />
@@ -135,7 +141,7 @@ const Hero = () => {
                 </div>
             </div>
 
-            <FaChevronDown aria-hidden="true" className="hidden md:block absolute bottom-24 inset-x-0 mx-auto text-white/60 animate-bounce" />
+            <FaChevronDown aria-hidden="true" className="block absolute bottom-20 md:bottom-24 inset-x-0 mx-auto text-white/60 animate-bounce" />
             {playing && <VideoModal video={heroVideo} onClose={() => setPlaying(false)} />}
         </section>
     );

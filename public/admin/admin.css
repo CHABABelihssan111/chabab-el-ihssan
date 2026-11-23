@@ -266,3 +266,15 @@ main > * { animation: mfade .4s var(--ease) both; } @keyframes mfade { from { op
 }
 @media (max-width: 420px) { .cards { grid-template-columns: 1fr; } .stats b { font-size: 30px; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
+
+
+/* ===== Lueurs en mode nuit (CSS seul) ===== */
+body.dark .top { box-shadow: 0 8px 34px rgba(0, 0, 0, .5), 0 3px 24px -4px rgba(242, 183, 5, .45); }
+body.dark .btn.red { box-shadow: 0 6px 22px rgba(200, 16, 46, .5), 0 0 26px -4px rgba(242, 183, 5, .4), inset 0 1px 0 rgba(255, 255, 255, .25); }
+body.dark .btn.amber { box-shadow: 0 0 26px -2px rgba(242, 183, 5, .6), inset 0 1px 0 rgba(255, 255, 255, .5); }
+body.dark .stats button, body.dark .quick button, body.dark .lcard, body.dark .blk { border-color: rgba(242, 183, 5, .16); }
+body.dark .stats button:hover, body.dark .quick button:hover, body.dark .lcard:hover, body.dark .blk:hover { box-shadow: 0 0 0 1px rgba(242, 183, 5, .5), 0 18px 44px -14px rgba(242, 183, 5, .35); }
+body.dark .stats b { filter: drop-shadow(0 0 12px rgba(242, 183, 5, .45)); }
+body.dark main h2 { text-shadow: 0 0 22px rgba(242, 183, 5, .3); }
+body.dark .savebar { box-shadow: 0 -10px 40px rgba(0, 0, 0, .5), 0 -2px 24px -6px rgba(242, 183, 5, .4); }
+body.dark .gbox { box-shadow: 0 30px 80px rgba(0, 0, 0, .6), 0 0 50px -8px rgba(242, 183, 5, .35); }

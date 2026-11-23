@@ -278,7 +278,7 @@
     },
     {
       "category": "caravans",
-      "image_url": "/images/gallery/caravans/kafila-orphelins.webp",
+      "image_url": "/images/gallery/caravans/kafila-enfants.webp",
       "caption": {
         "ar": "إدخال الفرحة على اليتامى",
         "fr": "Un moment de joie pour les orphelins",
@@ -348,7 +348,7 @@
     },
     {
       "category": "aid",
-      "image_url": "/images/gallery/aid/mascotte-orphelins.webp",
+      "image_url": "/images/gallery/aid/mascotte-enfants.webp",
       "caption": {
         "ar": "لحظة فرح مع اليتامى",
         "fr": "Un moment de joie avec les orphelins",
@@ -538,7 +538,7 @@
     },
     {
       "category": "eid",
-      "image_url": "/images/gallery/eid/aid-vetements-orphelins.webp",
+      "image_url": "/images/gallery/eid/aid-vetements-enfants.webp",
       "caption": {
         "ar": "لبسة العيد لليتامى",
         "fr": "Habits de l'Aïd pour orphelins",
