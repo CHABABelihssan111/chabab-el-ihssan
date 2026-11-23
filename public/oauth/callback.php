@@ -36,10 +36,12 @@ $msgJs  = json_encode($message, $flags);
 $orgJs  = json_encode($origin, $flags);
 
 setcookie('oauth_state', '', ['expires' => time() - 3600, 'path' => '/oauth']);
+$nonce = base64_encode(random_bytes(16));
 header('Content-Type: text/html; charset=UTF-8');
 header('Cache-Control: no-store');
+header("Content-Security-Policy: default-src 'none'; script-src 'nonce-" . $nonce . "'");
 ?>
-<!doctype html><html><body><script>
+<!doctype html><html><body><script nonce="<?= $nonce ?>">
 (function () {
   var msg = <?= $msgJs ?>;
   var target = <?= $orgJs ?>;
