@@ -76,9 +76,9 @@
           "id": "s2",
           "image": "/images/gallery/caravans/kafila-matelas.webp",
           "title": {
-            "ar": "قوافل إحسان",
-            "fr": "Kawafil Ihssan",
-            "en": "Ihssan caravans"
+            "ar": "قوافل الإحسان",
+            "fr": "Caravanes d'Ihssan",
+            "en": "Ihssan Caravans"
           },
           "description": {
             "ar": "قوافل خيرية تحمل المساعدات إلى المناطق النائية والأسر المحتاجة.",
@@ -90,14 +90,14 @@
           "id": "s3",
           "image": "/images/gallery/eid/aid-adha-mouton.webp",
           "title": {
-            "ar": "عيد الأضحى",
-            "fr": "Aïd al-Adha",
-            "en": "Eid al-Adha"
+            "ar": "توزيع الأضاحي",
+            "fr": "Distribution des moutons de l'Aïd",
+            "en": "Eid Sacrifice Distribution"
           },
           "description": {
-            "ar": "حملة أضحية العيد: نوزّع لحم الأضاحي على الأسر المحتاجة لنُدخل الفرحة إلى بيوتهم.",
-            "fr": "Campagne du sacrifice de l'Aïd : nous distribuons la viande aux familles dans le besoin.",
-            "en": "Eid sacrifice campaign: we distribute the meat to families in need."
+            "ar": "توزيع الأضاحي واللحم على الأسر المحتاجة لنُدخل الفرحة إلى بيوتهم.",
+            "fr": "Nous distribuons les moutons et la viande du sacrifice aux familles dans le besoin pour apporter la joie dans leurs foyers.",
+            "en": "We distribute sacrificial animals and meat to families in need to bring joy to their homes."
           }
         }
       ]
@@ -120,14 +120,14 @@
           "id": "r1",
           "image": "/images/gallery/ramadan/iftar-service.webp",
           "title": {
-            "ar": "مطعم إحسان",
-            "fr": "Restaurant Ihssan",
-            "en": "Ihssan restaurant"
+            "ar": "مطعم الإحسان للصائمين وعابري السبيل",
+            "fr": "Restaurant d'Ihssan pour les jeûneurs et les voyageurs",
+            "en": "Ihssan Restaurant for the Fasting and Wayfarers"
           },
           "description": {
-            "ar": "مطعم يقدّم وجبات الإفطار للصائمين والمحتاجين طيلة شهر رمضان.",
-            "fr": "Un restaurant qui sert des repas d'iftar aux jeûneurs et aux personnes dans le besoin pendant le Ramadan.",
-            "en": "A restaurant serving iftar meals to those fasting and in need throughout Ramadan."
+            "ar": "مطعم يقدّم وجبات الإفطار للصائمين وعابري السبيل طيلة شهر رمضان.",
+            "fr": "Un restaurant qui sert l'iftar aux jeûneurs et aux voyageurs de passage pendant tout le mois de Ramadan.",
+            "en": "A restaurant serving iftar meals to the fasting and passing travellers throughout Ramadan."
           }
         },
         {
@@ -146,7 +146,7 @@
         },
         {
           "id": "r3",
-          "image": "/images/gallery/ramadan/distribution-paniers.webp",
+          "image": "/images/uploads/img-mwozvb35zkv.webp",
           "title": {
             "ar": "قفة رمضان",
             "fr": "Couffin du Ramadan",
@@ -160,7 +160,7 @@
         },
         {
           "id": "r4",
-          "image": "/images/gallery/eid/colis-lebsat-aid.webp",
+          "image": "/images/gallery/eid/colis-enfant-orphelin.webp",
           "title": {
             "ar": "قفة العيد",
             "fr": "Couffin de l'Aïd",
@@ -174,21 +174,21 @@
         },
         {
           "id": "r5",
-          "image": "/images/gallery/eid/aid-vetements-enfants.webp",
+          "image": "/images/gallery/eid/aid-vetements-orphelins.webp",
           "title": {
             "ar": "لبسة العيد",
             "fr": "Vêtements de l'Aïd",
             "en": "Eid clothes"
           },
           "description": {
-            "ar": "حملة لتوفير ملابس العيد للأطفال والأسر المحتاجة.",
-            "fr": "Campagne pour offrir des vêtements de l'Aïd aux enfants et familles dans le besoin.",
-            "en": "A campaign providing Eid clothes for children and families in need."
+            "ar": "حملة لتوفير ملابس العيد لليتامى والأسر المحتاجة.",
+            "fr": "Campagne pour offrir des vêtements de l'Aïd aux orphelins et familles dans le besoin.",
+            "en": "A campaign providing Eid clothes for orphans and families in need."
           }
         },
         {
           "id": "r6",
-          "image": "/images/uploads/img-mwozvb35zkv.webp",
+          "image": "/images/gallery/eid/zakat-saa.svg",
           "title": {
             "ar": "زكاة الفطر",
             "fr": "Zakat el-Fitr",
@@ -211,9 +211,9 @@
         "en": "Siqaya projects (water)"
       },
       "description": {
-        "ar": "مشاريع توفير الماء للأسر المحتاجة.",
-        "fr": "Des projets pour fournir de l'eau aux familles dans le besoin.",
-        "en": "Projects providing water to families in need."
+        "ar": "مشاريع توفير الماء للأسر المحتاجة: حفر الآبار وبناء الخزانات في الأماكن الحارة عمومًا، وهي موجهة للمساجد والقرى المحتاجة.",
+        "fr": "Projets d'accès à l'eau : forage de puits et construction de réservoirs, surtout dans les zones chaudes, destinés aux mosquées et aux villages dans le besoin.",
+        "en": "Water projects: well drilling and tank building, mainly in hot regions, aimed at mosques and villages in need."
       },
       "items": [
         {
@@ -225,9 +225,9 @@
             "en": "Well drilling"
           },
           "description": {
-            "ar": "حفر آبار لتوفير الماء الصالح للشرب للأسر والقرى المحتاجة.",
-            "fr": "Forage de puits pour fournir de l'eau potable aux familles et villages dans le besoin.",
-            "en": "Drilling wells to provide drinking water to families and villages in need."
+            "ar": "حفر آبار لتوفير الماء الصالح للشرب للأسر والقرى المحتاجة، بشرط أن تكون الأرض تابعة لمسجد أو وقف.",
+            "fr": "Forage de puits pour fournir de l'eau potable aux familles et villages dans le besoin, à condition que le terrain appartienne à une mosquée ou à un waqf.",
+            "en": "Drilling wells to provide drinking water to families and villages in need, provided the land belongs to a mosque or a waqf."
           }
         },
         {
@@ -260,7 +260,7 @@
         },
         {
           "id": "q4",
-          "image": "/images/gallery/water/eau-jaillit.webp",
+          "image": "/images/gallery/water/distribution-eau-voiture.webp",
           "title": {
             "ar": "توزيع المياه",
             "fr": "Distribution d'eau",
@@ -276,9 +276,9 @@
     },
     {
       "id": "okfoulni",
-      "image": "/images/gallery/okfoulni/maison-construction.webp",
+      "image": "/images/gallery/okfoulni/appareils-installation.webp",
       "title": {
-        "ar": "مشاريع اكفلني",
+        "ar": "مشاريع أكفلني",
         "fr": "Projets Okfoulni",
         "en": "Okfoulni projects"
       },
@@ -289,26 +289,12 @@
       },
       "items": [
         {
-          "id": "k1",
-          "image": "/images/gallery/okfoulni/maison-construction.webp",
-          "title": {
-            "ar": "بناء بيت لأسرة محتاجة",
-            "fr": "Construction d'une maison pour une famille",
-            "en": "Building a home for a family in need"
-          },
-          "description": {
-            "ar": "نبني بيتاً كريماً لأسرة محتاجة ونجهّزه ليكون مأوى آمناً.",
-            "fr": "Nous construisons une maison digne pour une famille démunie.",
-            "en": "We build a decent home for a family in need."
-          }
-        },
-        {
           "id": "k2",
           "image": "/images/gallery/okfoulni/appareils-installation.webp",
           "title": {
-            "ar": "تجهيز البيت بالأجهزة",
-            "fr": "Équipement en appareils",
-            "en": "Home appliances"
+            "ar": "تجهيز البيت بالأجهزة والأثاث اللازم",
+            "fr": "Équipement de la maison : appareils et mobilier nécessaires",
+            "en": "Home Equipment: Appliances and Necessary Furniture"
           },
           "description": {
             "ar": "نوفّر ونركّب الأجهزة الكهرومنزلية للأسر المكفولة.",
@@ -327,35 +313,35 @@
         "en": "Wartil project"
       },
       "description": {
-        "ar": "مشروع خاص ببناء المدارس وترميمها.",
-        "fr": "Un projet dédié à la construction et à la rénovation d'écoles.",
-        "en": "A project dedicated to building and renovating schools."
+        "ar": "مشروع خاص ببناء المدارس القرآنية وترميمها: تسهيل على طلاب العلم حفظ كتاب الله وترتيله في جو ملائم.",
+        "fr": "Projet de construction et de rénovation d'écoles coraniques : faciliter aux étudiants la mémorisation et la récitation du Coran dans un cadre adapté.",
+        "en": "A project to build and renovate Quran schools, helping students memorise and recite the Quran in a suitable environment."
       },
       "items": [
         {
           "id": "a1",
           "image": "/images/gallery/construction/coulage-dalle.webp",
           "title": {
-            "ar": "بناء مدارس",
-            "fr": "Construction d'écoles",
-            "en": "Building schools"
+            "ar": "بناء مدارس قرآنية",
+            "fr": "Construction d'écoles coraniques",
+            "en": "Building Quran Schools"
           },
           "description": {
-            "ar": "مشروع لبناء مدارس جديدة للأطفال في المناطق المحتاجة.",
-            "fr": "Projet de construction de nouvelles écoles pour les enfants des zones défavorisées.",
-            "en": "A project to build new schools for children in underserved areas."
+            "ar": "مشروع لبناء مدارس قرآنية جديدة لليتامى في المناطق المحتاجة.",
+            "fr": "Projet de construction de nouvelles écoles pour les orphelins des zones défavorisées.",
+            "en": "A project to build new schools for orphans in underserved areas."
           }
         },
         {
           "id": "a2",
           "image": "/images/gallery/construction/chantier-interieur.webp",
           "title": {
-            "ar": "ترميم مدارس",
-            "fr": "Rénovation d'écoles",
-            "en": "Renovating schools"
+            "ar": "ترميم مدارس قرآنية",
+            "fr": "Rénovation d'écoles coraniques",
+            "en": "Renovating Quran Schools"
           },
           "description": {
-            "ar": "ترميم المدارس القديمة وتهيئتها لتوفير بيئة تعليمية مناسبة.",
+            "ar": "ترميم المدارس القرآنية القديمة وتهيئتها لتوفير بيئة تعليمية مناسبة.",
             "fr": "Rénovation d'anciennes écoles pour offrir un cadre d'apprentissage adapté.",
             "en": "Renovating old schools to provide a suitable learning environment."
           }
@@ -369,7 +355,7 @@
             "en": "Unloading bricks"
           },
           "description": {
-            "ar": "تفريغ شاحنات الآجر ضمن أشغال بناء المدرسة بمشاركة المتطوعين.",
+            "ar": "تفريغ شاحنات الآجر ضمن أشغال بناء المدرسة القرآنية بمشاركة المتطوعين.",
             "fr": "Déchargement de camions de briques pour le chantier de l'école, avec les bénévoles.",
             "en": "Unloading brick trucks for the school construction site with volunteers."
           }
@@ -397,7 +383,7 @@
             "en": "Rebar"
           },
           "description": {
-            "ar": "توفير حديد البناء اللازم لتدعيم هياكل المدارس.",
+            "ar": "توفير حديد البناء اللازم لتدعيم هياكل المدارس القرآنية.",
             "fr": "Fourniture du fer à béton nécessaire au renforcement des structures des écoles.",
             "en": "Supplying the rebar needed to reinforce school structures."
           }
@@ -411,7 +397,7 @@
             "en": "Sand"
           },
           "description": {
-            "ar": "توفير الرمل اللازم لأشغال بناء المدرسة.",
+            "ar": "توفير الرمل اللازم لأشغال بناء المدرسة القرآنية.",
             "fr": "Fourniture du sable nécessaire aux travaux de construction de l'école.",
             "en": "Supplying the sand needed for the school construction works."
           }
@@ -425,7 +411,7 @@
             "en": "Tiles"
           },
           "description": {
-            "ar": "تركيب الزليج لتجهيز أقسام المدرسة وإتمام الأشغال.",
+            "ar": "تركيب الزليج لتجهيز أقسام المدرسة القرآنية وإتمام الأشغال.",
             "fr": "Pose du carrelage pour aménager les salles de classe et finaliser les travaux.",
             "en": "Laying tiles to finish the classrooms and complete the works."
           }
@@ -439,7 +425,7 @@
             "en": "Building structure"
           },
           "description": {
-            "ar": "إنجاز هيكل بناء المدرسة وهو من أهم مراحل المشروع.",
+            "ar": "إنجاز هيكل بناء المدرسة القرآنية القرآنية وهو من أهم مراحل المشروع.",
             "fr": "Réalisation de la structure du bâtiment de l'école, étape clé du projet.",
             "en": "Building the school's structure, a key stage of the project."
           }
@@ -462,7 +448,7 @@
       "items": [
         {
           "id": "m1",
-          "image": "/images/gallery/aid/chargement-colis-camion.webp",
+          "image": "/images/uploads/img-mwozvb35zkv.webp",
           "title": {
             "ar": "توزيع قفف",
             "fr": "Distribution de couffins",

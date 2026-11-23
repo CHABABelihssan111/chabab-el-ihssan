@@ -24,7 +24,7 @@ const About = () => {
                         <h3 className="text-2xl font-bold text-blue-900 dark:text-white mb-4">
                             {t.history_title}
                         </h3>
-                        <p className="text-gray-700 dark:text-gray-300 mb-6">
+                        <p className="text-gray-700 dark:text-gray-300 mb-6 whitespace-pre-line">
                             {t.history_desc1}
                         </p>
                         <p className="text-gray-700 dark:text-gray-300">

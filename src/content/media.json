@@ -1,14 +1,17 @@
 {
-  "heroImage": "/images/gallery/team/benevoles-en-route.webp",
+  "heroImage": "/images/hero/hero-1.webp",
   "heroImages": [
     {
-      "image": "/images/gallery/water/eau-jaillit.webp"
+      "image": "/images/hero/hero-2.webp"
     },
     {
-      "image": "/images/gallery/caravans/kafila-sahara-rencontre.webp"
+      "image": "/images/hero/hero-3.webp"
     },
     {
-      "image": "/images/gallery/ramadan/distribution-paniers.webp"
+      "image": "/images/hero/hero-4.webp"
+    },
+    {
+      "image": "/images/hero/hero-5.webp"
     }
   ],
   "heroVideo": {
@@ -241,6 +244,204 @@
       },
       "actions": [],
       "label_side": "top"
+    },
+    {
+      "lat": 35.88,
+      "lng": 7.11,
+      "name": {
+        "ar": "أم البواقي",
+        "fr": "Oum El Bouaghi",
+        "en": "Oum El Bouaghi"
+      },
+      "actions": [],
+      "label_side": "top"
+    },
+    {
+      "lat": 34.85,
+      "lng": 5.73,
+      "name": {
+        "ar": "بسكرة",
+        "fr": "Biskra",
+        "en": "Biskra"
+      },
+      "actions": [],
+      "label_side": "bottom"
+    },
+    {
+      "lat": 31.62,
+      "lng": -2.22,
+      "name": {
+        "ar": "بشار",
+        "fr": "Béchar",
+        "en": "Béchar"
+      },
+      "actions": [],
+      "label_side": "right"
+    },
+    {
+      "lat": 36.37,
+      "lng": 3.9,
+      "name": {
+        "ar": "البويرة",
+        "fr": "Bouira",
+        "en": "Bouira"
+      },
+      "actions": [],
+      "label_side": "left"
+    },
+    {
+      "lat": 35.4,
+      "lng": 8.12,
+      "name": {
+        "ar": "تبسة",
+        "fr": "Tébessa",
+        "en": "Tébessa"
+      },
+      "actions": [],
+      "label_side": "bottom"
+    },
+    {
+      "lat": 36.75,
+      "lng": 3.06,
+      "name": {
+        "ar": "الجزائر العاصمة",
+        "fr": "Alger",
+        "en": "Alger"
+      },
+      "actions": [],
+      "label_side": "left"
+    },
+    {
+      "lat": 36.82,
+      "lng": 5.77,
+      "name": {
+        "ar": "جيجل",
+        "fr": "Jijel",
+        "en": "Jijel"
+      },
+      "actions": [],
+      "label_side": "bottom"
+    },
+    {
+      "lat": 34.83,
+      "lng": 0.15,
+      "name": {
+        "ar": "سعيدة",
+        "fr": "Saïda",
+        "en": "Saïda"
+      },
+      "actions": [],
+      "label_side": "right"
+    },
+    {
+      "lat": 35.7,
+      "lng": 4.54,
+      "name": {
+        "ar": "المسيلة",
+        "fr": "M'Sila",
+        "en": "M'Sila"
+      },
+      "actions": [],
+      "label_side": "top"
+    },
+    {
+      "lat": 26.51,
+      "lng": 8.48,
+      "name": {
+        "ar": "إليزي",
+        "fr": "Illizi",
+        "en": "Illizi"
+      },
+      "actions": [],
+      "label_side": "left"
+    },
+    {
+      "lat": 36.76,
+      "lng": 3.48,
+      "name": {
+        "ar": "بومرداس",
+        "fr": "Boumerdès",
+        "en": "Boumerdès"
+      },
+      "actions": [],
+      "label_side": "top"
+    },
+    {
+      "lat": 35.61,
+      "lng": 1.81,
+      "name": {
+        "ar": "تيسمسيلت",
+        "fr": "Tissemsilt",
+        "en": "Tissemsilt"
+      },
+      "actions": [],
+      "label_side": "right"
+    },
+    {
+      "lat": 35.43,
+      "lng": 7.14,
+      "name": {
+        "ar": "خنشلة",
+        "fr": "Khenchela",
+        "en": "Khenchela"
+      },
+      "actions": [],
+      "label_side": "top"
+    },
+    {
+      "lat": 33.1,
+      "lng": 6.06,
+      "name": {
+        "ar": "تقرت",
+        "fr": "Touggourt",
+        "en": "Touggourt"
+      },
+      "actions": [],
+      "label_side": "left"
+    },
+    {
+      "lat": 34.11,
+      "lng": 2.1,
+      "name": {
+        "ar": "أفلو",
+        "fr": "Aflou",
+        "en": "Aflou"
+      },
+      "actions": [],
+      "label_side": "right"
+    },
+    {
+      "lat": 34.16,
+      "lng": 3.5,
+      "name": {
+        "ar": "مسعد",
+        "fr": "Messaad",
+        "en": "Messaad"
+      },
+      "actions": [],
+      "label_side": "left"
+    },
+    {
+      "lat": 35.21,
+      "lng": 4.18,
+      "name": {
+        "ar": "بوسعادة",
+        "fr": "Bou Saâda",
+        "en": "Bou Saâda"
+      },
+      "actions": [],
+      "label_side": "top"
+    },
+    {
+      "lat": 32.89,
+      "lng": 0.55,
+      "name": {
+        "ar": "الأبيض سيدي الشيخ",
+        "fr": "El Abiodh Sidi Cheikh",
+        "en": "El Abiodh Sidi Cheikh"
+      },
+      "actions": [],
+      "label_side": "bottom"
     }
   ],
   "sadaqaProjects": [
@@ -260,14 +461,14 @@
     {
       "icon": "school",
       "title": {
-        "ar": "بناء المدارس وترميمها",
+        "ar": "بناء المدارس القرآنية وترميمها",
         "fr": "Construction et rénovation d'écoles",
         "en": "Building and renovating schools"
       },
       "description": {
-        "ar": "توفير بيئة تعليمية لائقة للأطفال، يستفيد منها جيل بعد جيل.",
-        "fr": "Offrir un cadre scolaire digne aux enfants, au profit de générations successives.",
-        "en": "Provide a decent learning environment for children, benefiting generation after generation."
+        "ar": "توفير بيئة تعليمية لائقة لليتامى، يستفيد منها جيل بعد جيل.",
+        "fr": "Offrir un cadre scolaire digne aux orphelins, au profit de générations successives.",
+        "en": "Provide a decent learning environment for orphans, benefiting generation after generation."
       }
     },
     {

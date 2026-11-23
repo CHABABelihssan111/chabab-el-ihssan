@@ -19,7 +19,7 @@
     {
       "id": "caravans",
       "label": {
-        "ar": "قوافل إحسان",
+        "ar": "قوافل الإحسان",
         "fr": "Kawafil Ihssan",
         "en": "Ihssan caravans"
       }
@@ -278,11 +278,11 @@
     },
     {
       "category": "caravans",
-      "image_url": "/images/gallery/caravans/kafila-enfants.webp",
+      "image_url": "/images/gallery/caravans/kafila-orphelins.webp",
       "caption": {
-        "ar": "إدخال الفرحة على الأطفال",
-        "fr": "Un moment de joie pour les enfants",
-        "en": "Bringing joy to the children"
+        "ar": "إدخال الفرحة على اليتامى",
+        "fr": "Un moment de joie pour les orphelins",
+        "en": "Bringing joy to the orphans"
       },
       "is_featured": false
     },
@@ -348,11 +348,11 @@
     },
     {
       "category": "aid",
-      "image_url": "/images/gallery/aid/mascotte-enfants.webp",
+      "image_url": "/images/gallery/aid/mascotte-orphelins.webp",
       "caption": {
-        "ar": "لحظة فرح مع الأطفال",
-        "fr": "Un moment de joie avec les enfants",
-        "en": "A joyful moment with the children"
+        "ar": "لحظة فرح مع اليتامى",
+        "fr": "Un moment de joie avec les orphelins",
+        "en": "A joyful moment with the orphans"
       },
       "is_featured": false
     },
@@ -380,9 +380,9 @@
       "category": "team",
       "image_url": "/images/gallery/team/nettoyage-lieu-de-culte-01.webp",
       "caption": {
-        "ar": "حملة تنظيف بمشاركة الأطفال",
-        "fr": "Campagne de nettoyage avec les enfants",
-        "en": "Cleaning campaign with children"
+        "ar": "حملة تنظيف بمشاركة اليتامى",
+        "fr": "Campagne de nettoyage avec les orphelins",
+        "en": "Cleaning campaign with orphans"
       },
       "is_featured": false
     },
@@ -538,11 +538,11 @@
     },
     {
       "category": "eid",
-      "image_url": "/images/gallery/eid/aid-vetements-enfants.webp",
+      "image_url": "/images/gallery/eid/aid-vetements-orphelins.webp",
       "caption": {
-        "ar": "لبسة العيد للأطفال",
-        "fr": "Habits de l'Aïd pour enfants",
-        "en": "Eid clothes for children"
+        "ar": "لبسة العيد لليتامى",
+        "fr": "Habits de l'Aïd pour orphelins",
+        "en": "Eid clothes for orphans"
       },
       "is_featured": false
     },

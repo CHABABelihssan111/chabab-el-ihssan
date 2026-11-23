@@ -12,7 +12,7 @@ const L = {
         copy: 'نسخ', copied: 'تم النسخ ✓',
         ccpTitle: 'CCP / بريدي موب (BaridiMob)',
         ccpNumber: 'رقم الحساب البريدي CCP', ccpKey: 'المفتاح (Clé)', rip: 'RIP',
-        cpaTitle: 'تحويل بنكي (CPA)', cpaAccount: 'رقم الحساب', holder: 'اسم صاحب الحساب',
+        bdlTitle: 'تحويل بنكي (BDL)', bdlAccount: 'رقم حساب BDL', cpaTitle: 'تحويل بنكي (CPA)', cpaAccount: 'رقم الحساب', holder: 'اسم صاحب الحساب',
         amountBanner: (a) => `مبلغ تبرعك: ${a} دج — حوّله إلى أحد الحسابين أدناه`,
         euroTitle: 'حساب باليورو (IBAN EUR)', iban: 'IBAN EUR',
         note: 'يرجى إرسال صورة وصل الدفع إلى حساب Messenger الخاص بالجمعية، مع ذكر المبلغ الذي أرسلته والحملة التي تريد التبرع لها.',
@@ -22,7 +22,7 @@ const L = {
         copy: 'Copier', copied: 'Copié ✓',
         ccpTitle: 'CCP / BaridiMob',
         ccpNumber: 'Numéro de compte CCP', ccpKey: 'Clé', rip: 'RIP',
-        cpaTitle: 'Virement bancaire (CPA)', cpaAccount: 'N° de compte', holder: 'Titulaire du compte',
+        bdlTitle: 'Virement bancaire (BDL)', bdlAccount: 'N° de compte BDL', cpaTitle: 'Virement bancaire (CPA)', cpaAccount: 'N° de compte', holder: 'Titulaire du compte',
         amountBanner: (a) => `Votre don : ${a} DA — à virer sur l'un des comptes ci-dessous`,
         euroTitle: 'Compte en euros (IBAN EUR)', iban: 'IBAN EUR',
         note: "Merci d'envoyer la photo du reçu de paiement sur le compte Messenger de l'association, en précisant le montant versé et la campagne que vous souhaitez soutenir.",
@@ -32,7 +32,7 @@ const L = {
         copy: 'Copy', copied: 'Copied ✓',
         ccpTitle: 'CCP / BaridiMob',
         ccpNumber: 'CCP account number', ccpKey: 'Key (Clé)', rip: 'RIP',
-        cpaTitle: 'Bank transfer (CPA)', cpaAccount: 'Account number', holder: 'Account holder',
+        bdlTitle: 'Bank transfer (BDL)', bdlAccount: 'BDL account number', cpaTitle: 'Bank transfer (CPA)', cpaAccount: 'Account number', holder: 'Account holder',
         amountBanner: (a) => `Your donation: ${a} DZD — send it to one of the accounts below`,
         euroTitle: 'Euro account (IBAN EUR)', iban: 'IBAN EUR',
         note: "Please send a photo of the payment receipt to the association's Messenger account, stating the amount you sent and which campaign you want to donate to.",
@@ -60,6 +60,10 @@ const Donate = () => {
     const cpaRows = [
         pay.cpa_account && { label: lb.cpaAccount, value: pay.cpa_account },
         pay.account_name && { label: lb.holder, value: pay.account_name },
+    ].filter(Boolean);
+    const bdlRows = [
+        pay.bdl_account && { label: lb.bdlAccount, value: pay.bdl_account },
+        pay.bdl_account && pay.account_name && { label: lb.holder, value: pay.account_name },
     ].filter(Boolean);
     const euroRows = [
         { label: lb.iban, value: pay.iban_eur || '' },
@@ -89,6 +93,16 @@ const Donate = () => {
                             icon={<FaMobileAlt />}
                             title={lb.ccpTitle}
                             rows={ccpRows}
+                            copyLabel={lb.copy}
+                            copiedLabel={lb.copied}
+                        />
+                    )}
+
+                    {bdlRows.length > 0 && (
+                        <PayCard
+                            icon={<FaUniversity />}
+                            title={lb.bdlTitle}
+                            rows={bdlRows}
                             copyLabel={lb.copy}
                             copiedLabel={lb.copied}
                         />

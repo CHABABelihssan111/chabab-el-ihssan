@@ -40,13 +40,15 @@ const FeaturedCampaign = () => {
     const { language, t } = useLanguage();
     const lb = L[language] || L.en;
     const dir = language === 'ar' ? 'rtl' : 'ltr';
-    const { ended, d, h, m, s } = useCountdown(c.endDate);
+    const { ended: timeUp, d, h, m, s } = useCountdown(c.endDate);
+    const ended = c.ended === true || timeUp;
     const goal = Number(c.goal) || 0;
     const raised = Number(c.raised) || 0;
     const percent = goal > 0 ? Math.min(100, Math.round((raised / goal) * 100)) : 0;
     const fmt = (n) => n.toLocaleString('en-US');
 
-    if (c.enabled === false) return null; // campagne désactivée depuis /admin
+    if (c.enabled === false) return null;
+    if (ended && c.hide_when_ended === true) return null; // حملة منتهية: إخفاؤها يتم من لوحة الأدمن // campagne désactivée depuis /admin
 
     return (
         <section id="campaign" dir={dir} className="relative overflow-hidden bg-brand-grid py-14 md:py-20">

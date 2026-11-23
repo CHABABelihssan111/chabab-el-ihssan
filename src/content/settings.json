@@ -28,7 +28,8 @@
     "ccp_key": "",
     "rip": "",
     "iban_eur": "XXXXXXXXXXXXXXXm",
-    "messenger_url": "https://m.me/chababelihssan3"
+    "messenger_url": "https://m.me/chababelihssan3",
+    "bdl_account": ""
   },
   "maintenance": {
     "enabled": true,
@@ -37,5 +38,6 @@
       "fr": "Le site est actuellement désactivé. Nous revenons bientôt.",
       "en": "Our website is temporarily unavailable while we work on important improvements and upgrades to provide you with a better experience.\n\nWe’ll be back soon with a refreshed design, improved performance, and enhanced features. 🚀\n\nThank you for your trust and continued support. See you soon!\n\nChabab El Ihsane Association — Creating a better impact through lasting commitment."
     }
-  }
+  },
+  "phone_fixed": "028 977 190"
 }

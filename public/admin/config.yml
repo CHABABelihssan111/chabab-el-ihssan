@@ -788,6 +788,17 @@ collections:
       format: YYYY-MM-DDTHH:mm:ss
       picker_utc: false
       hint: العدّ التنازلي يتوقف عند هذا التاريخ.
+    - label: الحملة منتهية
+      name: ended
+      widget: boolean
+      default: false
+      required: false
+    - label: إخفاء الحملة عند انتهائها
+      name: hide_when_ended
+      widget: boolean
+      default: false
+      required: false
+      hint: اتركه مطفأً لتبقى الحملة المنتهية ظاهرة.
   - name: ramadan
     label: 🌙 وضع رمضان (العدّ التنازلي + السلة + زكاة الفطر)
     file: src/content/ramadan.json
@@ -924,6 +935,10 @@ collections:
     - label: الهاتف كما يظهر في الموقع
       name: phone_display
       widget: string
+    - label: الهاتف الثابت (Fix)
+      name: phone_fixed
+      widget: string
+      required: false
     - label: حسابات التبرع (صفحة «تبرّع»)
       name: payment
       widget: object
@@ -950,6 +965,10 @@ collections:
         hint: يجده المتبرع في تطبيق بريدي موب؛ إن وُضع فهو الذي يُحوَّل إلى QR.
       - label: رقم الحساب البنكي CPA
         name: cpa_account
+        widget: string
+        required: false
+      - label: رقم حساب BDL
+        name: bdl_account
         widget: string
         required: false
       - label: حساب اليورو (IBAN EUR)

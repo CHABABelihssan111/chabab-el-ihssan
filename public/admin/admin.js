@@ -249,7 +249,9 @@
       L3('description', 'وصف الحملة', { area: true }),
       { k: 'raised', t: 'num', l: 'المبلغ المجموع (دج)', min: 0 },
       { k: 'goal', t: 'num', l: 'الهدف (دج)', min: 0 },
-      { k: 'endDate', t: 'datetime', l: 'تاريخ ووقت نهاية الحملة', h: 'العدّ التنازلي يتوقف عند هذا الموعد.' }
+      { k: 'endDate', t: 'datetime', l: 'تاريخ ووقت نهاية الحملة', h: 'العدّ التنازلي يتوقف عند هذا الموعد.' },
+      { k: 'ended', t: 'bool', l: '✅ الحملة منتهية', h: 'تظهر عبارة «انتهت الحملة» بدل العدّ التنازلي.' },
+      { k: 'hide_when_ended', t: 'bool', l: '🙈 إخفاء الحملة عند انتهائها', h: 'اتركه مطفأً لتبقى الحملة المنتهية ظاهرة في الموقع.' }
     ] },
     impact: { icon: '📊', title: 'أرقام «أثرنا في المجتمع»', sub: 'وجبات، قوافل، مستفيدون…', file: 'src/content/impact.json', f: [
       L3('title', 'عنوان القسم'),
@@ -307,6 +309,7 @@
       { k: 'logo_url', t: 'image', l: 'الشعار (الشريط العلوي)' },
       { k: 'email', t: 'text', l: 'البريد الإلكتروني', dir: 'ltr' },
       { k: 'phone_display', t: 'text', l: 'الهاتف (كما يظهر)', dir: 'ltr', h: 'مثال: 0557343528 / 0774068287' },
+      { k: 'phone_fixed', t: 'text', l: 'الهاتف الثابت (Fix)', dir: 'ltr', h: 'مثال: 028 977 190' },
       L3('address', 'العنوان')
     ] },
     social: { icon: '📱', title: 'التواصل ومنشورات السوشيال', sub: 'روابط الحسابات + منشورات فيسبوك وإنستغرام', file: 'src/content/settings.json', f: [
@@ -332,6 +335,7 @@
         { k: 'ccp_number', t: 'text', l: 'رقم CCP', dir: 'ltr' },
         { k: 'ccp_key', t: 'text', l: 'مفتاح CCP', dir: 'ltr' },
         { k: 'rip', t: 'text', l: 'RIP', dir: 'ltr' },
+        { k: 'bdl_account', t: 'text', l: 'رقم حساب BDL', dir: 'ltr' },
         { k: 'iban_eur', t: 'text', l: 'IBAN EUR (يورو)', dir: 'ltr' }
       ] }
     ] },

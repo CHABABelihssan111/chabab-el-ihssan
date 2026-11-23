@@ -4,7 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 // removed import { translations } from '../translations';
 import settings, { social } from '../data/settings';
 import { getLocalizedContent } from '../utils/languageUtils';
-import { FaFacebookF, FaInstagram, FaYoutube, FaTiktok, FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram, FaYoutube, FaTiktok, FaMapMarkerAlt, FaPhone, FaPhoneAlt, FaEnvelope, FaClock } from 'react-icons/fa';
 
 const Footer = () => {
     const { t, language } = useLanguage();
@@ -68,7 +68,7 @@ const Footer = () => {
                             <li><button onClick={(e) => handleNavigation(e, 'about')} className="text-gray-400 hover:text-white transition text-start">{t.about}</button></li>
                             <li><button onClick={(e) => handleNavigation(e, 'programs')} className="text-gray-400 hover:text-white transition text-start">{t.programs}</button></li>
                             <li><button onClick={(e) => handleNavigation(e, 'branches')} className="text-gray-400 hover:text-white transition text-start">{t.branches}</button></li>
-                            <li><Link to="/sadaqa-jariya" className="text-gray-400 hover:text-white transition">Sadaqa Jariya</Link></li>
+                            <li><Link to="/sadaqa-jariya" className="text-gray-400 hover:text-white transition">SADAQA JARYA</Link></li>
                             <li><Link to="/gallery" className="text-gray-400 hover:text-white transition">{t.gallery}</Link></li>
                         </ul>
                     </div>
@@ -96,6 +96,12 @@ const Footer = () => {
                                 <FaPhone className="text-gray-400" />
                                 <span className="text-gray-400" dir="ltr">{settings.phone_display || t.phone_number}</span>
                             </li>
+                            {settings.phone_fixed && (
+                                <li className="flex items-center gap-2">
+                                    <FaPhoneAlt className="text-gray-400" />
+                                    <a href={`tel:+213${String(settings.phone_fixed).replace(/\D/g, '').replace(/^0/, '')}`} className="text-gray-400 hover:text-white transition" dir="ltr">{settings.phone_fixed}</a>
+                                </li>
+                            )}
                             <li className="flex items-center gap-2">
                                 <FaEnvelope className="text-gray-400" />
                                 <a href={`mailto:${settings.email}`} className="text-gray-400 hover:text-white transition break-all min-w-0">{settings.email}</a>
