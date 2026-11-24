@@ -6,7 +6,6 @@ import { useData } from '../hooks/useData';
 import { FaArrowRight, FaHandHoldingHeart, FaTimes, FaChevronLeft, FaChevronRight, FaExpand, FaImage } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Modal from './Modal';
-import ProgramEmblem from './ProgramEmblem';
 
 
 // Image with a nice fallback (gradient + icon) if the file/URL fails to load
@@ -146,7 +145,6 @@ const Programs = () => {
                                     alt={getLocalizedContent(cat.title, language)}
                                     className="w-full h-full transition-transform duration-500 group-hover:scale-110"
                                 />
-                                <ProgramEmblem id={cat.id} />
                                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-5 pt-16 text-center">
                                     <h3 className="text-xl md:text-2xl font-bold text-white drop-shadow">
                                         {getLocalizedContent(cat.title, language)}

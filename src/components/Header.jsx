@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { FaHandHoldingHeart, FaHandsHelping, FaCommentDots, FaMoon, FaSun, FaHome, FaInfoCircle, FaTasks, FaMapMarkerAlt, FaImages, FaEnvelope } from 'react-icons/fa';
+import { FaHandHoldingHeart, FaHandsHelping, FaMoon, FaSun, FaHome, FaInfoCircle, FaTasks, FaMapMarkerAlt, FaImages, FaEnvelope } from 'react-icons/fa';
 import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 
@@ -46,7 +46,6 @@ const Header = () => {
                     <div className="flex items-center gap-3 sm:gap-4 flex-wrap justify-center sm:justify-start">
                         <span className="hidden sm:flex items-center gap-2 text-xs sm:text-base"><FaHandHoldingHeart /> <Link to="/donate" className="hover:text-[var(--brand-gold)] transition">{t.donate}</Link></span>
                         <span className="hidden sm:flex items-center gap-2 text-xs sm:text-base"><FaHandsHelping /> <Link to="/volunteer" className="hover:text-[var(--brand-gold)] transition">{t.volunteer}</Link></span>
-                        <span className="flex items-center gap-2 text-xs sm:text-base"><FaCommentDots /> <Link to="/feedback" className="hover:text-[var(--brand-gold)] transition">{feedbackLabel}</Link></span>
                         <InstallButton />
                         <RamadanChip />
                     </div>
