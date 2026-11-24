@@ -17,12 +17,12 @@ if (!empty($_POST['website'])) { echo '{"ok":1}'; exit; }
 
 function cut($s, $n) { $s = trim((string)$s); $s = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F]/u', '', $s); return mb_substr($s, 0, $n); }
 $kind = (($_POST['kind'] ?? '') === 'form') ? 'form' : 'feedback';
-$item = ['id' => bin2hex(random_bytes(6)), 'kind' => $kind, 'at' => date('Y-m-d H:i:s'), 'page' => cut($_POST['page'] ?? '', 80)];
+$item = ['id' => bin2hex(random_bytes(6)), 'kind' => $kind, 'at' => date('Y-m-d H:i:s'), 'page' => cut($_POST['page'] ?? '', 80), 'seen' => 0];
 
 if ($kind === 'feedback') {
     $item['name'] = cut($_POST['name'] ?? '', 80);
     $item['contact'] = cut($_POST['contact'] ?? '', 120);
-    $item['type'] = cut($_POST['type'] ?? '', 30);
+    $item['type'] = in_array($_POST['type'] ?? '', ['suggestion', 'remark', 'problem', 'thanks'], true) ? $_POST['type'] : 'remark';
     $item['message'] = cut($_POST['message'] ?? '', 2000);
     if (mb_strlen($item['message']) < 3) { http_response_code(422); echo '{"ok":0,"err":"empty"}'; exit; }
 } else {
@@ -31,8 +31,13 @@ if ($kind === 'feedback') {
     if (mb_strlen($item['name']) < 2 || mb_strlen($item['phone']) < 6) { http_response_code(422); echo '{"ok":0,"err":"required"}'; exit; }
 }
 
-$file = (is_writable(dirname($_SERVER['DOCUMENT_ROOT'] ?? __DIR__)) ? dirname($_SERVER['DOCUMENT_ROOT']) : __DIR__) . '/cei-feedback.json';
-$fp = @fopen($file, 'c+');
+// مسارات التخزين المحتملة (الأول المتاح يُستعمل) — يمنع فشل الحفظ إن كان مجلد الجذر غير قابل للكتابة
+$fp = false; $file = '';
+foreach (array_unique([dirname($_SERVER['DOCUMENT_ROOT'] ?? __DIR__) . '/cei-feedback.json', __DIR__ . '/cei-feedback.json', rtrim(sys_get_temp_dir(), '/') . '/cei-feedback.json']) as $cand) {
+    if (is_file($cand) && !is_writable($cand)) continue;
+    $fp = @fopen($cand, 'c+');
+    if ($fp) { $file = $cand; break; }
+}
 if (!$fp) { http_response_code(500); echo '{"ok":0,"err":"storage"}'; exit; }
 flock($fp, LOCK_EX);
 $d = json_decode(stream_get_contents($fp) ?: '[]', true);

@@ -19,13 +19,24 @@ if (!hash_equals($HASH, hash('sha256', 'cei-stats-v1:' . $code))) {
     sleep(1); http_response_code(403); echo '{"error":"forbidden"}'; exit;
 }
 
-$file = (is_writable(dirname($_SERVER['DOCUMENT_ROOT'] ?? __DIR__)) ? dirname($_SERVER['DOCUMENT_ROOT']) : __DIR__) . '/cei-feedback.json';
-$d = is_file($file) ? json_decode(file_get_contents($file), true) : [];
+$file = '';
+foreach (array_unique([dirname($_SERVER['DOCUMENT_ROOT'] ?? __DIR__) . '/cei-feedback.json', __DIR__ . '/cei-feedback.json', rtrim(sys_get_temp_dir(), '/') . '/cei-feedback.json']) as $cand) {
+    if (is_file($cand)) { $file = $cand; break; }
+}
+$d = $file !== '' ? json_decode((string)@file_get_contents($file), true) : [];
 if (!is_array($d)) $d = [];
 
 $del = (string)($_POST['delete'] ?? '');
-if ($del !== '' && preg_match('/^[a-f0-9]{12}$/', $del)) {
+$seen = (string)($_POST['seen'] ?? '');   // id أو "all"
+$val = (($_POST['val'] ?? '1') === '0') ? 0 : 1;
+$dirty = false;
+if ($file !== '' && $del !== '' && preg_match('/^[a-f0-9]{12}$/', $del)) {
     $d = array_values(array_filter($d, function ($i) use ($del) { return ($i['id'] ?? '') !== $del; }));
-    file_put_contents($file, json_encode($d, JSON_UNESCAPED_UNICODE), LOCK_EX);
+    $dirty = true;
 }
+if ($file !== '' && $seen !== '' && ($seen === 'all' || preg_match('/^[a-f0-9]{12}$/', $seen))) {
+    foreach ($d as &$i) { if ($seen === 'all' || ($i['id'] ?? '') === $seen) $i['seen'] = $val; }
+    unset($i); $dirty = true;
+}
+if ($dirty) file_put_contents($file, json_encode($d, JSON_UNESCAPED_UNICODE), LOCK_EX);
 echo json_encode(['items' => $d], JSON_UNESCAPED_UNICODE);

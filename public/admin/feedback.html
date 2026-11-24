@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#7a1034">
+<title>صندوق الرسائل — شباب الإحسان</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{--bg:#f6f2ec;--card:#fff;--ink:#1c1417;--mut:#6f6468;--line:#e9e2da;--soft:#faf7f3;--navy:#7a1034;--navy-d:#3d0719;--red:#c8102e;--gold:#f2b705;--sh:0 1px 2px rgba(61,7,25,.06),0 8px 24px rgba(61,7,25,.07)}
+body.dark{--bg:#0f070a;--card:#1b0f14;--ink:#f6ecee;--mut:#b9a3aa;--line:#34202a;--soft:#231319;--sh:0 1px 2px rgba(0,0,0,.5),0 8px 24px rgba(0,0,0,.45)}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:Cairo,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:15px;padding-bottom:env(safe-area-inset-bottom)}
+[hidden]{display:none!important}
+.ic{width:1.15em;height:1.15em;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.2em}
+button,input{font:inherit;color:inherit}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:0;border-radius:12px;padding:9px 16px;min-height:40px;font-weight:700;font-size:14px;cursor:pointer;background:var(--card);box-shadow:inset 0 0 0 1.5px var(--line);transition:.2s}
+.btn:hover{box-shadow:inset 0 0 0 1.5px var(--navy);transform:translateY(-1px)}
+.btn.pri{background:linear-gradient(135deg,#d9112d,#8f0c25);color:#fff;box-shadow:0 6px 18px rgba(200,16,46,.3)}
+.btn.sm{min-height:34px;padding:5px 12px;font-size:13px;border-radius:10px}
+.btn.dng{color:#b91c1c}.btn.dng:hover{box-shadow:inset 0 0 0 1.5px #f87171;background:#fef2f2}
+body.dark .btn.dng:hover{background:#3a1318}
+#gate{min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:20px;background:radial-gradient(600px 400px at 50% 30%,rgba(242,183,5,.15),transparent 65%),linear-gradient(135deg,#14060b,#4d0a21 55%,#7a1034)}
+.gb{width:100%;max-width:380px;background:var(--card);border-radius:24px;padding:32px 26px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 0 1px rgba(242,183,5,.25)}
+.gb .lk{width:64px;height:64px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--navy),var(--navy-d));color:var(--gold)}
+.gb .lk .ic{width:28px;height:28px}
+.gb h1{font:400 27px Lalezar,Cairo,sans-serif;margin:0 0 4px;color:var(--navy)}.gb p{margin:0 0 16px;color:var(--mut);font-size:13.5px}
+body.dark .gb h1{color:var(--gold)}
+.gb input{width:100%;padding:12px;border-radius:14px;border:1.5px solid var(--line);background:var(--soft);text-align:center;letter-spacing:10px;font-size:22px;margin-bottom:12px}
+.gb input:focus{outline:0;border-color:var(--navy);box-shadow:0 0 0 4px rgba(122,16,52,.12)}
+#err{color:#b91c1c;min-height:22px;margin-top:10px;font-size:13.5px;font-weight:600}
+.hero{background:radial-gradient(700px 300px at 85% -20%,rgba(242,183,5,.22),transparent 60%),linear-gradient(135deg,#2a0511,#5c0c27 55%,#7a1034);color:#fff;padding:26px 16px 70px}
+.w{max-width:1000px;margin:auto}
+.hero .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.hero h1{font:400 30px Lalezar,Cairo,sans-serif;margin:0;display:flex;align-items:center;gap:10px}.hero h1 .ic{color:var(--gold);width:30px;height:30px}
+.hero p{margin:4px 0 0;opacity:.75;font-size:14px}
+.hero .btn{background:rgba(255,255,255,.12);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}.hero .btn:hover{background:rgba(255,255,255,.22)}
+main{margin-top:-46px;padding:0 16px 40px}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.k{background:var(--card);border-radius:18px;padding:14px 16px;box-shadow:var(--sh);border:1px solid var(--line);position:relative;overflow:hidden}
+.k::before{content:'';position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--red),var(--gold))}
+.k b{display:block;font:400 30px Lalezar,sans-serif;line-height:1.2;color:var(--navy)}body.dark .k b{color:var(--gold)}.k small{color:var(--mut);font-weight:700}
+.bar{background:var(--card);border-radius:18px;box-shadow:var(--sh);border:1px solid var(--line);padding:12px;margin-bottom:14px;display:grid;gap:10px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab{display:inline-flex;align-items:center;gap:7px;border:0;background:transparent;padding:8px 14px;border-radius:11px;font-weight:700;cursor:pointer;color:var(--mut);transition:.2s}
+.tab.on{background:var(--navy);color:#fff}.tab:not(.on):hover{background:var(--soft);color:var(--ink)}
+.tab b{background:var(--red);color:#fff;border-radius:99px;padding:0 8px;font-size:12px;min-width:22px;text-align:center}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.sr{flex:1;min-width:180px;position:relative}.sr .ic{position:absolute;inset-inline-start:12px;top:50%;transform:translateY(-50%);color:var(--mut)}
+.sr input{width:100%;padding:9px 12px;padding-inline-start:38px;border-radius:12px;border:1.5px solid var(--line);background:var(--soft)}.sr input:focus{outline:0;border-color:var(--navy)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1.5px solid var(--line);background:transparent;border-radius:99px;padding:3px 12px;font-size:13px;font-weight:600;cursor:pointer;color:var(--mut)}.chip.on{border-color:var(--navy);background:color-mix(in srgb,var(--navy) 10%,transparent);color:var(--navy)}
+body.dark .chip.on{color:var(--gold);border-color:var(--gold)}
+.it{background:var(--card);border-radius:18px;box-shadow:var(--sh);border:1px solid var(--line);padding:16px 18px;margin-bottom:12px;position:relative;border-inline-start:4px solid var(--line);transition:.2s}
+.it.new{border-inline-start-color:var(--red)}
+.it.new::after{content:'جديد';position:absolute;inset-block-start:14px;inset-inline-end:16px;background:var(--red);color:#fff;font-size:11px;font-weight:700;border-radius:99px;padding:0 9px}
+.top{display:flex;gap:10px;align-items:center;flex-wrap:wrap;color:var(--mut);font-size:13px;margin-bottom:6px;padding-inline-end:48px}
+.tag{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:2px 11px;font-weight:700;font-size:12.5px;background:var(--soft);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.tag.problem{background:#fef2f2;color:#b91c1c;box-shadow:inset 0 0 0 1px #fecaca}.tag.donate,.tag.sadaqa{background:#fffbeb;color:#92400e;box-shadow:inset 0 0 0 1px #fde68a}.tag.join,.tag.thanks{background:#f0fdf4;color:#166534;box-shadow:inset 0 0 0 1px #bbf7d0}
+body.dark .tag.problem,body.dark .tag.donate,body.dark .tag.sadaqa,body.dark .tag.join,body.dark .tag.thanks{background:var(--soft);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.msg{white-space:pre-wrap;word-break:break-word;line-height:1.9;margin:8px 0;font-size:15.5px}
+.kv{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13.5px;color:var(--mut);margin:8px 0 2px}
+.kv span{display:inline-flex;gap:6px;align-items:center}.kv b{color:var(--ink);font-weight:600}.kv a{color:var(--navy);font-weight:700;text-decoration:none;direction:ltr;unicode-bidi:plaintext}body.dark .kv a{color:var(--gold)}
+.act{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+.empty{text-align:center;background:var(--card);border-radius:18px;padding:44px 16px;color:var(--mut);box-shadow:var(--sh);border:1px solid var(--line)}
+.empty .ic{width:44px;height:44px;opacity:.4;margin-bottom:6px;stroke-width:1.4}
+.foot{text-align:center;margin-top:18px}.foot a{color:var(--navy);font-weight:700;text-decoration:none}body.dark .foot a{color:var(--gold)}
+#toast{position:fixed;inset-inline:0;bottom:22px;margin:auto;width:max-content;max-width:90vw;background:#111;color:#fff;border-radius:12px;padding:10px 18px;font-weight:600;z-index:9;display:none}
+@media(max-width:700px){.kpi{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:24px}}
+</style></head>
+<body>
+<div id="gate"><div class="gb"><div class="lk"><svg class="ic" viewBox="0 0 24 24"><path d="M6 11h12v10H6zM8 11V8a4 4 0 018 0v3"/></svg></div>
+<h1>صندوق الرسائل</h1><p>أدخل رمز الدخول للاطلاع على الملاحظات والاستمارات.</p>
+<input id="code" type="password" inputmode="numeric" maxlength="8" placeholder="••••" autocomplete="off" autofocus>
+<button id="go" class="btn pri" style="width:100%">دخول</button><div id="err" role="alert"></div>
+<p style="margin:10px 0 0;font-size:12px">نفس رمز صفحة الإحصائيات</p></div></div>
+<div id="app" hidden>
+<header class="hero"><div class="w"><div class="row"><div><h1><svg class="ic" viewBox="0 0 24 24"><path d="M3 13l3-8h12l3 8v6H3zM3 13h5l1 3h6l1-3h5"/></svg>صندوق الرسائل</h1><p>الملاحظات والاقتراحات والبلاغات واستمارات التبرع والانضمام</p></div>
+<div class="tools"><button class="btn sm" id="dk" type="button">الوضع الليلي</button><a class="btn sm" href="/admin/" style="text-decoration:none">العودة للوحة التحكم</a></div></div></div></header>
+<main><div class="w">
+<div class="kpi" id="kpi"></div>
+<div class="bar"><div class="tabs" id="tabs"></div>
+<div class="tools"><div class="sr"><svg class="ic" viewBox="0 0 24 24"><path d="M11 4a7 7 0 100 14 7 7 0 000-14zM16 16l5 5"/></svg><input id="q" type="search" placeholder="بحث في الرسائل…" autocomplete="off"></div>
+<button class="btn sm" id="rf" type="button">تحديث</button><button class="btn sm" id="all" type="button">تعليم الكل كمقروء</button><button class="btn sm" id="csv" type="button">تصدير CSV</button></div>
+<div class="chips" id="chips"></div></div>
+<div id="list"></div><p class="foot"><a href="/admin/">← لوحة التحكم</a></p></div></main></div>
+<div id="toast"></div>
+<script src="/admin/feedback.js"></script></body></html>

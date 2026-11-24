@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import settings from '../data/settings';
+import { sendForm } from '../utils/sendForm';
 import { useLanguage } from '../context/LanguageContext';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -24,24 +24,26 @@ const ReportProblem = () => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    // Pas de base de données : on ouvre le client mail avec le message prêt à envoyer.
-    const handleSubmit = (e) => {
+    // الإرسال إلى لوحة الأدمن (الملاحظات والاستمارات) عبر /feedback/send.php
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError(null);
         setSuccess(false);
-
-        try {
-            const subject = encodeURIComponent(`[Site] ${formData.subject}`);
-            const body = encodeURIComponent(`${formData.description}\n\n— ${formData.email}`);
-            window.location.href = `mailto:${settings.email}?subject=${subject}&body=${body}`;
+        const ok = await sendForm({
+            kind: 'feedback',
+            type: 'problem',
+            contact: formData.email,
+            message: `${formData.subject}\n\n${formData.description}`,
+            website: '',
+        });
+        if (ok) {
             setSuccess(true);
             setFormData({ subject: '', description: '', email: '' });
-        } catch {
-            setError(t.report_error || "Failed to submit report. Please try again.");
-        } finally {
-            setLoading(false);
+        } else {
+            setError(t.report_error || 'Failed to submit report. Please try again.');
         }
+        setLoading(false);
     };
 
     return (

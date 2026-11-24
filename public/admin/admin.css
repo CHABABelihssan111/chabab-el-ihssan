@@ -314,3 +314,20 @@ body.dark .side { background: radial-gradient(260px 220px at 100% 0, rgba(242, 1
   .content { margin-inline-start: 0; } .content .top { margin: 10px 10px 0; padding: 20px 18px; border-radius: 20px; } .hello h1 { font-size: 24px; } .hello p { font-size: 13.5px; }
   .savebar { inset-inline-start: 0; }
 }
+
+/* ===== v2: أيقونات SVG احترافية بدل الإيموجي + لمسات تنسيق ===== */
+.ic { width: 1.2em; height: 1.2em; flex: none; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; vertical-align: -.22em; margin-inline-end: .3em; }
+.ic:only-child, span > .ic:only-child, .si span .ic, .th span .ic, .stats span .ic, .quick span .ic { margin: 0; }
+.th > span .ic { width: 28px; height: 28px; stroke-width: 1.6; color: var(--navy); }
+body.dark .th > span .ic { color: var(--gold); }
+.stats span { background: color-mix(in srgb, var(--navy) 8%, var(--card)); color: var(--navy); font-size: 22px; border: 1px solid color-mix(in srgb, var(--navy) 14%, transparent); }
+body.dark .stats span { background: rgba(242, 183, 5, .08); color: var(--gold); border-color: rgba(242, 183, 5, .2); }
+.stats span .ic, .quick span .ic { width: 24px; height: 24px; }
+.si span { font-size: 16px; }
+.si span .ic { width: 17px; height: 17px; }
+.lk .ic { width: 40px; height: 40px; stroke-width: 1.5; color: var(--gold); }
+.gbox .lk { display: grid; place-items: center; }
+#toast .ic, #busy .ic, #deploy .ic { margin-inline-end: .4em; }
+h1 .ic, h2 .ic { stroke-width: 1.7; color: var(--red); }
+.blk:hover .th > span .ic { transform: scale(1.1); transition: transform .25s var(--ease); }
+.blk, .stats button, .quick button { transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s var(--ease); }
