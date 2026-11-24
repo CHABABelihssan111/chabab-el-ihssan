@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 const Splash = () => {
     const [show, setShow] = useState(true);
     useEffect(() => {
-        const t = setTimeout(() => setShow(false), 2000);
+        const t = setTimeout(() => setShow(false), 1200);
         return () => clearTimeout(t);
     }, []);
 
@@ -43,7 +43,7 @@ const Splash = () => {
                         </motion.span>
                     </div>
                     <motion.div
-                        initial={{ width: 0 }} animate={{ width: '100%' }} transition={{ duration: 2, ease: 'linear' }}
+                        initial={{ width: 0 }} animate={{ width: '100%' }} transition={{ duration: 1.2, ease: 'linear' }}
                         className="absolute bottom-0 left-0 h-1" style={{ background: '#f2b705' }}
                     />
                 </motion.div>

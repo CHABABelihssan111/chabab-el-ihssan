@@ -12,32 +12,12 @@ const REDUCED = () => typeof window !== 'undefined' && window.matchMedia?.('(pre
 // Mouvement Ken Burns : chaque photo a son propre cadrage (origine + dérive) pour un rendu « cinéma ».
 const KB = [['50% 40%', '-1.5%', '-1%'], ['20% 60%', '1.8%', '-1.2%'], ['80% 35%', '-1.8%', '1%'], ['55% 70%', '1.2%', '1.4%'], ['30% 30%', '-1%', '1.6%']];
 
-// Titre « machine à écrire » : un seul nœud texte par mot (l'arabe reste correctement lié).
-// Le texte complet est réservé en transparent dessous → aucune secousse de mise en page.
-const TypedTitle = ({ words, speed = 34 }) => {
-    const total = words.reduce((a, w) => a + w.text.length + 1, 0);
-    const [n, setN] = useState(() => (REDUCED() ? total : 0));
-    useEffect(() => {
-        if (REDUCED()) return undefined;
-        let i = 0, iv;
-        const st = setTimeout(() => { iv = setInterval(() => { i += 1; setN(i); if (i >= total) clearInterval(iv); }, speed); }, 380);
-        return () => { clearTimeout(st); clearInterval(iv); };
-    }, [total, speed]);
-    const starts = words.map((_, i) => words.slice(0, i).reduce((a, w) => a + w.text.length + 1, 0));
-    return (
-        <>
-            <span className="hero-ghost" aria-hidden="true">{words.map((w, i) => <span key={i} className="inline-block">{w.text}&nbsp;</span>)}</span>
-            <span className="hero-typed" aria-hidden="true">
-                {words.map((w, i) => {
-                    const start = starts[i];
-                    const vis = Math.max(0, Math.min(w.text.length, n - start));
-                    const done = n >= start + w.text.length;
-                    return <span key={i} className={`inline-block${w.key && done ? ' hero-mark' : ''}`}>{w.text.slice(0, vis)}{vis > 0 || done ? '\u00A0' : ''}{n < total && n >= start && n < start + w.text.length + 1 && <i className="hero-caret" />}</span>;
-                })}
-            </span>
-        </>
-    );
-};
+// Titre statique : affiché directement (sans effet machine à écrire) ; la dernière phrase reste soulignée.
+const StaticTitle = ({ words }) => (
+    <span aria-hidden="true">
+        {words.map((w, i) => <span key={i} className={`inline-block${w.key ? ' hero-mark' : ''}`}>{w.text}&nbsp;</span>)}
+    </span>
+);
 
 // Indicateur de défilement intelligent : disparaît dès qu'on descend, et mène à la section suivante.
 const ScrollCue = ({ label, targetId }) => {
@@ -133,7 +113,7 @@ const Hero = () => {
                         {t.association_name}
                     </span>
                     <h2 className="font-display hero-title mt-5 text-[clamp(1.9rem,6.2vw,3.6rem)] leading-[1.35]" aria-label={t.hero_title}>
-                        <TypedTitle key={t.hero_title} words={titleWords} />
+                        <StaticTitle key={t.hero_title} words={titleWords} />
                     </h2>
                     <div className="mt-5 h-1 w-24 rounded-full bg-gradient-to-r from-[var(--brand-gold)] to-[var(--brand-red)]" />
                     <p className="mt-5 max-w-xl text-base md:text-lg text-white/85 leading-relaxed">{t.hero_desc}</p>

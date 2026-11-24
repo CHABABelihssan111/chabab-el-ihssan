@@ -1,7 +1,7 @@
 // Service worker « النت أولا » : يجلب دائماً النسخة الجديدة (ويحترم تعطيل الموقع).
 // بلا انترنت : يعرض آخر نسخة محفوظة — وصفحة التبرع وأرقام الحسابات محفوظة مسبقاً.
 // /admin و /oauth لا يُخزَّنان أبداً.
-const CACHE = 'cei-v4';
+const CACHE = 'cei-v5';
 // تُحفظ عند التثبيت : الرئيسية + صفحة التبرع (أرقام الحسابات داخل ملفات الموقع نفسها)
 const CORE = ['/', '/donate', '/volunteer', '/manifest.webmanifest', '/favicon-192.png', '/images/logo.png'];
 
@@ -9,6 +9,8 @@ const OFFLINE_HTML = '<!doctype html><html lang="ar" dir="rtl"><meta charset="ut
   '<title>شباب الإحسان</title><body style="font-family:system-ui,sans-serif;background:#7a1034;color:#fff;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center;padding:24px">' +
   '<div><h1>أنت غير متصل بالإنترنت</h1><p>أعد المحاولة عند عودة الاتصال.</p><p>Vous êtes hors ligne — réessayez plus tard.</p></div></body></html>';
 
+// يخزّن نسخة جاهزة (copy) : النسخة تُؤخذ قبل أن يستهلك المتصفح الاستجابة
+const save = (req, copy) => { if (copy) caches.open(CACHE).then((c) => c.put(req, copy)).catch(() => {}); };
 const store = (cache, req, res) => (res && res.status === 200 ? cache.put(req, res.clone()).catch(() => {}) : undefined);
 
 self.addEventListener('install', (e) => {
@@ -57,7 +59,7 @@ self.addEventListener('fetch', (e) => {
   if (url.pathname.startsWith('/assets/')) {
     e.respondWith(
       caches.match(req).then((hit) => hit || fetch(req).then((res) => {
-        caches.open(CACHE).then((c) => store(c, req, res));
+        save(req, res.status === 200 ? res.clone() : null);
         return res;
       }))
     );
@@ -67,7 +69,7 @@ self.addEventListener('fetch', (e) => {
   // باقي الطلبات: النت أولا، والكاش عند انقطاع الانترنت فقط
   e.respondWith(
     fetch(req).then((res) => {
-      caches.open(CACHE).then((c) => store(c, req, res)); // 503 (التعطيل) يُعرض ولا يُخزَّن
+      save(req, res.status === 200 ? res.clone() : null); // 503 (التعطيل) يُعرض ولا يُخزَّن
       return res;
     }).catch(() => offlineFallback(req))
   );

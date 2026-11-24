@@ -35,14 +35,19 @@ const Footer = () => {
                         أَبْشِرْ
                     </span>
                 </div>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
                     <div>
                         <h3 className="font-display text-xl mb-4 footer-title">
                             {t.association_name}
                         </h3>
-                        <p className="text-gray-400 mb-4">
-                            {t.footer_about_desc}
-                        </p>
+                        <ul className="space-y-2 mb-5">
+                            <li><button onClick={(e) => handleNavigation(e, 'hero')} className="text-gray-400 hover:text-white transition text-start">{t.home}</button></li>
+                            <li><button onClick={(e) => handleNavigation(e, 'about')} className="text-gray-400 hover:text-white transition text-start">{t.about}</button></li>
+                            <li><button onClick={(e) => handleNavigation(e, 'programs')} className="text-gray-400 hover:text-white transition text-start">{t.programs}</button></li>
+                            <li><button onClick={(e) => handleNavigation(e, 'branches')} className="text-gray-400 hover:text-white transition text-start">{t.branches}</button></li>
+                            <li><Link to="/sadaqa-jariya" className="text-gray-400 hover:text-white transition">SADAQA JARYA</Link></li>
+                            <li><Link to="/gallery" className="text-gray-400 hover:text-white transition">{t.gallery}</Link></li>
+                        </ul>
                         <div className="flex flex-row items-center gap-4">
                             <a href={social.facebook} target="_blank" rel="noopener noreferrer" className="social-btn">
                                 <FaFacebookF />
@@ -57,20 +62,6 @@ const Footer = () => {
                                 <FaTiktok />
                             </a>
                         </div>
-                    </div>
-
-                    <div>
-                        <h3 className="font-display text-xl mb-4 footer-title">
-                            {t.quick_links}
-                        </h3>
-                        <ul className="space-y-2">
-                            <li><button onClick={(e) => handleNavigation(e, 'hero')} className="text-gray-400 hover:text-white transition text-start">{t.home}</button></li>
-                            <li><button onClick={(e) => handleNavigation(e, 'about')} className="text-gray-400 hover:text-white transition text-start">{t.about}</button></li>
-                            <li><button onClick={(e) => handleNavigation(e, 'programs')} className="text-gray-400 hover:text-white transition text-start">{t.programs}</button></li>
-                            <li><button onClick={(e) => handleNavigation(e, 'branches')} className="text-gray-400 hover:text-white transition text-start">{t.branches}</button></li>
-                            <li><Link to="/sadaqa-jariya" className="text-gray-400 hover:text-white transition">SADAQA JARYA</Link></li>
-                            <li><Link to="/gallery" className="text-gray-400 hover:text-white transition">{t.gallery}</Link></li>
-                        </ul>
                     </div>
 
                     <div>
