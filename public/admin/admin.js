@@ -537,11 +537,25 @@
       '<div class="dots"><i></i><i></i><i></i><i></i></div><div id="pinmsg" class="pm">' + (lockLeft() ? '🔒 محاولات كثيرة — انتظر ' + lockLeft() + ' ثانية' : '') + '</div><div class="pad">' + keys + '</div></div>' + gateFoot() + '</div>';
   }
   function cached(f) { var c = S.cache[f]; return c && c.data; }
+  function vSide() {
+    var v = S.view, cur = v.t === 'home' ? 'home' : v.t === 'gallery' ? 'gallery' : (v.col ? 'list|' + v.col : (v.id ? 'ed|' + v.id : ''));
+    var G = [
+      ['', [['home', '🏠', 'الرئيسية']]],
+      ['المحتوى', [['list|news', '📰', 'الأخبار'], ['list|activities', '🎯', 'الأنشطة والمشاريع'], ['list|testimonials', '💬', 'آراء المتابعين'], ['gallery', '🖼️', 'المعرض']]],
+      ['الواجهة', [['ed|hero', '✨', 'الواجهة الكبيرة'], ['ed|campaign', '💰', 'الحملة الحالية'], ['ed|announce', '📢', 'شريط الإعلان'], ['ed|ramadan', '🌙', 'وضع رمضان'], ['ed|sadaqa', '🤲', 'الصدقة الجارية'], ['ed|payment', '💳', 'معلومات التبرع']]],
+      ['المتابعة', [['link|/admin/stats.html', '📈', 'إحصائيات الزيارات'], ['link|/admin/feedback.html', '📥', 'الملاحظات والاستمارات']]],
+      ['النظام', [['ed|maintenance', '🛑', 'تعطيل الموقع']]]
+    ];
+    return '<aside class="side"><div class="sbrand"><div class="lg">' + logoImg() + '</div><div><b>شباب الإحسان</b><small>لوحة التحكم</small></div></div><nav>' +
+      G.map(function (g) { return (g[0] ? '<h4>' + g[0] + '</h4>' : '') + g[1].map(function (i) { return '<button type="button" class="si' + (i[0] === cur ? ' on' : '') + '" data-open="' + i[0] + '"><span>' + i[1] + '</span>' + i[2] + '</button>'; }).join(''); }).join('') +
+      '</nav><div class="sfoot"><button type="button" class="si" data-act="dark"><span>🌓</span>الوضع الليلي</button><button type="button" class="si" data-act="live"><span>🖥️</span>معاينة حيّة</button><a class="si" href="/" target="_blank" rel="noopener"><span>↗</span>فتح الموقع</a><button type="button" class="si out" data-act="logout"><span>⎋</span>خروج</button></div></aside>';
+  }
   function vHead() {
-    var h = new Date().getHours(), u = S.user;
-    return '<header class="top"><div class="brand"><div class="lg">' + logoImg() + '</div><div><h1>' + (h < 12 ? '☀️ صباح الخير' : '🌙 مساء الخير') + (u ? '، ' + esc(u.name || u.login) : '') + '</h1><p>لوحة تحكم شباب الإحسان</p></div></div><div class="acts">' +
-      (S.undo ? '<button class="btn amber" type="button" data-act="undo">↩️ تراجع عن آخر تغيير</button>' : '') +
-      '<button class="btn glass" type="button" data-act="dark" title="الوضع الليلي">🌓</button><button class="btn glass" type="button" data-act="live">🖥️ معاينة حيّة</button><a class="btn glass" href="/" target="_blank" rel="noopener">↗ فتح الموقع</a><button class="btn glass" type="button" data-act="logout">⎋ خروج</button></div></header>';
+    var h = new Date().getHours(), u = S.user, home = S.view.t === 'home';
+    var nm = u ? '، ' + esc(u.name || u.login) : '';
+    return '<header class="top' + (home ? '' : ' slim') + '"><div class="hello"><h1>' + (h < 12 ? '☀️ صباح الخير' : '🌙 مساء الخير') + nm + '</h1>' +
+      (home ? '<p>مرحباً بك في لوحة تحكم شباب الإحسان. من هنا تدير الأخبار والأنشطة والصور ومعلومات التبرع، وكل تعديل يظهر في الموقع بعد حوالي دقيقة.</p>' : '') + '</div>' +
+      (S.undo ? '<div class="acts"><button class="btn amber" type="button" data-act="undo">↩️ تراجع عن آخر تغيير</button></div>' : '') + '</header>';
   }
   function blk(num, ic, t, s, open, thumb, badge) {
     return '<div class="blk" data-open="' + esc(open) + '" tabindex="0"><div class="th">' + (thumb ? '<img src="' + esc(imgSrc(thumb)) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' : '<span>' + ic + '</span>') + '</div><div class="tx">' +
@@ -562,7 +576,7 @@
     var cb = CA ? (CA.enabled === false ? ['off', 'مخفية'] : ['on', 'ظاهرة']) : null;
     var rm = cached('src/content/ramadan.json'), rb = rm ? (rm.enabled ? ['on', 'مفعّل'] : ['off', 'متوقف']) : null;
     var sf = ST.social_feed, sb = sf ? (sf.enabled === false ? ['off', 'مخفي'] : ['on', 'ظاهر']) : null;
-    var top = blk('', '📢', 'شريط الإعلان', 'يظهر أعلى كل صفحات الموقع', 'ed|announce', null, annB) + blk('', '🏷️', 'الشعار والاتصال', 'الشعار، الهاتف، البريد، العنوان', 'ed|contact', ST.logo_url, null) + blk('', '📈', 'إحصائيات الزيارات', 'منحنى عدد الزوار (بالكود)', 'link|/admin/stats.html', null, null) + blk('', '🛑', 'تعطيل الموقع', 'إيقاف / تشغيل الموقع بضغطة واحدة', 'ed|maintenance', null, (ST.maintenance && ST.maintenance.enabled) ? ['off', 'معطّل حالياً'] : ['on', 'يعمل']);
+    var top = blk('', '📢', 'شريط الإعلان', 'يظهر أعلى كل صفحات الموقع', 'ed|announce', null, annB) + blk('', '🏷️', 'الشعار والاتصال', 'الشعار، الهاتف، البريد، العنوان', 'ed|contact', ST.logo_url, null) + blk('', '📈', 'إحصائيات الزيارات', 'منحنى عدد الزوار (بالكود)', 'link|/admin/stats.html', null, null) + blk('', '💬', 'الملاحظات والاستمارات', 'اقتراحات الزوار واستمارات التبرع والانضمام (بالكود)', 'link|/admin/feedback.html', null, null) + blk('', '🛑', 'تعطيل الموقع', 'إيقاف / تشغيل الموقع بضغطة واحدة', 'ed|maintenance', null, (ST.maintenance && ST.maintenance.enabled) ? ['off', 'معطّل حالياً'] : ['on', 'يعمل']);
     var order = [
       ['🏠', 'الواجهة الكبيرة', 'أول صورة يراها الزائر (+ فيديو اختياري)', 'ed|hero', M.heroImage, null],
       ['🌙', 'وضع رمضان', 'العدّ التنازلي + سلة رمضان + زكاة الفطر', 'ed|ramadan', null, rb],
@@ -635,7 +649,7 @@
   }
   function vShell() {
     var v = S.view, body = v.t === 'home' ? vHome() : v.t === 'list' ? vList() : v.t === 'gallery' ? vGallery() : vForm();
-    return vHead() + '<main>' + body + '</main>' + (v.t === 'form' || v.t === 'gallery' ? vSave() : '');
+    return '<div class="shell">' + vSide() + '<div class="content">' + vHead() + '<main>' + body + '</main></div></div>' + (v.t === 'form' || v.t === 'gallery' ? vSave() : '');
   }
   function render() {
     var y = window.scrollY; document.body.classList.toggle('dark', S.dark);

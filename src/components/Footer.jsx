@@ -80,6 +80,7 @@ const Footer = () => {
                         <ul className="space-y-2">
                             <li><Link to="/volunteer" className="text-gray-400 hover:text-white transition">{t.volunteer}</Link></li>
                             <li><Link to="/donate" className="text-gray-400 hover:text-white transition">{t.donate_money}</Link></li>
+                            <li><Link to="/feedback" className="text-gray-400 hover:text-white transition">{{ ar: 'اقتراحات ومشاكل', fr: 'Suggestions et problèmes', en: 'Suggestions & problems' }[language] || 'Feedback'}</Link></li>
                         </ul>
                     </div>
 

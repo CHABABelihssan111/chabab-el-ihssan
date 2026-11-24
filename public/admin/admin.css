@@ -278,3 +278,39 @@ body.dark .stats b { filter: drop-shadow(0 0 12px rgba(242, 183, 5, .45)); }
 body.dark main h2 { text-shadow: 0 0 22px rgba(242, 183, 5, .3); }
 body.dark .savebar { box-shadow: 0 -10px 40px rgba(0, 0, 0, .5), 0 -2px 24px -6px rgba(242, 183, 5, .4); }
 body.dark .gbox { box-shadow: 0 30px 80px rgba(0, 0, 0, .6), 0 0 50px -8px rgba(242, 183, 5, .35); }
+
+
+/* ===== تصميم جديد: قائمة جانبية + ترحيب (يلغي شريط الأعلى القديم) ===== */
+.shell { min-height: 100vh; }
+.side { position: fixed; inset-block: 0; inset-inline-start: 0; width: 268px; z-index: 55; display: flex; flex-direction: column; color: #fff; padding: 18px 12px 12px; overflow-y: auto;
+  background: radial-gradient(260px 220px at 100% 0, rgba(242, 183, 5, .2), transparent 70%), linear-gradient(180deg, var(--navy-d), #2a0612); border-inline-end: 3px solid var(--gold); box-shadow: 0 0 40px rgba(0, 0, 0, .3); }
+.sbrand { display: flex; align-items: center; gap: 12px; padding: 4px 8px 16px; border-bottom: 1px solid rgba(255, 255, 255, .12); margin-bottom: 8px; }
+.sbrand .lg { width: 48px; height: 48px; border-radius: 50%; background: #fff; display: grid; place-items: center; overflow: hidden; flex: none; box-shadow: 0 0 0 3px rgba(242, 183, 5, .85); }
+.sbrand .lg img { width: 100%; height: 100%; object-fit: contain; }
+.sbrand b { display: block; font: 400 21px 'Lalezar', 'Cairo', sans-serif; line-height: 1.2; } .sbrand small { opacity: .7; font-size: 12px; }
+.side nav { flex: 1; }
+.side h4 { margin: 16px 10px 6px; font-size: 11.5px; letter-spacing: .5px; color: var(--gold); opacity: .85; font-weight: 700; }
+.si { display: flex; align-items: center; gap: 11px; width: 100%; padding: 10px 12px; margin: 2px 0; border: 0; border-radius: 12px; background: transparent; color: rgba(255, 255, 255, .86); font-weight: 600; font-size: 14.5px; cursor: pointer; text-decoration: none; text-align: start; transition: background .15s, transform .15s; }
+.si span { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 9px; background: rgba(255, 255, 255, .08); font-size: 15px; flex: none; }
+.si:hover { background: rgba(255, 255, 255, .12); transform: translateX(-3px); }
+.si.on { background: linear-gradient(135deg, #ffd24a, var(--gold)); color: #3b2a00; box-shadow: 0 6px 18px rgba(242, 183, 5, .35); }
+.si.on span { background: rgba(255, 255, 255, .55); }
+.sfoot { border-top: 1px solid rgba(255, 255, 255, .12); margin-top: 10px; padding-top: 8px; }
+.si.out:hover { background: rgba(200, 16, 46, .5); }
+.content { margin-inline-start: 268px; min-width: 0; }
+.content .top { position: relative; top: auto; z-index: 1; margin: 18px 18px 0; border-radius: 24px; border-bottom: 0; padding: 30px 32px; min-height: 130px; align-items: flex-start;
+  background: radial-gradient(420px 220px at 90% 0, rgba(242, 183, 5, .3), transparent 70%), radial-gradient(300px 200px at 0 100%, rgba(255, 255, 255, .08), transparent 70%), linear-gradient(135deg, var(--navy-d), var(--navy) 65%, var(--navy-m)); box-shadow: var(--shadow-h); }
+.hello h1 { margin: 0 0 6px; font: 400 32px 'Lalezar', 'Cairo', sans-serif; line-height: 1.25; }
+.hello p { margin: 0; max-width: 640px; opacity: .85; font-size: 15px; line-height: 1.9; }
+.content .top.slim { min-height: 0; padding: 16px 24px; align-items: center; } .top.slim .hello h1 { font-size: 22px; margin: 0; }
+.content main { padding-top: 20px; }
+.savebar { inset-inline-start: 268px; }
+body.dark .side { background: radial-gradient(260px 220px at 100% 0, rgba(242, 183, 5, .14), transparent 70%), #12080c; box-shadow: 0 0 40px rgba(0, 0, 0, .6), 6px 0 30px -12px rgba(242, 183, 5, .25); }
+@media (max-width: 900px) {
+  .side { position: sticky; top: 0; inset: auto; width: 100%; flex-direction: row; align-items: center; padding: 8px; gap: 6px; overflow-x: auto; overflow-y: hidden; border-inline-end: 0; border-bottom: 3px solid var(--gold); scrollbar-width: none; }
+  .side::-webkit-scrollbar { display: none; }
+  .sbrand, .side h4 { display: none; } .side nav, .sfoot { display: flex; gap: 4px; flex: none; border: 0; margin: 0; padding: 0; }
+  .si { width: auto; white-space: nowrap; padding: 8px 12px; font-size: 13.5px; flex: none; } .si:hover { transform: none; }
+  .content { margin-inline-start: 0; } .content .top { margin: 10px 10px 0; padding: 20px 18px; border-radius: 20px; } .hello h1 { font-size: 24px; } .hello p { font-size: 13.5px; }
+  .savebar { inset-inline-start: 0; }
+}

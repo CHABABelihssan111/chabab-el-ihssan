@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { FaHandHoldingHeart, FaHandsHelping, FaMoon, FaSun, FaHome, FaInfoCircle, FaTasks, FaMapMarkerAlt, FaImages, FaEnvelope } from 'react-icons/fa';
+import { FaHandHoldingHeart, FaHandsHelping, FaCommentDots, FaMoon, FaSun, FaHome, FaInfoCircle, FaTasks, FaMapMarkerAlt, FaImages, FaEnvelope } from 'react-icons/fa';
 import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 
@@ -15,6 +15,7 @@ const Header = () => {
     const { theme, toggleTheme } = useTheme();
     const handleScrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
+    const feedbackLabel = { ar: 'اقتراحات', fr: 'Suggestions', en: 'Feedback' }[language] || 'Feedback';
     const sadaqaLabel = { ar: 'الصدقة الجارية', fr: 'Sadaqa Jariya', en: 'Sadaqa Jariya' }[language] || 'Sadaqa Jariya';
     const navigate = useNavigate();
     const location = useLocation();
@@ -45,6 +46,7 @@ const Header = () => {
                     <div className="flex items-center gap-3 sm:gap-4 flex-wrap justify-center sm:justify-start">
                         <span className="hidden sm:flex items-center gap-2 text-xs sm:text-base"><FaHandHoldingHeart /> <Link to="/donate" className="hover:text-[var(--brand-gold)] transition">{t.donate}</Link></span>
                         <span className="hidden sm:flex items-center gap-2 text-xs sm:text-base"><FaHandsHelping /> <Link to="/volunteer" className="hover:text-[var(--brand-gold)] transition">{t.volunteer}</Link></span>
+                        <span className="flex items-center gap-2 text-xs sm:text-base"><FaCommentDots /> <Link to="/feedback" className="hover:text-[var(--brand-gold)] transition">{feedbackLabel}</Link></span>
                         <InstallButton />
                         <RamadanChip />
                     </div>
@@ -89,6 +91,7 @@ const Header = () => {
                             <li><button onClick={(e) => handleNavigation(e, 'branches')} className={navBtn}>{t.branches}</button></li>
                             <li><NavLink to="/sadaqa-jariya" className={navLinkClass} onClick={handleScrollToTop}>{sadaqaLabel}</NavLink></li>
                             <li><NavLink to="/gallery" className={navLinkClass} onClick={handleScrollToTop}>{t.gallery}</NavLink></li>
+                            <li><NavLink to="/feedback" className={navLinkClass} onClick={handleScrollToTop}>{feedbackLabel}</NavLink></li>
                             <li><button onClick={(e) => handleNavigation(e, 'contact')} className={navBtn}>{t.contact_us}</button></li>
                         </ul>
                     </nav>

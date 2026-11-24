@@ -11,7 +11,7 @@ const L = {
 const inp = 'w-full px-4 py-3 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[var(--brand-gold)] transition';
 
 // قسم الملاحظات: يظهر في أسفل كل صفحات الموقع، بعرض كامل، قبل التذييل.
-const FeedbackBox = () => {
+const FeedbackBox = ({ showHeading = true }) => {
     const { language } = useLanguage();
     const lb = L[language] || L.en;
     const [f, setF] = useState({ type: 'suggestion', name: '', contact: '', message: '', website: '' });
@@ -27,13 +27,13 @@ const FeedbackBox = () => {
     };
 
     return (
-        <section id="feedback" className="feedback-box relative isolate overflow-hidden w-full text-white py-14 px-4">
+        <section id="feedback" className="feedback-box relative isolate overflow-hidden w-full text-white py-14 px-4 flex-grow">
             <div className="container mx-auto max-w-3xl relative z-10">
-                <div className="text-center mb-8">
+                {showHeading && <div className="text-center mb-8">
                     <FaCommentDots className="text-4xl mx-auto mb-3 text-[var(--brand-gold)]" aria-hidden="true" />
                     <h2 className="font-display text-2xl md:text-3xl">{lb.title}</h2>
                     <p className="mt-2 text-white/80">{lb.sub}</p>
-                </div>
+                </div>}
 
                 {st === 'ok' ? (
                     <div className="text-center bg-white/10 rounded-2xl p-8 ring-1 ring-white/20" role="status">
