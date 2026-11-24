@@ -6,6 +6,7 @@ import Header from './Header';
 import AnnouncementBar from './AnnouncementBar';
 import Footer from './Footer';
 import ScrollToTop from './ScrollToTop';
+import ScrollProgress from './ScrollProgress';
 import Tracker from './Tracker';
 import { Toaster } from 'react-hot-toast';
 import OfflineBanner from './OfflineBanner';
@@ -26,6 +27,7 @@ const Layout = () => {
             dir={language === 'ar' ? 'rtl' : 'ltr'}
         >
             <a href="#main-content" className="skip-link">{skip}</a>
+            <ScrollProgress />
             <AnnouncementBar />
             <Header />
             <main id="main-content" tabIndex={-1} className="flex-grow flex flex-col w-full focus:outline-none">

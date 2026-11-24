@@ -18,8 +18,21 @@ export const ThemeProvider = ({ children }) => {
         localStorage.setItem('theme', theme);
     }, [theme]);
 
+    // Transition douce entre clair et sombre + éclat doré discret en passant au sombre.
     const toggleTheme = () => {
-        setTheme(prev => prev === 'light' ? 'dark' : 'light');
+        const root = window.document.documentElement;
+        const next = theme === 'light' ? 'dark' : 'light';
+        if (!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+            root.classList.add('theme-anim');
+            setTimeout(() => root.classList.remove('theme-anim'), 800);
+            if (next === 'dark') {
+                const f = document.createElement('div');
+                f.className = 'theme-flash';
+                f.addEventListener('animationend', () => f.remove());
+                document.body.appendChild(f);
+            }
+        }
+        setTheme(next);
     };
 
     return (

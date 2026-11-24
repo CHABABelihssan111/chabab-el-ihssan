@@ -1,12 +1,62 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
-import { FaPlay, FaHandHoldingHeart, FaHandsHelping, FaChevronDown } from 'react-icons/fa';
+import { FaPlay, FaHandHoldingHeart, FaHandsHelping } from 'react-icons/fa';
 import { heroVideo, heroSlides } from '../data/media';
 import VideoModal from './VideoModal';
 
 const INTERVAL = 5200;
 const DOTS = Array.from({ length: 14 }, (_, i) => ({ x: (i * 37) % 100, s: 4 + ((i * 5) % 8), d: 8 + ((i * 3) % 9), t: -((i * 2.3) % 10) }));
+
+const REDUCED = () => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+// Mouvement Ken Burns : chaque photo a son propre cadrage (origine + dérive) pour un rendu « cinéma ».
+const KB = [['50% 40%', '-1.5%', '-1%'], ['20% 60%', '1.8%', '-1.2%'], ['80% 35%', '-1.8%', '1%'], ['55% 70%', '1.2%', '1.4%'], ['30% 30%', '-1%', '1.6%']];
+
+// Titre « machine à écrire » : un seul nœud texte par mot (l'arabe reste correctement lié).
+// Le texte complet est réservé en transparent dessous → aucune secousse de mise en page.
+const TypedTitle = ({ words, speed = 34 }) => {
+    const total = words.reduce((a, w) => a + w.text.length + 1, 0);
+    const [n, setN] = useState(() => (REDUCED() ? total : 0));
+    useEffect(() => {
+        if (REDUCED()) return undefined;
+        let i = 0, iv;
+        const st = setTimeout(() => { iv = setInterval(() => { i += 1; setN(i); if (i >= total) clearInterval(iv); }, speed); }, 380);
+        return () => { clearTimeout(st); clearInterval(iv); };
+    }, [total, speed]);
+    const starts = words.map((_, i) => words.slice(0, i).reduce((a, w) => a + w.text.length + 1, 0));
+    return (
+        <>
+            <span className="hero-ghost" aria-hidden="true">{words.map((w, i) => <span key={i} className="inline-block">{w.text}&nbsp;</span>)}</span>
+            <span className="hero-typed" aria-hidden="true">
+                {words.map((w, i) => {
+                    const start = starts[i];
+                    const vis = Math.max(0, Math.min(w.text.length, n - start));
+                    const done = n >= start + w.text.length;
+                    return <span key={i} className={`inline-block${w.key && done ? ' hero-mark' : ''}`}>{w.text.slice(0, vis)}{vis > 0 || done ? '\u00A0' : ''}{n < total && n >= start && n < start + w.text.length + 1 && <i className="hero-caret" />}</span>;
+                })}
+            </span>
+        </>
+    );
+};
+
+// Indicateur de défilement intelligent : disparaît dès qu'on descend, et mène à la section suivante.
+const ScrollCue = ({ label, targetId }) => {
+    const [hide, setHide] = useState(false);
+    useEffect(() => {
+        const f = () => setHide(window.scrollY > 90);
+        f(); window.addEventListener('scroll', f, { passive: true });
+        return () => window.removeEventListener('scroll', f);
+    }, []);
+    const go = () => {
+        const el = document.getElementById(targetId)?.nextElementSibling;
+        el?.scrollIntoView({ behavior: REDUCED() ? 'auto' : 'smooth', block: 'start' });
+    };
+    return (
+        <button type="button" onClick={go} aria-label={label} tabIndex={hide ? -1 : 0} className={`scroll-cue${hide ? ' is-hidden' : ''}`}>
+            <span>{label}</span><i><b /></i>
+        </button>
+    );
+};
 
 // Accueil : fond en fondu + zoom lent, texte à gauche/droite, pile de photos qui tournent.
 const Hero = () => {
@@ -63,6 +113,7 @@ const Hero = () => {
                         decoding="async"
                         loading={i === 0 ? 'eager' : 'lazy'}
                         className={`hero-bg ${i === idx ? 'is-on' : ''}`}
+                        style={{ transformOrigin: KB[i % KB.length][0], '--kx': KB[i % KB.length][1], '--ky': KB[i % KB.length][2] }}
                     />
                 ))}
                 <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(77,10,33,.94)_8%,rgba(122,16,52,.78)_55%,rgba(77,10,33,.55))]" />
@@ -71,6 +122,7 @@ const Hero = () => {
                 {DOTS.map((d, i) => (
                     <i key={i} className="hero-dot" style={{ left: `${d.x}%`, width: d.s, height: d.s, animationDuration: `${d.d}s`, animationDelay: `${d.t}s` }} />
                 ))}
+                <div className="hero-vignette" />
                 <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[var(--hero-fade)] to-transparent" />
             </div>
 
@@ -80,10 +132,8 @@ const Hero = () => {
                         <span className="w-2 h-2 rounded-full bg-[var(--brand-gold)] animate-pulse" />
                         {t.association_name}
                     </span>
-                    <h2 className="font-display mt-5 text-[clamp(1.9rem,6.2vw,3.6rem)] leading-[1.35]">
-                        {titleWords.map((w, i) => (
-                            <span key={i} className={`hero-word${w.key ? ' hero-mark' : ''}`} style={{ animationDelay: `${0.15 + i * 0.07}s`, '--mk': `${0.9 + i * 0.09}s` }}>{w.text}&nbsp;</span>
-                        ))}
+                    <h2 className="font-display hero-title mt-5 text-[clamp(1.9rem,6.2vw,3.6rem)] leading-[1.35]" aria-label={t.hero_title}>
+                        <TypedTitle key={t.hero_title} words={titleWords} />
                     </h2>
                     <div className="mt-5 h-1 w-24 rounded-full bg-gradient-to-r from-[var(--brand-gold)] to-[var(--brand-red)]" />
                     <p className="mt-5 max-w-xl text-base md:text-lg text-white/85 leading-relaxed">{t.hero_desc}</p>
@@ -141,7 +191,7 @@ const Hero = () => {
                 </div>
             </div>
 
-            <FaChevronDown aria-hidden="true" className="block absolute bottom-20 md:bottom-24 inset-x-0 mx-auto text-white/60 animate-bounce" />
+            <ScrollCue targetId="home" label={{ ar: 'تابع الاستكشاف', fr: 'Découvrir', en: 'Explore' }[language] || 'Explore'} />
             {playing && <VideoModal video={heroVideo} onClose={() => setPlaying(false)} />}
         </section>
     );
