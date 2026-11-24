@@ -436,13 +436,13 @@
   }
 
   /* ---------------- واجهة عامة ---------------- */
-var IC={"🏠": "M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6", "📰": "M5 3h11l3 3v15H5zM9 9h6M9 13h6M9 17h4", "🎯": "M12 3a9 9 0 100 18 9 9 0 000-18zM12 8a4 4 0 100 8 4 4 0 000-8z", "💬": "M4 5h16v11H9l-5 4z", "🖼": "M4 5h16v14H4zM4 16l5-5 4 4 3-3 4 4M9 9h.01", "✨": "M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z", "💰": "M12 3a9 9 0 100 18 9 9 0 000-18zM12 7v10M9.5 9.5c0-1 1-1.5 2.5-1.5s2.5.6 2.5 1.7c0 2.3-5 1.3-5 3.6 0 1.1 1 1.7 2.5 1.7s2.5-.5 2.5-1.5", "📢": "M3 10v4l11 5V5zM14 8a4 4 0 010 8M6 15l1 5h3l-1-4", "🌙": "M20 14A8 8 0 1110 4a7 7 0 0010 10z", "🤲": "M12 20s-8-5-8-11a4.5 4.5 0 018-2.5A4.5 4.5 0 0120 9c0 6-8 11-8 11z", "💳": "M3 6h18v12H3zM3 10h18M7 15h3", "📈": "M3 20h18M5 16l4-5 4 3 6-8", "📥": "M3 13l3-8h12l3 8v6H3zM3 13h5l1 3h6l1-3h5", "🛑": "M12 3a9 9 0 100 18 9 9 0 000-18zM6 6l12 12", "🔒": "M6 11h12v10H6zM8 11V8a4 4 0 018 0v3", "🔐": "M6 11h12v10H6zM8 11V8a4 4 0 018 0v3", "⚠": "M12 3l10 18H2zM12 10v5M12 18h.01", "✅": "M4 12l5 5L20 6", "✔": "M4 12l5 5L20 6", "❌": "M6 6l12 12M18 6L6 18", "✖": "M6 6l12 12M18 6L6 18", "✕": "M6 6l12 12M18 6L6 18", "🗑": "M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14M10 11v6M14 11v6", "💡": "M9 18h6M10 21h4M12 3a6 6 0 00-4 10c1 1 1 2 1 3h6c0-1 0-2 1-3a6 6 0 00-4-10z", "🏷": "M3 12V4h8l10 10-8 8zM7.5 7.5h.01", "📱": "M7 3h10v18H7zM11 18h2", "📍": "M12 21s7-6 7-12a7 7 0 10-14 0c0 6 7 12 7 12zM12 7a2.5 2.5 0 100 5 2.5 2.5 0 000-5z", "🗺": "M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2zM9 4v14M15 6v14", "🏗": "M4 21V8l8-5 8 5v13M9 21v-6h6v6", "📐": "M3 17L17 3l4 4L7 21zM8 12l2 2M11 9l2 2M14 6l2 2", "🖥": "M3 4h18v12H3zM8 20h8M12 16v4", "💻": "M3 4h18v12H3zM8 20h8M12 16v4", "💾": "M5 3h12l3 3v15H5zM8 3v5h7V3M8 21v-7h8v7", "🎬": "M3 5h18v14H3zM8 5v14M16 5v14M3 10h5M3 14h5M16 10h5M16 14h5", "🙈": "M3 3l18 18M10 6a9 9 0 0110 6 9 9 0 01-3 3.5M6 7.5A9 9 0 003 12a9 9 0 009 6 9 9 0 003-.5", "👁": "M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 100 6 3 3 0 000-6z", "🌓": "M12 3a9 9 0 100 18 9 9 0 000-18zM12 3v18", "☀": "M12 8a4 4 0 100 8 4 4 0 000-8zM12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5", "🕒": "M12 3a9 9 0 100 18 9 9 0 000-18zM12 7v5l3 2", "⏳": "M12 3a9 9 0 100 18 9 9 0 000-18zM12 7v5l3 2", "🔝": "M12 20V5M6 11l6-6 6 6", "📄": "M6 3h9l4 4v14H6zM14 3v5h5", "🔍": "M11 4a7 7 0 100 14 7 7 0 000-14zM16 16l5 5", "⬇": "M12 4v12M6 11l6 6 6-6M5 20h14", "★": "M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z", "🌐": "M12 3a9 9 0 100 18 9 9 0 000-18zM3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18", "✏": "M4 20l1-4L16 5l3 3L8 19zM14 7l3 3", "↩": "M9 7L4 12l5 5M4 12h10a6 6 0 010 8h-3", "🤝": "M9 11a3.5 3.5 0 100-7 3.5 3.5 0 000 7zM2 20c0-3.5 3-6 7-6s7 2.5 7 6M17 4.5a3 3 0 010 6M19 14c2 .8 3 2.6 3 5", "📷": "M3 7h4l2-3h6l2 3h4v13H3zM12 10a3.5 3.5 0 100 7 3.5 3.5 0 000-7z", "📊": "M5 20V10M12 20V4M19 20v-7", "🔄": "M20 11a8 8 0 00-14-4L4 9M4 4v5h5M4 13a8 8 0 0014 4l2-2M20 20v-5h-5", "↔": "M3 12h18M7 8l-4 4 4 4M17 8l4 4-4 4", "↗": "M7 17L17 7M8 7h9v9", "📌": "M12 21s7-6 7-12a7 7 0 10-14 0c0 6 7 12 7 12z"};
   var EMO = /(<[^>]*>)|([\u{1F300}-\u{1FAFF}☀-➿⬀-⯿⏩-⏿↔↩↗★])️?/gu;
+  var PLAIN = { '✖': '✕', '✕': '✕', '★': '★', '↩': '↩', '↗': '↗', '↔': '↔' };
   function ic(h) {
     return String(h).replace(EMO, function (m, tag, e) {
       if (tag) return tag;
-      var p = IC[e] || 'M12 9a3 3 0 100 6 3 3 0 000-6z';
-      return '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="' + p + '"/></svg>';
+      if (PLAIN[e]) return PLAIN[e];
+      return '<span class="em" aria-hidden="true">' + e + '\uFE0F</span>';
     });
   }
   var $app = document.getElementById('app');
@@ -557,7 +557,7 @@ var IC={"🏠": "M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6", "📰": "M5 3h11l3 3
     ];
     return '<aside class="side"><div class="sbrand"><div class="lg">' + logoImg() + '</div><div><b>شباب الإحسان</b><small>لوحة التحكم</small></div></div><nav>' +
       G.map(function (g) { return (g[0] ? '<h4>' + g[0] + '</h4>' : '') + g[1].map(function (i) { return '<button type="button" class="si' + (i[0] === cur ? ' on' : '') + '" data-open="' + i[0] + '"><span>' + i[1] + '</span>' + i[2] + '</button>'; }).join(''); }).join('') +
-      '</nav><div class="sfoot"><button type="button" class="si" data-act="dark"><span>🌓</span>الوضع الليلي</button><button type="button" class="si" data-act="live"><span>🖥️</span>معاينة حيّة</button><a class="si" href="/" target="_blank" rel="noopener"><span>↗</span>فتح الموقع</a><button type="button" class="si out" data-act="logout"><span>⎋</span>خروج</button></div></aside>';
+      '</nav><div class="sfoot"><button type="button" class="si" data-act="pal"><span>🔍</span>بحث سريع</button><button type="button" class="si" data-act="dark"><span>🌓</span>الوضع الليلي</button><button type="button" class="si" data-act="live"><span>🖥️</span>معاينة حيّة</button><a class="si" href="/" target="_blank" rel="noopener"><span>↗</span>فتح الموقع</a><button type="button" class="si out" data-act="logout"><span>⎋</span>خروج</button></div></aside>';
   }
   function vHead() {
     var h = new Date().getHours(), u = S.user, home = S.view.t === 'home';
@@ -890,6 +890,75 @@ var IC={"🏠": "M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6", "📰": "M5 3h11l3 3
     });
     window.addEventListener('beforeunload', function (e) { if (S.edit && S.edit.dirty) { e.preventDefault(); e.returnValue = ''; } });
   }
+
+  /* ================= v3: مركز القيادة (لوحة بنمط غرفة التحكم) ================= */
+  var PAL = [
+    ['الرئيسية', 'home', '🏠', 'خريطة الموقع كاملة'], ['خبر جديد', 'entry|news|', '📰', 'إضافة خبر بصورة ونص'], ['نشاط جديد', 'entry|activities|', '🎯', 'مشروع أو فعالية'],
+    ['الأخبار', 'list|news', '📰', 'قائمة الأخبار'], ['الأنشطة والمشاريع', 'list|activities', '🎯', 'قائمة الأنشطة'], ['آراء المتابعين', 'list|testimonials', '💬', 'الآراء والشهادات'],
+    ['المعرض', 'gallery', '🖼️', 'صور الموقع'], ['الواجهة الكبيرة', 'ed|hero', '✨', 'الصورة الأولى للزائر'], ['الحملة الحالية', 'ed|campaign', '💰', 'المبلغ والهدف والتاريخ'],
+    ['شريط الإعلان', 'ed|announce', '📢', 'يظهر أعلى كل الصفحات'], ['وضع رمضان', 'ed|ramadan', '🌙', 'العدّ التنازلي والسلة'], ['الصدقة الجارية', 'ed|sadaqa', '🤲', 'المشاريع الدائمة'],
+    ['معلومات الدفع', 'ed|payment', '💳', 'الحسابات والأرقام'], ['تعطيل الموقع', 'ed|maintenance', '🛑', 'وضع الصيانة'],
+    ['صندوق الرسائل', 'link|/admin/feedback.html', '📥', 'الملاحظات والاستمارات'], ['إحصائيات الزيارات', 'link|/admin/stats.html', '📈', 'الزوار والمصادر']
+  ];
+  function palOpen() {
+    if (S.screen !== 'app') return;
+    var o = document.getElementById('pal'); if (o) { o.remove(); return; }
+    o = document.createElement('div'); o.id = 'pal';
+    o.innerHTML = '<div class="pb"><div class="ps"><svg class="ic" viewBox="0 0 24 24"><path d="M11 4a7 7 0 100 14 7 7 0 000-14zM16 16l5 5"/></svg><input id="pq" placeholder="اذهب إلى… (اكتب اسم القسم)" autocomplete="off"><kbd>Esc</kbd></div><div class="pl" id="pl"></div></div>';
+    document.body.appendChild(o);
+    var q = o.querySelector('#pq'), l = o.querySelector('#pl'), sel = 0, cur = PAL;
+    function paint() {
+      var v = q.value.trim(); cur = PAL.filter(function (x) { return !v || (x[0] + ' ' + x[3]).indexOf(v) > -1; }); sel = Math.min(sel, Math.max(0, cur.length - 1));
+      l.innerHTML = ic(cur.map(function (x, i) { return '<button type="button" class="pi' + (i === sel ? ' on' : '') + '" data-i="' + i + '"><span>' + x[2] + '</span><b>' + esc(x[0]) + '</b><small>' + esc(x[3]) + '</small></button>'; }).join('') || '<div class="pn">لا نتائج</div>');
+    }
+    function run(i) { var x = cur[i]; if (!x) return; o.remove(); openAny(x[1]); }
+    q.oninput = function () { sel = 0; paint(); };
+    q.onkeydown = function (e) {
+      if (e.key === 'ArrowDown') { sel = Math.min(cur.length - 1, sel + 1); paint(); e.preventDefault(); }
+      else if (e.key === 'ArrowUp') { sel = Math.max(0, sel - 1); paint(); e.preventDefault(); }
+      else if (e.key === 'Enter') run(sel); else if (e.key === 'Escape') o.remove();
+    };
+    o.onclick = function (e) { var b = e.target.closest('.pi'); if (b) run(+b.dataset.i); else if (e.target === o) o.remove(); };
+    paint(); q.focus();
+  }
+  function clockTxt() { try { return new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'Africa/Algiers' }); } catch (e) { return new Date().toTimeString().slice(0, 8); } }
+  var lastKey = '';
+  function post() {
+    var app = S.screen === 'app';
+    document.body.classList.toggle('inapp', app);
+    if (!app) { var bn = document.getElementById('bnav'); if (bn) bn.remove(); return; }
+    var v = S.view, key = v.t + '|' + (v.col || '') + '|' + (v.id || '');
+    var m = $app.querySelector('.content main'); if (m && key !== lastKey) { m.classList.remove('enter'); void m.offsetWidth; m.classList.add('enter'); } lastKey = key;
+    var hello = $app.querySelector('.top .hello');
+    if (hello && !hello.querySelector('.mc')) {
+      var ST = cached('src/content/settings.json') || {}, off = !!(ST.maintenance && ST.maintenance.enabled), c = S.commits && S.commits[0];
+      var d = document.createElement('div'); d.className = 'mc';
+      d.innerHTML = ic('<span class="pill ' + (off ? 'bad' : 'ok') + '"><i></i>' + (off ? 'الموقع معطّل' : 'الموقع يعمل') + '</span>' +
+        '<span class="pill' + (navigator.onLine ? ' ok' : ' bad') + '" id="mcnet"><i></i>' + (navigator.onLine ? 'متصل' : 'بلا إنترنت') + '</span>' +
+        (c ? '<span class="pill"><b>🕒</b>آخر نشر ' + esc(ago(c.commit.author.date)) + '</span>' : '') +
+        '<span class="pill clk" dir="ltr"><b id="mcclk">' + clockTxt() + '</b> الجزائر</span><button type="button" class="pill cmdk" data-act="pal">🔍 بحث سريع <kbd>Ctrl K</kbd></button>');
+      hello.appendChild(d);
+    }
+    var b = document.getElementById('bnav');
+    if (!b) { b = document.createElement('nav'); b.id = 'bnav'; document.body.appendChild(b); }
+    var cur = v.t === 'home' ? 'home' : v.col === 'news' ? 'list|news' : v.t === 'gallery' ? 'gallery' : '';
+    b.innerHTML = ic([['home', '🏠', 'الرئيسية'], ['list|news', '📰', 'الأخبار'], ['entry|news|', '＋', ''], ['gallery', '🖼️', 'المعرض'], ['pal', '🔍', 'بحث']].map(function (x) {
+      return x[1] === '＋' ? '<button type="button" class="plus" data-n="' + x[0] + '" aria-label="خبر جديد"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>' : '<button type="button" class="' + (x[0] === cur ? 'on' : '') + '" data-n="' + x[0] + '"><span>' + x[1] + '</span>' + x[2] + '</button>';
+    }).join(''));
+  }
+  var _render = render;
+  render = function () { _render(); try { post(); } catch (e) { console.error(e); } };
+  document.addEventListener('click', function (e) {
+    var n = e.target.closest && e.target.closest('#bnav [data-n]'); if (n) { n.dataset.n === 'pal' ? palOpen() : openAny(n.dataset.n); return; }
+    var p = e.target.closest && e.target.closest('[data-act="pal"]'); if (p) { e.stopPropagation(); palOpen(); }
+  }, true);
+  document.addEventListener('keydown', function (e) {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); palOpen(); }
+    else if (e.key === '/' && S.screen === 'app' && !/INPUT|TEXTAREA|SELECT/.test((document.activeElement || {}).tagName || '')) { e.preventDefault(); palOpen(); }
+  });
+  setInterval(function () { var c = document.getElementById('mcclk'); if (c) c.textContent = clockTxt(); }, 1000);
+  window.addEventListener('online', function () { toast('عاد الاتصال بالإنترنت'); var n = document.getElementById('mcnet'); if (n) { n.className = 'pill ok'; n.lastChild.textContent = 'متصل'; } });
+  window.addEventListener('offline', function () { toast('انقطع الاتصال — لن يتم الحفظ حتى يعود', true); var n = document.getElementById('mcnet'); if (n) { n.className = 'pill bad'; n.lastChild.textContent = 'بلا إنترنت'; } });
 
   /* ---------------- الإقلاع ---------------- */
   function boot() {

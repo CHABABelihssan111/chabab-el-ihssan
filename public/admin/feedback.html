@@ -12,6 +12,8 @@ body.dark{--bg:#0f070a;--card:#1b0f14;--ink:#f6ecee;--mut:#b9a3aa;--line:#34202a
 *{box-sizing:border-box}html,body{margin:0}
 body{font-family:Cairo,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:15px;padding-bottom:env(safe-area-inset-bottom)}
 [hidden]{display:none!important}
+.em{font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;font-style:normal;line-height:1;display:inline-block;filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.2))}
+.gb .lk .em{font-size:32px}.hero h1 .em{font-size:30px}.sr .em{position:absolute;inset-inline-start:12px;top:50%;transform:translateY(-50%)}.empty .em{font-size:46px;display:block;margin-bottom:6px}
 .ic{width:1.15em;height:1.15em;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.2em}
 button,input{font:inherit;color:inherit}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:0;border-radius:12px;padding:9px 16px;min-height:40px;font-weight:700;font-size:14px;cursor:pointer;background:var(--card);box-shadow:inset 0 0 0 1.5px var(--line);transition:.2s}
@@ -69,18 +71,18 @@ body.dark .tag.problem,body.dark .tag.donate,body.dark .tag.sadaqa,body.dark .ta
 @media(max-width:700px){.kpi{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:24px}}
 </style></head>
 <body>
-<div id="gate"><div class="gb"><div class="lk"><svg class="ic" viewBox="0 0 24 24"><path d="M6 11h12v10H6zM8 11V8a4 4 0 018 0v3"/></svg></div>
+<div id="gate"><div class="gb"><div class="lk"><span class="em">🔐</span></div>
 <h1>صندوق الرسائل</h1><p>أدخل رمز الدخول للاطلاع على الملاحظات والاستمارات.</p>
 <input id="code" type="password" inputmode="numeric" maxlength="8" placeholder="••••" autocomplete="off" autofocus>
 <button id="go" class="btn pri" style="width:100%">دخول</button><div id="err" role="alert"></div>
 <p style="margin:10px 0 0;font-size:12px">نفس رمز صفحة الإحصائيات</p></div></div>
 <div id="app" hidden>
-<header class="hero"><div class="w"><div class="row"><div><h1><svg class="ic" viewBox="0 0 24 24"><path d="M3 13l3-8h12l3 8v6H3zM3 13h5l1 3h6l1-3h5"/></svg>صندوق الرسائل</h1><p>الملاحظات والاقتراحات والبلاغات واستمارات التبرع والانضمام</p></div>
+<header class="hero"><div class="w"><div class="row"><div><h1><span class="em">📬</span>صندوق الرسائل</h1><p>الملاحظات والاقتراحات والبلاغات واستمارات التبرع والانضمام</p></div>
 <div class="tools"><button class="btn sm" id="dk" type="button">الوضع الليلي</button><a class="btn sm" href="/admin/" style="text-decoration:none">العودة للوحة التحكم</a></div></div></div></header>
 <main><div class="w">
 <div class="kpi" id="kpi"></div>
 <div class="bar"><div class="tabs" id="tabs"></div>
-<div class="tools"><div class="sr"><svg class="ic" viewBox="0 0 24 24"><path d="M11 4a7 7 0 100 14 7 7 0 000-14zM16 16l5 5"/></svg><input id="q" type="search" placeholder="بحث في الرسائل…" autocomplete="off"></div>
+<div class="tools"><div class="sr"><span class="em">🔍</span><input id="q" type="search" placeholder="بحث في الرسائل…" autocomplete="off"></div>
 <button class="btn sm" id="rf" type="button">تحديث</button><button class="btn sm" id="all" type="button">تعليم الكل كمقروء</button><button class="btn sm" id="csv" type="button">تصدير CSV</button></div>
 <div class="chips" id="chips"></div></div>
 <div id="list"></div><p class="foot"><a href="/admin/">← لوحة التحكم</a></p></div></main></div>
