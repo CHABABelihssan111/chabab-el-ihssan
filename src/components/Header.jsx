@@ -44,8 +44,8 @@ const Header = () => {
             <div className="bg-[var(--brand-navy-dark)] text-white text-sm py-1.5">
                 <div className="container mx-auto px-3 sm:px-4 flex flex-row justify-between items-center gap-2">
                     <div className="flex items-center gap-3 sm:gap-4 flex-wrap justify-center sm:justify-start">
-                        <span className="hidden sm:flex items-center gap-2 text-xs sm:text-base"><FaHandHoldingHeart /> <Link to="/donate" className="hover:text-[var(--brand-gold)] transition">{t.donate}</Link></span>
-                        <span className="hidden sm:flex items-center gap-2 text-xs sm:text-base"><FaHandsHelping /> <Link to="/volunteer" className="hover:text-[var(--brand-gold)] transition">{t.volunteer}</Link></span>
+                        <span className="flex items-center gap-1.5 text-xs sm:text-base"><FaHandHoldingHeart /> <Link to="/donate" className="hover:text-[var(--brand-gold)] transition">{t.donate}</Link></span>
+                        <span className="flex items-center gap-1.5 text-xs sm:text-base"><FaHandsHelping /> <Link to="/volunteer" className="hover:text-[var(--brand-gold)] transition">{t.volunteer}</Link></span>
                         <InstallButton />
                         <RamadanChip />
                     </div>
