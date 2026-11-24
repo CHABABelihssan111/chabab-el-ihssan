@@ -5,6 +5,7 @@ import { PageSkeleton } from './Skeleton';
 import Header from './Header';
 import AnnouncementBar from './AnnouncementBar';
 import Footer from './Footer';
+import FeedbackBox from './FeedbackBox';
 import ScrollToTop from './ScrollToTop';
 import Tracker from './Tracker';
 import { Toaster } from 'react-hot-toast';
@@ -42,6 +43,7 @@ const Layout = () => {
                     </motion.div>
                 </AnimatePresence>
             </main>
+            <FeedbackBox />
             <Footer />
             <ScrollToTop />
             <Tracker />

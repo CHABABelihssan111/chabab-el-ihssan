@@ -1,11 +1,12 @@
 import React from 'react';
 import settings from '../data/settings';
 import { useLanguage } from '../context/LanguageContext';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaHandPaper, FaEnvelope } from 'react-icons/fa';
 
 const Volunteer = () => {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
 
     return (
         <motion.div
@@ -21,6 +22,9 @@ const Volunteer = () => {
                 </div>
 
                 <div className="p-8 flex flex-col gap-4">
+                    <Link to="/participate?type=join" className="btn-brand w-full py-3 px-4 inline-flex items-center justify-center gap-2">
+                        {{ ar: 'املأ استمارة الانضمام', fr: "Remplir le formulaire d'adhésion", en: 'Fill in the join form' }[language] || 'Join form'}
+                    </Link>
                     <a
                         href={`mailto:${settings.email}`}
                         className="w-full flex items-center justify-center gap-3 bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-lg transition shadow-sm hover:shadow-md"

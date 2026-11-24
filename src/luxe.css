@@ -1,0 +1,61 @@
+/* ───────────────────────────────────────────────────────────────
+   Touche « premium » : lumière dorée, reflets et halos doux.
+   Uniquement transform/opacity (GPU) → léger sur mobile.
+   Désactivé automatiquement si l'utilisateur réduit les animations.
+   ─────────────────────────────────────────────────────────────── */
+:root { --gold-glow: rgba(242, 183, 5, .55); --luxe-line: linear-gradient(90deg, transparent, var(--brand-gold), transparent); }
+
+/* Hero : faisceau lumineux qui balaie + filet doré en bas */
+.hero::before {
+    content: ''; position: absolute; inset: -20% -40%; z-index: 0; pointer-events: none;
+    background: linear-gradient(105deg, transparent 42%, rgba(255, 236, 170, .14) 50%, transparent 58%);
+    transform: translate3d(-60%, 0, 0); animation: luxe-sweep 9s ease-in-out infinite;
+}
+.hero::after { content: ''; position: absolute; inset-inline: 0; bottom: 0; height: 2px; z-index: 2; background: var(--luxe-line); opacity: .8; }
+@keyframes luxe-sweep { 0%, 15% { transform: translate3d(-60%, 0, 0); } 60%, 100% { transform: translate3d(60%, 0, 0); } }
+
+/* Titre du hero : reflet doré sur la phrase clé + léger halo */
+.hero h2 { text-shadow: 0 2px 24px rgba(0, 0, 0, .35); }
+.hero-badge { box-shadow: 0 0 0 1px rgba(242, 183, 5, .35), 0 0 22px -4px var(--gold-glow); }
+.hero-card { box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .6), 0 0 40px -10px var(--gold-glow); }
+
+/* Barre de titre : éclat qui défile */
+.heading-bar { background-size: 200% 100%; background-image: linear-gradient(90deg, var(--brand-gold), #fff3b0, var(--brand-red), var(--brand-gold)); animation: bar-in .9s .2s var(--ease) both, luxe-shine 5s linear 1s infinite; box-shadow: 0 0 14px -2px var(--gold-glow); }
+@keyframes luxe-shine { to { background-position: -200% 0; } }
+
+/* Boutons principaux : halo doré */
+.btn-brand { box-shadow: 0 12px 26px -10px rgba(200, 16, 46, .75), 0 0 0 1px rgba(242, 183, 5, .35); }
+
+/* Cartes : liseré doré au survol (souris) */
+@media (hover: hover) {
+    section :is(.shadow-md, .shadow-lg, .shadow-xl):hover { box-shadow: var(--shadow-lift), 0 0 0 1px rgba(242, 183, 5, .45), 0 0 28px -8px var(--gold-glow); }
+}
+.luxe-card { box-shadow: var(--shadow-lift), 0 0 0 1px rgba(242, 183, 5, .25); }
+
+/* Mode sombre : lueurs dorées sur fond profond */
+.dark main section :is(.shadow-md, .shadow-lg, .shadow-xl) { box-shadow: 0 0 0 1px rgba(242, 183, 5, .14), 0 18px 40px -18px rgba(0, 0, 0, .8), 0 0 30px -14px rgba(242, 183, 5, .35); }
+.dark .heading-bar { box-shadow: 0 0 18px 0 var(--gold-glow); }
+.dark .btn-brand { box-shadow: 0 0 26px -4px rgba(200, 16, 46, .8), 0 0 0 1px rgba(242, 183, 5, .5); }
+.dark h1, .dark .font-display { text-shadow: 0 0 22px rgba(242, 183, 5, .18); }
+.dark .luxe-card { box-shadow: 0 0 0 1px rgba(242, 183, 5, .3), 0 0 44px -14px var(--gold-glow); }
+.dark .hero-card { box-shadow: 0 30px 60px -20px #000, 0 0 54px -8px var(--gold-glow); }
+
+/* Étincelles : points dorés qui scintillent (hero + pied de page) */
+.hero-dot { box-shadow: 0 0 10px 2px var(--gold-glow); }
+.feedback-box { background: radial-gradient(34rem 16rem at 15% 0, rgba(242, 183, 5, .16), transparent 60%), radial-gradient(34rem 18rem at 100% 100%, rgba(200, 16, 46, .35), transparent 60%), linear-gradient(160deg, var(--brand-navy), var(--brand-navy-dark)); border-top: 1px solid rgba(242, 183, 5, .5); }
+.feedback-box::before { content: ''; position: absolute; top: -1px; inset-inline: 0; height: 2px; background: var(--luxe-line); animation: luxe-pulse 3.5s ease-in-out infinite; }
+@keyframes luxe-pulse { 50% { opacity: .35; } }
+
+/* Page 404 : grand chiffre doré lumineux + cartes de liens */
+.luxe-404 { background: linear-gradient(120deg, var(--brand-gold), #fff3b0, var(--brand-red), var(--brand-gold)); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: luxe-shine 6s linear infinite; filter: drop-shadow(0 0 18px var(--gold-glow)); }
+.luxe-link { display: block; transition: transform .25s var(--ease), box-shadow .25s ease; }
+.luxe-link:hover, .luxe-link:focus-visible { transform: translateY(-3px); box-shadow: 0 0 0 1px rgba(242, 183, 5, .6), 0 10px 26px -10px var(--gold-glow); }
+
+/* Mobile : effets plus discrets pour rester fluide */
+@media (max-width: 767px) {
+    .hero::before { animation-duration: 12s; }
+    .hero-dot:nth-of-type(n+9) { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .hero::before, .heading-bar, .luxe-404, .feedback-box::before { animation: none !important; }
+}

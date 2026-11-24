@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { motion } from 'framer-motion';
 import { FaHeart, FaUniversity, FaMobileAlt, FaEuroSign } from 'react-icons/fa';
@@ -123,6 +123,12 @@ const Donate = () => {
                             {lb.note}
                         </a>
                     </p>
+
+                    <div className="text-center">
+                        <Link to="/participate?type=donate" className="btn-brand py-3 px-8 inline-flex items-center justify-center gap-2">
+                            {{ ar: 'املأ استمارة التبرع', fr: 'Remplir le formulaire de don', en: 'Fill in the donation form' }[language] || 'Donation form'}
+                        </Link>
+                    </div>
 
                     {pay.iban_eur && (
                         <PayCard

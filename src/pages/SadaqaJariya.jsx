@@ -147,9 +147,10 @@ const SadaqaJariya = () => {
                 <div className="container mx-auto px-4 text-center max-w-2xl">
                     <p className="mb-6 text-white/90">{lb.ctaText}</p>
                     <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                        <Link to="/donate" className="btn-brand py-3 px-8 inline-flex items-center justify-center gap-2">
-                            <FaHandHoldingHeart /> {lb.cta}
+                        <Link to="/participate?type=sadaqa" className="btn-brand py-3 px-8 inline-flex items-center justify-center gap-2">
+                            <FaHandHoldingHeart /> {{ ar: 'املأ استمارة الصدقة الجارية', fr: 'Formulaire Sadaqa Jariya', en: 'Sadaqa Jariya form' }[language] || lb.cta}
                         </Link>
+                        <Link to="/donate" className="btn-glass py-3 px-8 text-center">{lb.cta}</Link>
                         <Link to="/#contact" state={{ scrollTo: 'contact' }} className="btn-brand-light py-3 px-8 text-center">{lb.contact}</Link>
                     </div>
                 </div>

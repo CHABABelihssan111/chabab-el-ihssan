@@ -28,6 +28,7 @@ const TermsOfUse = lazy(() => import('./pages/TermsOfUse'));
 const ReportProblem = lazy(() => import('./pages/ReportProblem'));
 const GalleryPage = lazy(() => import('./pages/GalleryPage'));
 const SadaqaJariya = lazy(() => import('./pages/SadaqaJariya'));
+const Participate = lazy(() => import('./pages/Participate'));
 
 // Le Suspense (squelette de page) est dans Layout : en-tête et pied de page restent visibles.
 
@@ -55,6 +56,7 @@ function App() {
                                             <Route path="report-problem" element={<ReportProblem />} />
                                             <Route path="gallery" element={<GalleryPage />} />
                                             <Route path="sadaqa-jariya" element={<SadaqaJariya />} />
+                                            <Route path="participate" element={<Participate />} />
 
                                             {/* Catch-all 404 */}
                                             <Route path="*" element={<ErrorPage is404={true} />} />

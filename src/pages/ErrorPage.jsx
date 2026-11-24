@@ -22,9 +22,9 @@ const ErrorPage = ({ error, resetErrorBoundary, is404 = false }) => {
 
     // Textes de secours (le Provider peut lui-même être la cause de l'erreur)
     const FALLBACK = {
-        ar: { page_not_found: 'الصفحة غير موجودة', error_title: 'حدث خطأ ما', home: 'الرئيسية', donate: 'تبرع الآن', programs: 'برامجنا', news: 'أخبار وفعاليات', try_again: 'إعادة المحاولة' },
-        fr: { page_not_found: 'Page introuvable', error_title: 'Une erreur est survenue', home: 'Accueil', donate: 'Faire un don', programs: 'Programmes', news: 'Actualités', try_again: 'Réessayer' },
-        en: { page_not_found: 'Page not found', error_title: 'Something went wrong', home: 'Home', donate: 'Donate', programs: 'Programs', news: 'News', try_again: 'Try again' },
+        ar: { page_not_found: 'الصفحة غير موجودة', page_not_found_desc: 'ربما تغيّر الرابط أو حُذفت الصفحة. يمكنك الانتقال إلى إحدى الصفحات التالية:', error_title: 'حدث خطأ ما', home: 'الرئيسية', donate: 'تبرع الآن', programs: 'برامجنا', news: 'أخبار وفعاليات', sadaqa: 'صدقة جارية', join: 'انضم لنا', try_again: 'إعادة المحاولة', useful: 'روابط مفيدة' },
+        fr: { page_not_found: 'Page introuvable', page_not_found_desc: 'Le lien a peut-être changé ou la page a été supprimée. Voici quelques pages utiles :', error_title: 'Une erreur est survenue', home: 'Accueil', donate: 'Faire un don', programs: 'Programmes', news: 'Actualités', sadaqa: 'Sadaqa Jariya', join: 'Nous rejoindre', try_again: 'Réessayer', useful: 'Liens utiles' },
+        en: { page_not_found: 'Page not found', page_not_found_desc: 'The link may have changed or the page was removed. Try one of these pages:', error_title: 'Something went wrong', home: 'Home', donate: 'Donate', programs: 'Programs', news: 'News', sadaqa: 'Sadaqa Jariya', join: 'Join us', try_again: 'Try again', useful: 'Useful links' },
     };
     const t = { ...(FALLBACK[language] || FALLBACK.en), ...(ctx?.t || {}) };
 
@@ -55,6 +55,7 @@ const ErrorPage = ({ error, resetErrorBoundary, is404 = false }) => {
                 {/* Icon & Title */}
                 <div className="mb-6 relative z-10">
                     {!is404 && <FaExclamationTriangle className="text-red-500 text-4xl mx-auto mb-4 opacity-80" />}
+                    {is404 && <div className="luxe-404 font-display text-7xl md:text-8xl leading-none mb-3" aria-hidden="true">404</div>}
                     <h1 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2">
                         {title}
                     </h1>
@@ -88,9 +89,11 @@ const ErrorPage = ({ error, resetErrorBoundary, is404 = false }) => {
 
                 {/* Liens utiles (404 uniquement) : <a> et non <Link> pour ne jamais dépendre du Router */}
                 {is404 && (
-                    <div className="flex flex-wrap items-center justify-center gap-3 mb-6 relative z-10">
-                        {[['/donate', t.donate], ['/programs', t.programs], ['/news', t.news]].map(([href, label]) => (
-                            <a key={href} href={href} className="px-4 py-2 rounded-lg bg-white/70 dark:bg-gray-700 text-gray-800 dark:text-white border border-gray-200 dark:border-gray-600 hover:underline font-medium">{label}</a>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6 relative z-10">
+                        {[['/donate', t.donate, '💝'], ['/sadaqa-jariya', t.sadaqa, '🌿'], ['/volunteer', t.join, '🤝'], ['/programs', t.programs, '🏗️'], ['/news', t.news, '📰']].map(([href, label, ico]) => (
+                            <a key={href} href={href} className="luxe-link px-3 py-3 rounded-xl bg-white/70 dark:bg-gray-700 text-gray-800 dark:text-white border border-gray-200 dark:border-gray-600 font-semibold">
+                                <span aria-hidden="true" className="block text-xl mb-1">{ico}</span>{label}
+                            </a>
                         ))}
                     </div>
                 )}
