@@ -6,6 +6,11 @@
 (function () {
   'use strict';
 
+  // إخفاء الصور المعطوبة (بديل onerror المحجوب بسياسة CSP)
+  document.addEventListener('error', function (e) {
+    if (e.target && e.target.tagName === 'IMG') e.target.style.display = 'none';
+  }, true);
+
   var REPO = 'CHABABelihssan111/chabab-el-ihssan', BRANCH = 'main', UP_DIR = 'public/images/uploads/';
   /* الرقم السري مخزّن كبصمة SHA-256 وليس نصاً صريحاً */
   var PIN_SALT = 'cei-admin-v1:', PIN_HASH = '4d44bbc40b3da36856c74d7e49e78bd52126d7342535bf15d75528284ad12333';
@@ -402,7 +407,7 @@
       case 'datetime': return '<label class="fd">' + lab + '<input type="datetime-local" data-p="' + ps + '" data-t="dt" value="' + esc(String(v || '').slice(0, 16)) + '" dir="ltr">' + h + '</label>';
       case 'image':
         var src = v ? imgSrc(v) : '';
-        return '<div class="fd img can-drop" data-ip="' + ps + '">' + lab + '<div class="ib"><div class="th">' + (src ? '<img src="' + esc(src) + '" alt="" onerror="this.style.display=\'none\'">' : '<span>🖼️</span>') + '</div><div class="ia">' +
+        return '<div class="fd img can-drop" data-ip="' + ps + '">' + lab + '<div class="ib"><div class="th">' + (src ? '<img src="' + esc(src) + '" alt="">' : '<span>🖼️</span>') + '</div><div class="ia">' +
           '<div class="row"><button type="button" class="btn red" data-act="pick" data-p="' + ps + '">📷 ' + (v ? 'تغيير الصورة' : 'اختر صورة') + '</button>' + (v ? '<button type="button" class="btn ghost" data-act="clr" data-p="' + ps + '">✖ حذف</button>' : '') + '</div>' +
           '<input data-p="' + ps + '" data-t="text" dir="ltr" placeholder="أو الصق رابط صورة…" value="' + esc(v) + '"><small class="hint">يمكنك أيضاً سحب صورة وإفلاتها هنا — تُصغَّر تلقائياً.</small></div></div>' + h + '</div>';
       case 'i18n':
@@ -528,7 +533,7 @@
 
   /* ---------------- الشاشات ---------------- */
   function logoUrl() { var s = S.cache['src/content/settings.json']; return s && s.data.logo_url; }
-  function logoImg() { var u = logoUrl(); return u ? '<img src="' + esc(imgSrc(u)) + '" alt="" onerror="this.style.display=\'none\'">' : '<span>🤝</span>'; }
+  function logoImg() { var u = logoUrl(); return u ? '<img src="' + esc(imgSrc(u)) + '" alt="">' : '<span>🤝</span>'; }
   function gateFoot() {
     return '<div class="gfoot"><div class="gbrand"><span class="gl">' + logoImg() + '</span><b>جمعية شباب الإحسان</b></div><span class="gsep"></span><span class="gab">أبشر</span></div><div class="gdev">المطور: Ferhat Zehani</div>';
   }
@@ -567,7 +572,7 @@
       (S.undo ? '<div class="acts"><button class="btn amber" type="button" data-act="undo">↩️ تراجع عن آخر تغيير</button></div>' : '') + '</header>';
   }
   function blk(num, ic, t, s, open, thumb, badge) {
-    return '<div class="blk" data-open="' + esc(open) + '" tabindex="0"><div class="th">' + (thumb ? '<img src="' + esc(imgSrc(thumb)) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' : '<span>' + ic + '</span>') + '</div><div class="tx">' +
+    return '<div class="blk" data-open="' + esc(open) + '" tabindex="0"><div class="th">' + (thumb ? '<img src="' + esc(imgSrc(thumb)) + '" alt="" loading="lazy">' : '<span>' + ic + '</span>') + '</div><div class="tx">' +
       (num ? '<em class="num">' + num + '</em>' : '') + '<b>' + esc(t) + (badge ? ' <u class="' + badge[0] + '">' + badge[1] + '</u>' : '') + '</b><small>' + esc(s) + '</small><span class="go">تعديل ‹</span></div></div>';
   }
   function vHome() {
@@ -623,7 +628,7 @@
         if (col === 'testimonials' && d.is_approved === false) bd = '<em>مخفي</em>';
         else if (col === 'news' && d.date && String(d.date).slice(0, 10) > todayStr()) bd = '<em class="sch">⏰ مجدول ' + esc(String(d.date).slice(0, 10)) + '</em>';
         else if (d.is_pinned) bd = '<em>📌 مثبّت</em>';
-        return '<div class="lcard' + (col === 'testimonials' ? ' round' : '') + '" data-open="entry|' + col + '|' + esc(it.path) + '" tabindex="0"><div class="cimg">' + (d.image_url ? '<img src="' + esc(imgSrc(d.image_url)) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' : '<span>📷</span>') + '</div><div class="cb"><b>' + esc(itemTitle(col, d)) + '</b>' + bd + '<small>' + esc(d.date || T3(d.role) || '') + '</small><span class="go">✏️ تعديل</span></div></div>';
+        return '<div class="lcard' + (col === 'testimonials' ? ' round' : '') + '" data-open="entry|' + col + '|' + esc(it.path) + '" tabindex="0"><div class="cimg">' + (d.image_url ? '<img src="' + esc(imgSrc(d.image_url)) + '" alt="" loading="lazy">' : '<span>📷</span>') + '</div><div class="cb"><b>' + esc(itemTitle(col, d)) + '</b>' + bd + '<small>' + esc(d.date || T3(d.role) || '') + '</small><span class="go">✏️ تعديل</span></div></div>';
       }).join('') + '</div>';
   }
   function vForm() {

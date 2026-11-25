@@ -38,7 +38,7 @@ const Layout = () => {
                         initial={reduce ? false : { opacity: 0, y: 12 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={reduce ? { opacity: 1 } : { opacity: 0 }}
-                        transition={{ duration: 0.25 }}
+                        transition={{ duration: 0.18 }}
                     >
                         <Suspense fallback={<PageSkeleton />}>{outlet}</Suspense>
                     </motion.div>

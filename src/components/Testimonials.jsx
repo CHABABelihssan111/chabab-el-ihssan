@@ -1,4 +1,5 @@
 import React from 'react';
+import SmartImage from './SmartImage';
 import { useLanguage } from '../context/LanguageContext';
 import { FaStar } from 'react-icons/fa';
 import { useData } from '../hooks/useData';
@@ -31,7 +32,7 @@ const Testimonials = () => {
                                 "{getLocalizedContent(item.content, language)}"
                             </p>
                             <div className="flex items-center gap-4">
-                                <img loading="lazy" decoding="async"
+                                <SmartImage loading="lazy" decoding="async"
                                     src={item.image_url || PLACEHOLDER}
                                     alt={item.name}
                                     className="w-12 h-12 rounded-full object-cover"

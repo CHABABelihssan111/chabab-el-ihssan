@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SmartImage from './SmartImage';
 import { useLanguage } from '../context/LanguageContext';
 import { FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -149,7 +150,7 @@ const Team = () => {
                             return (
                                 <figure key={member.name} className="group bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 -rotate-1 hover:rotate-0 odd:rotate-1">
                                     <div className="aspect-[4/5] overflow-hidden">
-                                        <img src={member.image} alt={`${member.name} — ${role}`} loading="lazy"
+                                        <SmartImage src={member.image} alt={`${member.name} — ${role}`} loading="lazy"
                                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                                     </div>
                                     <figcaption className="p-4 text-center border-t-4 border-red-500">
@@ -218,7 +219,7 @@ const Team = () => {
                                     {/* Image Container */}
                                     <div className="h-[300px] w-full relative overflow-hidden">
                                         <div className="absolute inset-0 bg-blue-900/10 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
-                                        <img loading="lazy" decoding="async"
+                                        <SmartImage loading="lazy" decoding="async"
                                             src={member.image}
                                             alt={member.name}
                                             className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"

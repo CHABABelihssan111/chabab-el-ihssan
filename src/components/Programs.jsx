@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import SmartImage from './SmartImage';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
@@ -18,7 +19,7 @@ const SafeImg = ({ src, alt, className = '', fit = 'object-cover' }) => {
             </div>
         );
     }
-    return <img src={src} alt={alt} className={`${className} ${fit}`} loading="lazy" onError={() => setFailed(true)} />;
+    return <SmartImage src={src} alt={alt} className={`${className} ${fit}`} loading="lazy" onError={() => setFailed(true)} />;
 };
 
 // Diaporama d'images d'un sous-projet (flèches + points)

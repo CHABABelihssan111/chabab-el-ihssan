@@ -11,6 +11,7 @@ import './index.css'
 import './luxe.css'
 import App from './App.jsx'
 import ErrorBoundary from './components/ErrorBoundary'
+import { initPrefetch } from './utils/prefetch'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -19,6 +20,8 @@ createRoot(document.getElementById('root')).render(
     </ErrorBoundary>
   </StrictMode>,
 )
+
+initPrefetch()
 
 // PWA : service worker « النت أولا » (production seulement)
 if ('serviceWorker' in navigator && import.meta.env.PROD) {

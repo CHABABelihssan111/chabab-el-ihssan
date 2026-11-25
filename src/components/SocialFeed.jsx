@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import SmartImage from './SmartImage';
 import { motion, useInView } from 'framer-motion';
 import { FaFacebookF, FaInstagram, FaPlay, FaImages, FaExternalLinkAlt } from 'react-icons/fa';
 import { useLanguage } from '../context/LanguageContext';
@@ -223,7 +224,7 @@ const InstagramCard = ({ lb }) => {
                         {posts.map((p) => (
                             <a key={p.id} href={p.link} target="_blank" rel="noopener noreferrer"
                                className="group relative aspect-square sm:aspect-auto overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-600 focus:outline-none focus-visible:ring-4 focus-visible:ring-[var(--brand-red)]">
-                                <img src={p.image} alt={p.caption ? p.caption.slice(0, 120) : 'Instagram'} loading="lazy" decoding="async"
+                                <SmartImage src={p.image} alt={p.caption ? p.caption.slice(0, 120) : 'Instagram'} loading="lazy" decoding="async"
                                      className="w-full h-full object-cover transition duration-500 group-hover:scale-110" />
                                 {p.isVideo && (
                                     <span className="absolute top-2 end-2 w-7 h-7 rounded-full bg-black/60 text-white text-xs flex items-center justify-center" aria-label={lb.video}>
