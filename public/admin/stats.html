@@ -1,45 +1,191 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="dark">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
-<title>إحصائيات الزيارات — شباب الإحسان</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow">
+<title>لوحة الإحصائيات — شباب الإحسان</title>
 <style>
-:root{--bg:#f4f2ef;--card:#fff;--ink:#1f2937;--mut:#6b7280;--red:#c8102e;--navy:#1e3a8a}
-@media(prefers-color-scheme:dark){:root{--bg:#111827;--card:#1f2937;--ink:#f3f4f6;--mut:#9ca3af}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Cairo,Tahoma,sans-serif;padding:16px;padding-bottom:env(safe-area-inset-bottom)}
-.wrap{max-width:1000px;margin:auto}.card{background:var(--card);border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);margin-bottom:14px}
-h1{font-size:22px;margin:0 0 14px}h2{font-size:16px;margin:0 0 12px}.grid2{display:grid;gap:14px;grid-template-columns:1fr}@media(min-width:760px){.grid2{grid-template-columns:1fr 1fr}}.row{display:grid;grid-template-columns:minmax(80px,32%) 1fr auto;gap:8px;align-items:center;margin:7px 0;font-size:14px}.bar{height:10px;border-radius:6px;background:var(--bg);overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#c8102e,#1e3a8a);border-radius:6px}.row b{font-variant-numeric:tabular-nums}.row small{color:var(--mut)}.hint{font-size:13px;color:var(--mut);margin:10px 0 0}code{background:var(--bg);padding:1px 6px;border-radius:6px;direction:ltr;display:inline-block}table{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap}th,td{padding:6px 8px;text-align:center;border-bottom:1px solid rgba(128,128,128,.2)}.empty{color:var(--mut);font-size:14px;text-align:center;padding:8px}a{color:var(--navy)}
-input{font:inherit;padding:12px;border-radius:12px;border:1.5px solid #cbd5e1;width:100%;text-align:center;letter-spacing:8px;font-size:22px;background:transparent;color:inherit}
-button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:10px 16px;background:var(--navy);color:#fff;font-weight:700;transition:transform .15s}button:active{transform:scale(.96)}
-.tabs{display:flex;gap:8px;margin-bottom:10px}.tabs button{background:transparent;color:var(--ink);border:1.5px solid #cbd5e1}.tabs button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}@media(min-width:640px){.stats{grid-template-columns:repeat(4,1fr)}}
-.stat{background:var(--bg);border-radius:12px;padding:12px;text-align:center}.stat b{display:block;font-size:26px;color:var(--red)}.stat small{color:var(--mut)}
-svg{width:100%;height:auto;display:block}.lg{display:flex;gap:16px;justify-content:center;margin-top:8px;font-size:14px}.lg i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-inline-end:6px}
-#err{color:var(--red);text-align:center;min-height:22px;margin-top:8px}
-@keyframes draw{to{stroke-dashoffset:0}}path.ln{stroke-dasharray:2000;stroke-dashoffset:2000;animation:draw 1.4s ease forwards}
+:root{--bg:#070a14;--card:rgba(19,26,46,.78);--card2:rgba(255,255,255,.04);--line:rgba(255,255,255,.09);--ink:#eef1f8;--mut:#8f9ab5;--gold:#f2b705;--gold2:#ffe38a;--red:#c8102e;--blue:#5b86ff;--up:#34d3a5;--dn:#ff6b7a;--e:cubic-bezier(.22,.8,.24,1);--sh:0 18px 50px -24px rgba(0,0,0,.8)}
+[data-theme=light]{--bg:#f4f1ea;--card:rgba(255,255,255,.92);--card2:rgba(20,20,50,.04);--line:rgba(20,24,50,.1);--ink:#1a1f33;--mut:#667089;--gold:#b98700;--gold2:#8a6500;--sh:0 14px 38px -22px rgba(30,30,60,.35)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;color:var(--ink);font-family:Cairo,"IBM Plex Sans Arabic","Noto Kufi Arabic",Tahoma,sans-serif;padding:18px 14px calc(28px + env(safe-area-inset-bottom));background:var(--bg);-webkit-font-smoothing:antialiased}
+.bg{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(60rem 28rem at 85% -5%,rgba(200,16,46,.22),transparent 65%),radial-gradient(48rem 26rem at 5% 8%,rgba(242,183,5,.12),transparent 62%),radial-gradient(50rem 30rem at 50% 110%,rgba(91,134,255,.16),transparent 65%)}
+[data-theme=light] .bg{opacity:.55}
+.wrap{max-width:1120px;margin:auto}
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:var(--sh);backdrop-filter:blur(10px);margin-bottom:14px;transition:border-color .3s,transform .3s var(--e)}
+.card:hover{border-color:rgba(242,183,5,.35)}
+h2{font-size:15px;font-weight:800;margin:0 0 14px;display:flex;align-items:center;gap:9px;letter-spacing:.2px}
+h2::before{content:"";width:4px;height:16px;border-radius:4px;background:linear-gradient(var(--gold),var(--red))}
+h2 small{margin-inline-start:auto;font-weight:600;font-size:12px;color:var(--mut)}
+.grid2{display:grid;gap:14px;grid-template-columns:1fr}.grid2>.card{margin:0}
+@media(min-width:860px){.grid2{grid-template-columns:1fr 1fr}}
+.sec{margin-bottom:14px}
+/* animations d'entrée */
+.rise{opacity:0;transform:translateY(16px);animation:rise .7s var(--e) forwards;animation-delay:calc(var(--i,0)*70ms)}
+@keyframes rise{to{opacity:1;transform:none}}
+.still .rise,.still *{animation:none!important}.still .rise{opacity:1;transform:none}
+/* hero */
+.hero{position:relative;overflow:hidden;border-radius:26px;padding:22px 20px 18px;color:#fff;margin-bottom:14px;background:radial-gradient(40rem 18rem at 100% 0,rgba(242,183,5,.2),transparent 60%),linear-gradient(135deg,#4a0a20 0%,#7a1034 48%,#16256b 100%);box-shadow:0 28px 60px -28px rgba(122,16,52,.8),inset 0 0 0 1px rgba(242,183,5,.28)}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 38px),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 38px);-webkit-mask-image:radial-gradient(70% 90% at 80% 20%,#000,transparent);mask-image:radial-gradient(70% 90% at 80% 20%,#000,transparent)}
+.hero::after{content:"";position:absolute;inset:-30% -40%;pointer-events:none;background:linear-gradient(105deg,transparent 44%,rgba(255,236,170,.16) 50%,transparent 56%);transform:translate3d(-60%,0,0);animation:sweep 8s ease-in-out infinite}
+@keyframes sweep{0%,18%{transform:translate3d(-60%,0,0)}65%,100%{transform:translate3d(60%,0,0)}}
+.hero>*{position:relative;z-index:1}
+.hline{position:absolute!important;inset-inline:0;bottom:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.9}
+.htop{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:11px}
+.logo{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;font-size:19px;color:var(--gold);background:rgba(10,4,8,.45);box-shadow:inset 0 0 0 1px rgba(242,183,5,.55),0 0 24px -6px rgba(242,183,5,.6)}
+.brand small{display:block;font-size:12px;opacity:.75;letter-spacing:.4px}.brand b{font-size:16px}
+.tools{margin-inline-start:auto;display:flex;align-items:center;gap:8px}
+.live{display:inline-flex;align-items:center;gap:7px;font-size:12px;padding:6px 11px;border-radius:99px;background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.live i{width:7px;height:7px;border-radius:50%;background:var(--up);box-shadow:0 0 0 0 rgba(52,211,165,.7);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 8px rgba(52,211,165,0)}100%{box-shadow:0 0 0 0 rgba(52,211,165,0)}}
+.ib{width:36px;height:36px;padding:0;border-radius:12px;display:grid;place-items:center;font-size:16px;background:rgba(255,255,255,.1);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.ib:hover{background:rgba(255,255,255,.2)}.ib.spin{animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.hmain{display:flex;flex-direction:column;gap:18px;margin:22px 0 18px}
+@media(min-width:760px){.hmain{flex-direction:row;align-items:flex-end;justify-content:space-between}}
+.eyebrow{margin:0 0 4px;font-size:12.5px;color:var(--gold2);letter-spacing:.5px;font-weight:700}
+.hero h1{margin:0;font-size:15px;font-weight:600;opacity:.85}
+.big{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:2px}
+.big b{font-size:clamp(46px,9vw,72px);line-height:1.05;font-weight:800;font-variant-numeric:tabular-nums;background:linear-gradient(180deg,#fff,var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 22px rgba(242,183,5,.35))}
+.chip{font-size:13px;font-weight:800;padding:5px 11px;border-radius:99px;font-variant-numeric:tabular-nums}
+.chip.up{background:rgba(52,211,165,.16);color:#7ff0cc;box-shadow:inset 0 0 0 1px rgba(52,211,165,.4)}.chip.dn{background:rgba(255,107,122,.16);color:#ffb0b8;box-shadow:inset 0 0 0 1px rgba(255,107,122,.4)}.chip.eq{background:rgba(255,255,255,.1);color:#dfe4f2}
+.mini{display:grid;grid-template-columns:repeat(3,auto);gap:10px}
+.mini div{padding:10px 14px;border-radius:14px;background:rgba(10,4,12,.32);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);min-width:92px}
+.mini small{display:block;font-size:11.5px;opacity:.75}.mini b{font-size:19px;font-variant-numeric:tabular-nums}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:4px;border-radius:16px;background:rgba(10,4,12,.38);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);scrollbar-width:none;width:max-content;max-width:100%}
+.tabs::-webkit-scrollbar{display:none}
+button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:9px 16px;font-weight:700;color:inherit;background:transparent;transition:transform .15s,background .25s,color .25s;white-space:nowrap}
+button:active{transform:scale(.96)}
+.tabs button{color:rgba(255,255,255,.8);font-size:13.5px;padding:8px 14px}.tabs button:hover{background:rgba(255,255,255,.1)}
+.tabs button.on{background:linear-gradient(135deg,var(--gold),#ffd95e);color:#2a1a00;box-shadow:0 6px 18px -6px rgba(242,183,5,.7)}
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:14px}
+@media(min-width:900px){.kpis{grid-template-columns:repeat(4,1fr)}}
+.kpi{position:relative;overflow:hidden;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:15px 15px 12px;box-shadow:var(--sh);transition:transform .3s var(--e),border-color .3s}
+.kpi:hover{transform:translateY(-3px);border-color:rgba(242,183,5,.45)}
+.kpi::before{content:"";position:absolute;top:0;inset-inline:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.55}
+.kpi small{display:block;color:var(--mut);font-size:12.5px;font-weight:600}
+.kpi b{display:block;font-size:27px;margin:4px 0 2px;font-weight:800;font-variant-numeric:tabular-nums}
+.dl{font-size:12px;font-weight:700;font-variant-numeric:tabular-nums}.dl.up{color:var(--up)}.dl.dn{color:var(--dn)}.dl.eq{color:var(--mut)}
+.spk{position:absolute;inset-inline-end:10px;bottom:10px;width:76px;height:28px;opacity:.9}
+.spk path{fill:none;stroke:var(--gold);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+/* graphique */
+.chartbox{position:relative}.chartbox svg{width:100%;height:auto;display:block;touch-action:pan-y}
+.axis{fill:var(--mut);font-size:11px}.grid{stroke:var(--ink);opacity:.08}
+.ln{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:var(--L,3000);stroke-dashoffset:var(--L,3000);animation:draw 1.6s var(--e) .15s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.ar{opacity:0;animation:fade 1.2s ease .6s forwards}@keyframes fade{to{opacity:1}}
+.tip{position:absolute;top:0;left:0;pointer-events:none;opacity:0;transition:opacity .15s;min-width:128px;padding:9px 12px;border-radius:12px;font-size:12.5px;background:rgba(8,10,22,.94);color:#fff;border:1px solid rgba(242,183,5,.5);box-shadow:0 12px 28px -10px rgba(0,0,0,.7);z-index:5}
+.tip b{display:block;margin-bottom:4px;color:var(--gold2)}.tip span{display:flex;justify-content:space-between;gap:14px}.tip i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-inline-end:6px}
+.lg{display:flex;gap:10px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.lg button{display:inline-flex;align-items:center;gap:8px;padding:6px 13px;font-size:13px;border-radius:99px;box-shadow:inset 0 0 0 1px var(--line);color:var(--ink)}
+.lg button i{width:10px;height:10px;border-radius:50%}.lg button.off{opacity:.4}
+/* insights */
+.ins{display:grid;gap:10px;grid-template-columns:1fr}@media(min-width:760px){.ins{grid-template-columns:1fr 1fr}}
+.ins p{margin:0;padding:12px 14px;border-radius:14px;background:var(--card2);box-shadow:inset 0 0 0 1px var(--line);font-size:14px;line-height:1.7;display:flex;gap:10px}
+.ins p::before{content:"✦";color:var(--gold);flex:none}.ins b{color:var(--gold2)}
+[data-theme=light] .ins b{color:#8a6500}
+/* barres */
+.row{display:grid;grid-template-columns:22px minmax(70px,30%) 1fr auto;gap:9px;align-items:center;margin:9px 0;font-size:13.5px}
+.row .rk{color:var(--mut);font-size:11.5px;text-align:center}.row .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar{height:9px;border-radius:6px;background:var(--card2);overflow:hidden;box-shadow:inset 0 0 0 1px var(--line)}
+.bar i{display:block;height:100%;width:var(--w);border-radius:6px;background:linear-gradient(90deg,var(--red),var(--gold));transform-origin:right;animation:grow 1s var(--e) both}
+@keyframes grow{from{transform:scaleX(0)}}
+.row b{font-variant-numeric:tabular-nums}.row small{color:var(--mut);margin-inline-start:4px}
+.empty{color:var(--mut);font-size:14px;text-align:center;padding:14px}
+/* donut */
+.donut{display:flex;align-items:center;gap:18px;flex-wrap:wrap;justify-content:center}
+.donut svg{width:156px;height:156px;flex:none}
+.donut .seg{animation:dn 1.2s var(--e) both}@keyframes dn{from{stroke-dasharray:0 var(--c)}}
+.dc{fill:var(--ink);font-size:21px;font-weight:800;text-anchor:middle}.dc2{fill:var(--mut);font-size:9.5px;text-anchor:middle}
+.dlg{flex:1;min-width:150px;font-size:13.5px}.dlg div{display:flex;align-items:center;gap:8px;margin:7px 0}.dlg i{width:10px;height:10px;border-radius:3px;flex:none}.dlg span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dlg b{font-variant-numeric:tabular-nums}.dlg small{color:var(--mut);min-width:34px;text-align:end}
+/* heatmap */
+.hm{display:grid;grid-template-columns:54px repeat(24,1fr);gap:3px;direction:ltr;min-width:560px}
+.hmw{overflow-x:auto;padding-bottom:4px}
+.hm .l{font-size:11px;color:var(--mut);display:flex;align-items:center;justify-content:flex-end;padding-right:6px;direction:rtl}
+.hm .h{font-size:10px;color:var(--mut);text-align:center}
+.hm .c{aspect-ratio:1;border-radius:4px;background:var(--gold);opacity:var(--o);transition:transform .2s;min-height:12px}.hm .c:hover{transform:scale(1.35);position:relative;z-index:2;outline:1px solid var(--gold2)}
+.hm .c.z{background:var(--card2);opacity:1;box-shadow:inset 0 0 0 1px var(--line)}
+.hint{font-size:12.5px;color:var(--mut);margin:12px 0 0;line-height:1.7}
+code{background:var(--card2);padding:1px 7px;border-radius:6px;direction:ltr;display:inline-block;font-size:12px}
+/* tableau */
+.tw{overflow:auto;max-height:480px;border-radius:14px;box-shadow:inset 0 0 0 1px var(--line)}
+table{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap}
+th,td{padding:9px 11px;text-align:center;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+th{position:sticky;top:0;background:#141b30;color:var(--gold2);font-weight:700;z-index:1}[data-theme=light] th{background:#efe9d8}
+tbody tr:hover{background:var(--card2)}td:first-child{font-weight:700}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btn{background:var(--card2);box-shadow:inset 0 0 0 1px var(--line)}.btn:hover{box-shadow:inset 0 0 0 1px var(--gold)}
+.btn.gold{background:linear-gradient(135deg,var(--gold),#ffd95e);color:#2a1a00;box-shadow:0 8px 20px -8px rgba(242,183,5,.7)}
+.foot{text-align:center;margin:18px 0 4px}.foot a{color:var(--gold2);text-decoration:none;font-weight:700}
+/* connexion */
+.gate{max-width:360px;margin:13vh auto;text-align:center;padding:30px 24px;border-radius:26px;box-shadow:0 30px 70px -30px rgba(0,0,0,.9),0 0 0 1px rgba(242,183,5,.3),0 0 60px -20px rgba(242,183,5,.4)}
+.lock{width:62px;height:62px;margin:0 auto 14px;border-radius:20px;display:grid;place-items:center;color:var(--gold);background:linear-gradient(145deg,rgba(242,183,5,.16),rgba(200,16,46,.16));box-shadow:inset 0 0 0 1px rgba(242,183,5,.5);animation:glow 3s ease-in-out infinite}
+@keyframes glow{50%{box-shadow:inset 0 0 0 1px rgba(242,183,5,.9),0 0 34px -4px rgba(242,183,5,.55)}}
+.gate h1{font-size:19px;margin:0 0 4px}.gate p{margin:0 0 16px;color:var(--mut);font-size:13px}
+input{font:inherit;padding:13px;border-radius:14px;border:1.5px solid var(--line);width:100%;text-align:center;letter-spacing:8px;font-size:22px;background:var(--card2);color:inherit;outline:0;transition:border-color .25s,box-shadow .25s}
+input:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(242,183,5,.15)}
+#go{width:100%;margin-top:12px;padding:12px}
+#err{color:var(--dn);min-height:22px;margin-top:10px;font-size:13.5px}
+@media(max-width:520px){.mini{grid-template-columns:repeat(3,1fr);width:100%}.mini div{min-width:0;padding:9px}.row{grid-template-columns:18px minmax(60px,34%) 1fr auto}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rise,.ar{opacity:1;transform:none}.ln{stroke-dashoffset:0}}
 </style></head>
-<body><div class="wrap">
-<div id="gate" class="card" style="max-width:340px;margin:12vh auto"><h1 style="text-align:center">🔒 إحصائيات الزيارات</h1>
-<input id="code" type="password" inputmode="numeric" maxlength="8" placeholder="••••" autofocus>
-<button id="go" style="width:100%;margin-top:12px">دخول</button><div id="err"></div></div>
-<div id="app" hidden>
-<div class="card"><h1>📈 زوار الموقع</h1>
-<div class="tabs"><button data-n="1">اليوم</button><button data-n="7">7 أيام</button><button data-n="30" class="on">30 يومًا</button><button data-n="90">90 يومًا</button><button data-n="365">سنة</button></div>
-<div class="stats" id="kpi"></div></div>
-<div class="card"><h2>الزيارات والمشاهدات يوميًا</h2><svg id="chart" viewBox="0 0 700 320"></svg><div class="lg"><span><i style="background:#c8102e"></i>زيارات</span><span><i style="background:#1e3a8a"></i>مشاهدات</span></div></div>
-<div class="card"><h2>🌐 من أين جاء الزوار (المصدر)</h2><div id="tSrc"></div><p class="hint">💡 واتساب وتيك توك غالبًا لا يرسلان مصدرًا. ضع في رابط كل منصة وسمًا: <code>?src=whatsapp</code> أو <code>?src=facebook</code> أو <code>?src=instagram</code> أو <code>?src=tiktok</code> وسيُسجَّل بدقة.</p></div>
-<div class="grid2">
-<div class="card"><h2>📄 أكثر الصفحات مشاهدة</h2><div id="tPg"></div></div>
-<div class="card"><h2>🔗 المواقع المُحيلة</h2><div id="tRef"></div></div>
-<div class="card"><h2>📱 الأجهزة</h2><div id="tDev"></div></div>
-<div class="card"><h2>🖥️ نظام التشغيل</h2><div id="tOs"></div></div>
-<div class="card"><h2>🧭 المتصفح</h2><div id="tBr"></div></div>
-<div class="card"><h2>🗣️ اللغة</h2><div id="tLang"></div></div>
-<div class="card"><h2>📐 حجم الشاشة</h2><div id="tScr"></div></div>
-<div class="card"><h2>🌍 المنطقة الزمنية (تقريب للبلد)</h2><div id="tTz"></div></div>
-<div class="card"><h2>🕒 ساعات الذروة (مشاهدات)</h2><svg id="cHr" viewBox="0 0 700 180"></svg></div>
-<div class="card"><h2>📅 أيام الأسبوع (زيارات)</h2><div id="tWd"></div></div>
+<body><div class="bg" aria-hidden="true"></div><div class="wrap">
+
+<div id="gate" class="card gate rise">
+ <div class="lock"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+ <h1>لوحة الإحصائيات</h1><p>شباب الإحسان — فضاء خاص بالإدارة</p>
+ <input id="code" type="password" inputmode="numeric" maxlength="8" placeholder="••••" autofocus>
+ <button id="go" class="btn gold">دخول</button><div id="err"></div>
 </div>
-<div class="card"><h2>🗓️ الجدول اليومي</h2><div style="overflow-x:auto"><table id="tDay"></table></div><button id="csv" style="margin-top:10px">⬇️ تصدير CSV</button></div>
-<p style="text-align:center"><a href="/admin/">← لوحة التحكم</a></p></div></div>
+
+<div id="app" hidden>
+ <header class="hero rise">
+  <div class="htop">
+   <div class="brand"><span class="logo">✦</span><div><small>شباب الإحسان</small><b>لوحة الإحصائيات</b></div></div>
+   <div class="tools"><span class="live"><i></i><em id="upd" style="font-style:normal">—</em></span><button id="ref" class="ib" title="تحديث" aria-label="تحديث">⟳</button><button id="thm" class="ib" title="الوضع" aria-label="الوضع">◐</button></div>
+  </div>
+  <div class="hmain">
+   <div><p class="eyebrow" id="rng">—</p><h1>إجمالي الزيارات</h1>
+    <div class="big"><b id="bigN">0</b><span id="bigD" class="chip eq" hidden></span></div></div>
+   <div class="mini"><div><small>اليوم</small><b id="mToday">0</b></div><div><small>أمس</small><b id="mYest">0</b></div><div><small>أفضل يوم</small><b id="mBest">—</b></div></div>
+  </div>
+  <div class="tabs" id="tabs"><button data-n="1">اليوم</button><button data-n="7">7 أيام</button><button data-n="30" class="on">30 يومًا</button><button data-n="90">90 يومًا</button><button data-n="365">سنة</button><button data-n="0">الكل</button></div>
+  <i class="hline"></i>
+ </header>
+
+ <section class="kpis" id="kpi"></section>
+
+ <section class="card rise" style="--i:2"><h2>الزيارات والمشاهدات <small id="cNote"></small></h2>
+  <div class="chartbox" id="cbox"><svg id="chart" viewBox="0 0 700 300" role="img" aria-label="رسم بياني للزيارات"></svg><div class="tip" id="tip"></div></div>
+  <div class="lg" id="lg"></div></section>
+
+ <section class="card rise" style="--i:3"><h2>ملخّص ذكي</h2><div class="ins" id="ins"></div></section>
+
+ <div class="grid2 sec">
+  <section class="card rise" style="--i:3"><h2>مصادر الزوار</h2><div id="dSrc" class="donut"></div><div id="tSrc"></div>
+   <p class="hint">واتساب وتيك توك غالبًا لا يرسلان مصدرًا. أضف لرابط كل منصة وسمًا: <code>?src=whatsapp</code> أو <code>?src=facebook</code> أو <code>?src=instagram</code> أو <code>?src=tiktok</code> ليُسجَّل بدقة.</p></section>
+  <section class="card rise" style="--i:4"><h2>الأجهزة</h2><div id="dDev" class="donut"></div><h2 style="margin-top:20px">نظام التشغيل</h2><div id="tOs"></div></section>
+ </div>
+
+ <section class="card rise" style="--i:4"><h2>خريطة الذروة <small>أيام الأسبوع × ساعات اليوم (توقيت الخادم)</small></h2><div class="hmw"><div class="hm" id="hm"></div></div></section>
+
+ <div class="grid2 sec">
+  <section class="card rise" style="--i:4"><h2>أكثر الصفحات مشاهدة</h2><div id="tPg"></div></section>
+  <section class="card rise" style="--i:5"><h2>المواقع المُحيلة</h2><div id="tRef"></div></section>
+  <section class="card rise" style="--i:5"><h2>المتصفح</h2><div id="tBr"></div></section>
+  <section class="card rise" style="--i:6"><h2>اللغة</h2><div id="tLang"></div></section>
+  <section class="card rise" style="--i:6"><h2>حجم الشاشة</h2><div id="tScr"></div></section>
+  <section class="card rise" style="--i:7"><h2>المنطقة الزمنية <small>تقريب للبلد</small></h2><div id="tTz"></div></section>
+  <section class="card rise" style="--i:7"><h2>الحملات (<code>?c=</code>)</h2><div id="tCamp"></div></section>
+  <section class="card rise" style="--i:8"><h2>المصدر × الجهاز</h2><div id="tSd"></div></section>
+  <section class="card rise" style="--i:8"><h2>أيام الأسبوع <small>زيارات</small></h2><div id="tWd"></div></section>
+  <section class="card rise" style="--i:8"><h2>ساعات الذروة <small>مشاهدات</small></h2><div class="chartbox"><svg id="cHr" viewBox="0 0 700 190"></svg></div></section>
+ </div>
+
+ <section class="card rise"><h2>الجدول اليومي</h2><div class="tw"><table id="tDay"></table></div>
+  <div class="btns"><button id="more" class="btn" hidden>عرض الكل</button><button id="csv" class="btn gold">تصدير CSV</button><button id="json" class="btn">تصدير JSON</button></div></section>
+
+ <p class="foot"><a href="/admin/">← لوحة التحكم</a></p>
+</div></div>
 <script src="/admin/stats.js"></script></body></html>
