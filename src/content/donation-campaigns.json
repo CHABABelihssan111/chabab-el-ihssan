@@ -1,0 +1,193 @@
+{
+  "campaigns": [
+    {
+      "title": {
+        "ar": "حملة سيارات إسعاف",
+        "fr": "Campagne : Ambulances",
+        "en": "Ambulance campaign"
+      }
+    },
+    {
+      "title": {
+        "ar": "تنظيف المسجد",
+        "fr": "Nettoyage de la mosquée",
+        "en": "Mosque cleaning"
+      }
+    },
+    {
+      "title": {
+        "ar": "سلة الخضر",
+        "fr": "Panier à légumes",
+        "en": "Vegetable basket"
+      }
+    },
+    {
+      "title": {
+        "ar": "حقيبة إحسان",
+        "fr": "Cartable Ihssan",
+        "en": "Ihssan school bag"
+      }
+    },
+    {
+      "title": {
+        "ar": "قوافل الإحسان",
+        "fr": "Caravanes d'Ihssan",
+        "en": "Ihssan Caravans"
+      }
+    },
+    {
+      "title": {
+        "ar": "توزيع الأضاحي",
+        "fr": "Distribution des moutons de l'Aïd",
+        "en": "Eid Sacrifice Distribution"
+      }
+    },
+    {
+      "title": {
+        "ar": "مطعم الإحسان للصائمين وعابري السبيل",
+        "fr": "Restaurant d'Ihssan pour les jeûneurs et les voyageurs",
+        "en": "Ihssan Restaurant for the Fasting and Wayfarers"
+      }
+    },
+    {
+      "title": {
+        "ar": "السحور",
+        "fr": "Repas du Suhoor",
+        "en": "Suhoor meals"
+      }
+    },
+    {
+      "title": {
+        "ar": "قفة رمضان",
+        "fr": "Couffin du Ramadan",
+        "en": "Ramadan food basket"
+      }
+    },
+    {
+      "title": {
+        "ar": "قفة العيد",
+        "fr": "Couffin de l'Aïd",
+        "en": "Eid food basket"
+      }
+    },
+    {
+      "title": {
+        "ar": "لبسة العيد",
+        "fr": "Vêtements de l'Aïd",
+        "en": "Eid clothes"
+      }
+    },
+    {
+      "title": {
+        "ar": "زكاة الفطر",
+        "fr": "Zakat el-Fitr",
+        "en": "Zakat al-Fitr"
+      }
+    },
+    {
+      "title": {
+        "ar": "حفر الآبار",
+        "fr": "Forage de puits",
+        "en": "Well drilling"
+      }
+    },
+    {
+      "title": {
+        "ar": "بناء الخزانات",
+        "fr": "Construction de citernes",
+        "en": "Building water tanks"
+      }
+    },
+    {
+      "title": {
+        "ar": "آلات تبريد المياه",
+        "fr": "Refroidisseurs d'eau",
+        "en": "Water coolers"
+      }
+    },
+    {
+      "title": {
+        "ar": "توزيع المياه",
+        "fr": "Distribution d'eau",
+        "en": "Water distribution"
+      }
+    },
+    {
+      "title": {
+        "ar": "تجهيز البيت بالأجهزة والأثاث اللازم",
+        "fr": "Équipement de la maison : appareils et mobilier nécessaires",
+        "en": "Home Equipment: Appliances and Necessary Furniture"
+      }
+    },
+    {
+      "title": {
+        "ar": "بناء مدارس قرآنية",
+        "fr": "Construction d'écoles coraniques",
+        "en": "Building Quran Schools"
+      }
+    },
+    {
+      "title": {
+        "ar": "ترميم مدارس قرآنية",
+        "fr": "Rénovation d'écoles coraniques",
+        "en": "Renovating Quran Schools"
+      }
+    },
+    {
+      "title": {
+        "ar": "تفريغ الآجر",
+        "fr": "Déchargement des briques",
+        "en": "Unloading bricks"
+      }
+    },
+    {
+      "title": {
+        "ar": "الإسمنت",
+        "fr": "Ciment",
+        "en": "Cement"
+      }
+    },
+    {
+      "title": {
+        "ar": "حديد البناء",
+        "fr": "Fer à béton",
+        "en": "Rebar"
+      }
+    },
+    {
+      "title": {
+        "ar": "الرمل",
+        "fr": "Sable",
+        "en": "Sand"
+      }
+    },
+    {
+      "title": {
+        "ar": "الزليج",
+        "fr": "Carrelage",
+        "en": "Tiles"
+      }
+    },
+    {
+      "title": {
+        "ar": "هيكل البناء",
+        "fr": "Structure du bâtiment",
+        "en": "Building structure"
+      }
+    },
+    {
+      "title": {
+        "ar": "توزيع قفف",
+        "fr": "Distribution de couffins",
+        "en": "Food basket distribution"
+      }
+    },
+    {
+      "title": {
+        "ar": "زكاة",
+        "fr": "Zakat",
+        "en": "Zakat"
+      }
+    }
+  ]
+}

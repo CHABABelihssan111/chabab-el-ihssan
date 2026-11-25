@@ -1,11 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaHandHoldingHeart, FaHandsHelping, FaSeedling, FaCheckCircle, FaPaperPlane } from 'react-icons/fa';
+import { FaHandHoldingHeart, FaHandsHelping, FaSeedling, FaCheckCircle, FaPaperPlane, FaCamera, FaImages, FaTimes } from 'react-icons/fa';
 import { useLanguage } from '../context/LanguageContext';
 import { sadaqaProjects } from '../data/media';
 import { getLocalizedContent } from '../utils/languageUtils';
 import { sendForm } from '../utils/sendForm';
+import { donationCampaigns } from '../data/content';
+
+const RX = {
+    ar: { cam: 'التقاط صورة بالكاميرا', gal: 'اختيار من المعرض', rm: 'حذف الصورة', other: 'أخرى (اكتب الاسم)', pick: 'اختر الحملة', otherPh: 'اكتب اسم الحملة', noImg: 'يرجى إرفاق صورة الوصل', big: 'الصورة كبيرة جداً، اختر صورة أصغر', bad: 'الملف ليس صورة' },
+    fr: { cam: 'Prendre une photo', gal: 'Choisir dans la galerie', rm: 'Supprimer la photo', other: 'Autre (précisez)', pick: 'Choisir la campagne', otherPh: 'Nom de la campagne', noImg: 'Veuillez joindre la photo du reçu', big: "L'image est trop lourde", bad: "Ce fichier n'est pas une image" },
+    en: { cam: 'Take a photo', gal: 'Choose from gallery', rm: 'Remove photo', other: 'Other (specify)', pick: 'Choose the campaign', otherPh: 'Campaign name', noImg: 'Please attach the receipt photo', big: 'Image is too large', bad: 'File is not an image' },
+};
+
+// Réduit la photo (max 1600px, JPEG) : plus rapide en 3G/4G, accepte les grosses photos iPhone/Android
+const shrink = async (file) => {
+    try {
+        const bmp = await createImageBitmap(file, { imageOrientation: 'from-image' });
+        const k = Math.min(1, 1600 / Math.max(bmp.width, bmp.height));
+        const c = document.createElement('canvas');
+        c.width = Math.round(bmp.width * k); c.height = Math.round(bmp.height * k);
+        c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
+        const blob = await new Promise((r) => c.toBlob(r, 'image/jpeg', 0.82));
+        return blob && blob.size < file.size ? new File([blob], 'receipt.jpg', { type: 'image/jpeg' }) : file;
+    } catch { return file; }
+};
 
 const L = {
     ar: {
@@ -41,10 +61,27 @@ const Participate = () => {
     const blank = { name: '', phone: '', email: '', wilaya: '', amount: '', project: '', bank: '', skills: '', note: '', website: '' };
     const [f, setF] = useState(blank);
     const [st, setSt] = useState('idle');
+    const rx = RX[language] || RX.ar;
+    const [receipt, setReceipt] = useState(null);
+    const [preview, setPreview] = useState('');
+    const [other, setOther] = useState('');
+    const [rerr, setRerr] = useState('');
+    const camRef = useRef(null); const galRef = useRef(null);
+    useEffect(() => () => { if (preview) URL.revokeObjectURL(preview); }, [preview]);
+    const campaignOptions = donationCampaigns.campaigns.map((c) => getLocalizedContent(c.title, language)).filter(Boolean);
+    const onPick = async (e) => {
+        const file = e.target.files?.[0]; e.target.value = ''; setRerr('');
+        if (!file) return;
+        if (file.type && !file.type.startsWith('image/')) { setRerr(rx.bad); return; }
+        const out = await shrink(file);
+        if (out.size > 8 * 1024 * 1024) { setRerr(rx.big); return; }
+        setReceipt(out); setPreview(URL.createObjectURL(out));
+    };
+    const clearReceipt = () => { setReceipt(null); setPreview(''); };
     const set = (k) => (e) => setF((p) => ({ ...p, [k]: e.target.value }));
 
     // الحقول تتغير حسب النوع، وكل حقل يظهر كخانة مرقمة
-    const fields = type === 'donate' ? [['name','text',true],['phone','tel',true],['amount','number',true],['project','text',true],['bank','text',true]] : [
+    const fields = type === 'donate' ? [['name','text',true],['phone','tel',true],['amount','number',true],['project','campaign',true],['bank','text',true]] : [
         ['name', 'text', true], ['phone', 'tel', true], ['email', 'email', false], ['wilaya', 'text', false],
         ...(type === 'sadaqa' ? [['project', 'select', false]] : []),
         ...(type !== 'join' ? [['amount', 'number', false]] : []),
@@ -54,17 +91,18 @@ const Participate = () => {
 
     const submit = async (e) => {
         e.preventDefault();
+        if (type === 'donate' && !receipt) { setRerr(rx.noImg); return; }
         setSt('sending');
         let ok;
         if (type === 'donate') {
             const fd = new FormData();
-            Object.entries(f).forEach(([k,v]) => fd.append(k, v));
+            Object.entries(f).forEach(([k,v]) => fd.append(k, k === 'project' && v === '__other' ? other.trim() : v));
             fd.append('action', 'submit');
-            fd.append('receipt', document.getElementById('donation-receipt')?.files?.[0] || '');
+            fd.append('receipt', receipt, receipt.name || 'receipt.jpg');
             ok = await fetch('/feedback/donate.php', { method: 'POST', body: fd }).then(r => r.json()).then(j => j.ok === 1).catch(() => false);
         } else ok = await sendForm({ kind: 'form', type, ...f });
         setSt(ok ? 'ok' : 'fail');
-        if (ok) setF(blank);
+        if (ok) { setF(blank); clearReceipt(); setOther(''); }
     };
 
     return (
@@ -105,7 +143,16 @@ const Participate = () => {
                                     <b className="w-6 h-6 rounded-full bg-[var(--brand-navy)] text-white text-xs grid place-items-center">{i + 1}</b>
                                     {(type === 'donate' && k === 'amount' ? (language === 'ar' ? 'المبلغ المتبرع به (دج)' : language === 'fr' ? 'Montant du don (DA)' : 'Donation amount (DZD)') : type === 'donate' && k === 'project' ? lb.campaign : type === 'donate' && k === 'bank' ? lb.bank : lb.f[k])}{req && <i className="text-[var(--brand-red)] not-italic">*</i>}
                                 </span>
-                                {kind === 'area' ? (
+                                {kind === 'campaign' ? (
+                                    <>
+                                        <select className={inp} required value={f.project} onChange={set('project')}>
+                                            <option value="">{rx.pick}</option>
+                                            {campaignOptions.map((n) => <option key={n} value={n}>{n}</option>)}
+                                            <option value="__other">{rx.other}</option>
+                                        </select>
+                                        {f.project === '__other' && <input className={`${inp} mt-2`} required maxLength={120} placeholder={rx.otherPh} value={other} onChange={(e) => setOther(e.target.value)} />}
+                                    </>
+                                ) : kind === 'area' ? (
                                     <textarea className={`${inp} resize-none`} rows={3} maxLength={1500} value={f[k]} onChange={set(k)} />
                                 ) : kind === 'select' ? (
                                     <select className={inp} value={f[k]} onChange={set(k)}>
@@ -117,7 +164,29 @@ const Participate = () => {
                                 )}
                             </label>
                         ))}
-                        {type === 'donate' && <label className="block"><span className="block mb-2 text-sm font-bold text-gray-700 dark:text-gray-200">6. {lb.receipt} *</span><input id="donation-receipt" type="file" accept="image/*" capture="environment" required className={inp} /><small className="block mt-2 text-gray-500">{lb.camera}</small></label>}
+                        {type === 'donate' && (
+                            <div>
+                                <span className="block mb-2 text-sm font-bold text-gray-700 dark:text-gray-200">6. {lb.receipt} <i className="text-[var(--brand-red)] not-italic">*</i></span>
+                                <input ref={camRef} type="file" accept="image/*" capture="environment" onChange={onPick} className="hidden" />
+                                <input ref={galRef} type="file" accept="image/*" onChange={onPick} className="hidden" />
+                                {preview ? (
+                                    <div className="relative rounded-xl border-2 border-green-500 p-2 bg-green-50 dark:bg-gray-900">
+                                        <img src={preview} alt="" className="max-h-72 mx-auto rounded-lg object-contain" />
+                                        <button type="button" onClick={clearReceipt} aria-label={rx.rm} className="absolute top-3 end-3 w-9 h-9 grid place-items-center rounded-full bg-red-600 text-white shadow"><FaTimes /></button>
+                                        <div className="grid grid-cols-2 gap-2 mt-2">
+                                            <button type="button" onClick={() => camRef.current?.click()} className="rounded-lg py-2 text-sm font-bold bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 inline-flex items-center justify-center gap-2"><FaCamera /> {rx.cam}</button>
+                                            <button type="button" onClick={() => galRef.current?.click()} className="rounded-lg py-2 text-sm font-bold bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 inline-flex items-center justify-center gap-2"><FaImages /> {rx.gal}</button>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <button type="button" onClick={() => camRef.current?.click()} className="min-h-[88px] rounded-xl border-2 border-dashed border-[var(--brand-navy)]/40 bg-white dark:bg-gray-700 font-bold flex flex-col items-center justify-center gap-2 active:scale-95 transition"><FaCamera className="text-2xl text-[var(--brand-navy)] dark:text-[var(--brand-gold)]" /> {rx.cam}</button>
+                                        <button type="button" onClick={() => galRef.current?.click()} className="min-h-[88px] rounded-xl border-2 border-dashed border-[var(--brand-navy)]/40 bg-white dark:bg-gray-700 font-bold flex flex-col items-center justify-center gap-2 active:scale-95 transition"><FaImages className="text-2xl text-[var(--brand-navy)] dark:text-[var(--brand-gold)]" /> {rx.gal}</button>
+                                    </div>
+                                )}
+                                {rerr && <p className="mt-2 text-sm text-red-600" role="alert">{rerr}</p>}
+                            </div>
+                        )}
                         <input type="text" name="website" value={f.website} onChange={set('website')} tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute opacity-0 pointer-events-none h-0 w-0" />
                         {st === 'fail' && <p className="text-center text-red-600 text-sm" role="alert">{lb.fail}</p>}
                         <button type="submit" disabled={st === 'sending'} className="btn-brand py-3 px-8 mx-auto inline-flex items-center gap-2 disabled:opacity-60">

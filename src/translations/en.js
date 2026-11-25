@@ -29,7 +29,7 @@ export default {
         "or_paste_url": "Or paste Image URL",
         "contact_us": "Contact",
         "association_name": "Chabab El Ihssane - Kouba, Algiers",
-        "hero_title": "A silent reality. Your help can change everything.",
+        "hero_title": "Through compassionate hearts, goodness and growth come, by the will of the Lord of the earth and the heavens.",
         "hero_desc": "Chabab El Ihssane is a charity based in Kouba, Algiers, committed to mutual aid and solidarity. We work to support people in need through various social, humanitarian and educational actions.",
         "join_us": "Join Us",
         "mission_vision_title": "Objectives & Vision",

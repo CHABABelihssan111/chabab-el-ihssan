@@ -31,7 +31,7 @@ export default {
         "news": "Nouvelles et Événements",
         "contact_us": "Contact",
         "association_name": "Chabab El Ihssane - Kouba, Alger",
-        "hero_title": "Une réalité silencieuse. Votre aide peut tout changer.",
+        "hero_title": "Par les cœurs compatissants, le bien et la prospérité se répandent, avec la permission du Seigneur de la terre et du ciel.",
         "hero_desc": "Chabab El Ihssane est une association caritative basée à Kouba, Alger, engagée dans l'entraide et la solidarité. Nous œuvrons pour soutenir les personnes en difficulté à travers diverses actions sociales, humanitaires et éducatives.",
         "join_us": "Rejoignez-nous",
         "mission_vision_title": "Objectifs & Vision",

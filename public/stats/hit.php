@@ -79,13 +79,8 @@ if ($dur > 0 && ($P['e'] ?? '') === '1') { // إشارة نهاية الجلسة
     if ($visit) {
         $d[$day]['visits']++;
         bump($d, $day, 'src', $src);
-        if ($refHost !== '') bump($d, $day, 'ref', $refHost);
-        bump($d, $day, 'dev', $dev); bump($d, $day, 'os', $os); bump($d, $day, 'br', $br); bump($d, $day, 'lang', $lang);
-        if ($scr) bump($d, $day, 'scr', $scr);
-        if ($tz) bump($d, $day, 'tz', $tz);
-        if ($campaign) bump($d, $day, 'camp', $campaign);
+        bump($d, $day, 'dev', $dev);
         bump($d, $day, $isNew ? 'new' : 'ret', 'n');
-        if ($src !== '') bump($d, $day, 'srcdev', $src . '|' . $dev);
     }
 }
 ksort($d);

@@ -43,6 +43,7 @@ import projectsJson from '../content/projects.json';
 import mediaJson from '../content/media.json';
 import announcementJson from '../content/announcement.json';
 import ramadanJson from '../content/ramadan.json';
+import donationCampaignsJson from '../content/donation-campaigns.json';
 
 export const settings = settingsJson;
 export const impact = impactJson;
@@ -53,3 +54,4 @@ export const projects = projectsJson;
 export const media = mediaJson;
 export const announcement = announcementJson;
 export const ramadan = ramadanJson;
+export const donationCampaigns = donationCampaignsJson;

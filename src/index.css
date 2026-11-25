@@ -641,3 +641,22 @@ html[data-ramadan="on"] footer { background-image: linear-gradient(180deg, #1d1b
 @media (prefers-reduced-motion: reduce) {
     .hero::before, .hero > div[aria-hidden="true"]::after, .dark .impact-panel { animation: none; }
 }
+
+
+/* ===== Ramadan : amélioration (fanous lumineux, motif étoilé, ambiance) ===== */
+.ramadan-flame { transform-origin: 50% 80%; animation: flame-flicker 1.8s ease-in-out infinite; opacity: .92; }
+@keyframes flame-flicker { 0%,100% { transform: scale(1,1); opacity: .95; } 35% { transform: scale(.82,1.12); opacity: .75; } 65% { transform: scale(1.1,.92); opacity: 1; } }
+.ramadan-lantern { filter: drop-shadow(0 0 10px rgba(242,183,5,.75)) drop-shadow(0 4px 6px rgba(0,0,0,.25)); }
+.ramadan-greeting { overflow: hidden; background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cpath d='M32 6l6.5 15.5L54 26l-15.5 6.5L32 48l-6.5-15.5L10 26l15.5-4.5z' fill='none' stroke='%23f2b705' stroke-opacity='.16' stroke-width='1.2'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, #100f33, #1d1b4f 70%, #25235f); }
+.ramadan-greeting-lamps { position: absolute; top: -4px; inset-inline-start: 4%; display: flex; gap: 10px; align-items: flex-start; pointer-events: none; }
+.ramadan-greeting-lamps-end { inset-inline-start: auto; inset-inline-end: 4%; }
+@media (max-width: 420px) { .ramadan-greeting-lamps svg:nth-child(2) { display: none; } }
+html[data-ramadan="on"] .bg-brand-paper {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 8l7.5 18L66 33l-18.5 7.5L40 58l-7.5-17.5L14 33l18.5-7z' fill='none' stroke='%231d1b4f' stroke-opacity='.06' stroke-width='1.2'/%3E%3C/svg%3E");
+}
+html[data-ramadan="on"] .nav-glass { border-bottom: 2px solid #f2b705; box-shadow: 0 6px 24px -8px rgba(242,183,5,.45); }
+html[data-ramadan="on"] .btn-brand { box-shadow: 0 0 0 0 rgba(242,183,5,.6); animation: ram-pulse 2.6s ease-in-out infinite; }
+@keyframes ram-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(242,183,5,0); } 50% { box-shadow: 0 0 18px 2px rgba(242,183,5,.55); } }
+@media (prefers-reduced-motion: reduce) { .ramadan-flame, html[data-ramadan="on"] .btn-brand { animation: none !important; } }

@@ -1056,6 +1056,25 @@ collections:
         required: false
         max: 6
         summary: '{{fields.link}}'
+  - name: donation-campaigns
+    label: 💝 حملات استمارة التبرع (الخيارات)
+    file: src/content/donation-campaigns.json
+    format: json
+    fields:
+    - label: قائمة الحملات التي تظهر كخيارات في استمارة التبرع
+      name: campaigns
+      widget: list
+      summary: '{{fields.title.ar}}'
+      hint: 'أضف أو احذف أو غيّر ترتيب الحملات. خيار «أخرى» يُضاف تلقائياً في آخر القائمة.'
+      fields:
+      - label: اسم الحملة
+        name: title
+        widget: object
+        collapsed: false
+        fields:
+        - {label: العربية, name: ar, widget: string}
+        - {label: Français, name: fr, widget: string, required: false}
+        - {label: English, name: en, widget: string, required: false}
   - name: announcement
     label: 📢 شريط الإعلان (أعلى الموقع)
     file: src/content/announcement.json
