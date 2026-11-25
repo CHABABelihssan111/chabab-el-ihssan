@@ -1,5 +1,6 @@
 <?php
-// استقبال الملاحظات والاستمارات: يُحفظ كل شيء في ملف JSON على استضافتكم (بدون أي خدمة خارجية).
+// استقبال الملاحظات والاقتراحات واستمارتي الانضمام/الصدقة الجارية.
+// تُحفظ البيانات في ملف JSON على الاستضافة دون خدمة خارجية.
 // الملف يُحفظ فوق public_html إن أمكن، وإلا داخل هذا المجلد (محمي بـ .htaccess).
 header('Cache-Control: no-store');
 header('Content-Type: application/json; charset=utf-8');
@@ -16,12 +17,40 @@ if (count($h) >= 6) { http_response_code(429); echo '{"ok":0,"err":"rate"}'; exi
 if (!empty($_POST['website'])) { echo '{"ok":1}'; exit; }
 
 function cut($s, $n) { $s = trim((string)$s); $s = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F]/u', '', $s); return mb_substr($s, 0, $n); }
-$kind = 'form';
-$item = ['id' => bin2hex(random_bytes(6)), 'kind' => $kind, 'at' => date('Y-m-d H:i:s'), 'page' => cut($_POST['page'] ?? '', 80), 'seen' => 0];
+$kind = (($_POST['kind'] ?? '') === 'feedback') ? 'feedback' : 'form';
+$item = [
+    'id' => bin2hex(random_bytes(6)),
+    'kind' => $kind,
+    'at' => date('Y-m-d H:i:s'),
+    'page' => cut($_POST['page'] ?? '', 80),
+    'seen' => 0
+];
 
-$item['type'] = in_array($_POST['type'] ?? '', ['join', 'sadaqa'], true) ? $_POST['type'] : 'join';
-foreach (['name' => 80, 'phone' => 30, 'email' => 120, 'wilaya' => 60, 'amount' => 30, 'project' => 80, 'skills' => 200, 'note' => 1500] as $k => $n) $item[$k] = cut($_POST[$k] ?? '', $n);
-if (mb_strlen($item['name']) < 2 || mb_strlen($item['phone']) < 6) { http_response_code(422); echo '{"ok":0,"err":"required"}'; exit; }
+if ($kind === 'feedback') {
+    // رسائل الاقتراحات والملاحظات: الاسم ووسيلة التواصل اختياريان حسب الاستمارة.
+    $allowedTypes = ['suggestion', 'remark', 'problem', 'thanks'];
+    $item['type'] = in_array($_POST['type'] ?? '', $allowedTypes, true) ? $_POST['type'] : 'suggestion';
+    $item['name'] = cut($_POST['name'] ?? '', 80);
+    $item['contact'] = cut($_POST['contact'] ?? '', 120);
+    $item['message'] = cut($_POST['message'] ?? '', 2000);
+
+    if (mb_strlen($item['message']) < 3) {
+        http_response_code(422);
+        echo '{"ok":0,"err":"message_required"}';
+        exit;
+    }
+} else {
+    // استمارات الانضمام والصدقة الجارية — نحافظ على التحقق السابق كما هو.
+    $item['type'] = in_array($_POST['type'] ?? '', ['join', 'sadaqa'], true) ? $_POST['type'] : 'join';
+    foreach (['name' => 80, 'phone' => 30, 'email' => 120, 'wilaya' => 60, 'amount' => 30, 'project' => 80, 'skills' => 200, 'note' => 1500] as $k => $n) {
+        $item[$k] = cut($_POST[$k] ?? '', $n);
+    }
+    if (mb_strlen($item['name']) < 2 || mb_strlen($item['phone']) < 6) {
+        http_response_code(422);
+        echo '{"ok":0,"err":"required"}';
+        exit;
+    }
+}
 
 // مسارات التخزين المحتملة (الأول المتاح يُستعمل) — يمنع فشل الحفظ إن كان مجلد الجذر غير قابل للكتابة
 $fp = false; $file = '';
