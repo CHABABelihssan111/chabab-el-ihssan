@@ -79,7 +79,9 @@ if ($dur > 0 && ($P['e'] ?? '') === '1') { // إشارة نهاية الجلسة
     if ($visit) {
         $d[$day]['visits']++;
         bump($d, $day, 'src', $src);
-        bump($d, $day, 'dev', $dev);
+        if ($refHost !== '') bump($d, $day, 'ref', $refHost);
+        bump($d, $day, 'dev', $dev); bump($d, $day, 'os', $os);
+        if ($tz) bump($d, $day, 'tz', $tz);
         bump($d, $day, $isNew ? 'new' : 'ret', 'n');
     }
 }

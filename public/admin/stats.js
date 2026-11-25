@@ -8,6 +8,8 @@ var DV={mobile:'هاتف',desktop:'حاسوب',tablet:'لوحي'},LG={ar:'الع
 var WD=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'],WORDER=[6,0,1,2,3,4,5];
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function lab(m,k){if(m==='src'){return SN[k]||(k.indexOf('site:')===0?k.slice(5):k)}if(m==='dev')return DV[k]||k;if(m==='lang')return LG[k]||k.toUpperCase();return k}
+var TZC={'Africa/Algiers':'الجزائر','Europe/Paris':'فرنسا','Europe/Brussels':'بلجيكا','Europe/Berlin':'ألمانيا','Europe/Madrid':'إسبانيا','Europe/Rome':'إيطاليا','Europe/London':'بريطانيا','Europe/Zurich':'سويسرا','Europe/Amsterdam':'هولندا','Europe/Istanbul':'تركيا','Africa/Tunis':'تونس','Africa/Casablanca':'المغرب','Africa/Tripoli':'ليبيا','Africa/Cairo':'مصر','Asia/Riyadh':'السعودية','Asia/Dubai':'الإمارات','Asia/Qatar':'قطر','Asia/Kuwait':'الكويت','Asia/Beirut':'لبنان','Asia/Amman':'الأردن','Asia/Baghdad':'العراق','Asia/Damascus':'سوريا','Asia/Muscat':'عُمان','Asia/Bahrain':'البحرين','Africa/Nouakchott':'موريتانيا','Africa/Khartoum':'السودان','America/Toronto':'كندا','America/Montreal':'كندا','America/Vancouver':'كندا','America/New_York':'أمريكا','America/Chicago':'أمريكا','America/Los_Angeles':'أمريكا','America/Denver':'أمريكا'};
+function tzc(k){return TZC[k]||k}
 function sd(k){var p=k.split('|');return lab('src',p[0])+' · '+lab('dev',p[1]||'')}
 /* ───── thème ───── */
 try{var th=localStorage.getItem('cei_st_theme');if(th)document.documentElement.dataset.theme=th}catch(e){}
@@ -62,7 +64,7 @@ function draw(anim){
   /* donuts + barres */
   donut('dSrc',agg(rows,'src'),function(k){return lab('src',k)});donut('dDev',agg(rows,'dev'),function(k){return lab('dev',k)});
   bars('tSrc',agg(rows,'src'),8,function(k){return lab('src',k)});
-  bars('tPg',agg(rows,'pg'),10);
+  bars('tOs',agg(rows,'os'),6);bars('tPg',agg(rows,'pg'),10);bars('tRef',agg(rows,'ref'),10);bars('tTz',agg(rows,'tz'),10,tzc);
   heat(rows);table(rows);
  }catch(e){console.error('draw',e)}
 }
