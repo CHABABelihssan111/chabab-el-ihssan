@@ -32,7 +32,7 @@
     "bdl_account": ""
   },
   "maintenance": {
-    "enabled": true,
+    "enabled": false,
     "message": {
       "ar": "نعتذر عن توقف الموقع مؤقتًا \nنعمل حاليًا على تحسينات مهمة لتقديم تجربة أفضل لكم.\nنعود إليكم قريبًا بحلّة جديدة وأداء أفضل \n",
       "fr": "Le site est actuellement désactivé. Nous revenons bientôt.",
