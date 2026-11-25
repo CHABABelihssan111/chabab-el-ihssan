@@ -22,14 +22,14 @@
     "instagram_manual_posts": []
   },
   "payment": {
-    "account_name": "Association chbab el ihssan",
-    "cpa_account": "XXXXXXXXXXXXXXXXXX:",
+    "account_name": "ASS Association chbab el ihssan",
+    "cpa_account": "",
     "ccp_number": "",
     "ccp_key": "",
     "rip": "",
-    "iban_eur": "XXXXXXXXXXXXXXXm",
+    "iban_eur": "",
     "messenger_url": "https://m.me/chababelihssan3",
-    "bdl_account": ""
+    "bdl_account": "00500117000000890333"
   },
   "maintenance": {
     "enabled": false,
