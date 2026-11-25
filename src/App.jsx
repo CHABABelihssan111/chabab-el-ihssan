@@ -34,7 +34,7 @@ const FeedbackPage = lazy(() => import('./pages/FeedbackPage'));
 // Le Suspense (squelette de page) est dans Layout : en-tête et pied de page restent visibles.
 
 function App() {
-    if (settings.maintenance?.enabled) return <Router><Tracker /><Maintenance message={settings.maintenance.message} /></Router>;
+    if (settings.maintenance?.enabled) return <Router><Tracker /><Maintenance message={settings.maintenance.message} reopenAt={settings.maintenance.reopen_at} /></Router>;
     return (
         <LanguageProvider>
             <ThemeProvider>
