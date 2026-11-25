@@ -1,7 +1,7 @@
 // Service worker « النت أولا » : يجلب دائماً النسخة الجديدة (ويحترم تعطيل الموقع).
 // بلا انترنت : يعرض آخر نسخة محفوظة — وصفحة التبرع وأرقام الحسابات محفوظة مسبقاً.
 // /admin و /oauth لا يُخزَّنان أبداً.
-const CACHE = 'cei-v5';
+const CACHE = 'cei-v6'; // bumped to purge stale cached app chunks after deployment
 // تُحفظ عند التثبيت : الرئيسية + صفحة التبرع (أرقام الحسابات داخل ملفات الموقع نفسها)
 const CORE = ['/', '/donate', '/volunteer', '/manifest.webmanifest', '/favicon-192.png', '/images/logo.png'];
 
