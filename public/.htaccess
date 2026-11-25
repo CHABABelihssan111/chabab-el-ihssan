@@ -53,7 +53,7 @@
   </FilesMatch>
 
   <FilesMatch "\.(png|jpe?g|webp|svg|ico)$">
-    Header set Cache-Control "public, max-age=300, must-revalidate"
+    Header set Cache-Control "public, max-age=2592000"
   </FilesMatch>
   <FilesMatch "^index\.html$">
     Header set Cache-Control "no-cache"
