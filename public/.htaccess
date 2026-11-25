@@ -48,7 +48,7 @@
   </FilesMatch>
 
   # ملفات لوحة الأدمن + sw.js: بلا كاش (باش التعديلات تظهر فورا)
-  <FilesMatch "^(admin|config|sw)\.(js|css|yml)$">
+  <FilesMatch "^(admin|config|sw|stats|feedback)\.(js|css|yml)$">
     Header set Cache-Control "no-cache"
   </FilesMatch>
 
