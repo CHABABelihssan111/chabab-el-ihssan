@@ -557,7 +557,7 @@
       ['', [['home', '🏠', 'الرئيسية']]],
       ['المحتوى', [['list|news', '📰', 'الأخبار'], ['list|activities', '🎯', 'الأنشطة والمشاريع'], ['list|testimonials', '💬', 'آراء المتابعين'], ['gallery', '🖼️', 'المعرض']]],
       ['الواجهة', [['ed|hero', '✨', 'الواجهة الكبيرة'], ['ed|campaign', '💰', 'الحملة الحالية'], ['ed|announce', '📢', 'شريط الإعلان'], ['ed|ramadan', '🌙', 'وضع رمضان'], ['ed|sadaqa', '🤲', 'الصدقة الجارية'], ['ed|payment', '💳', 'معلومات التبرع']]],
-      ['المتابعة', [['link|/admin/stats.html', '📈', 'إحصائيات الزيارات'], ['link|/admin/feedback.html', '📥', 'الملاحظات والاستمارات']]],
+      ['المتابعة', [['link|/admin/stats.html', '📈', 'إحصائيات الزيارات'], ['link|/admin/donations.html', '💎', 'التبرعات'], ['link|/admin/feedback.html', '🗣️', 'الشكاوى والاقتراحات']]],
       ['النظام', [['ed|maintenance', '🛑', 'تعطيل الموقع']]]
     ];
     return '<aside class="side"><div class="sbrand"><div class="lg">' + logoImg() + '</div><div><b>شباب الإحسان</b><small>لوحة التحكم</small></div></div><nav>' +
@@ -590,7 +590,7 @@
     var cb = CA ? (CA.enabled === false ? ['off', 'مخفية'] : ['on', 'ظاهرة']) : null;
     var rm = cached('src/content/ramadan.json'), rb = rm ? (rm.enabled ? ['on', 'مفعّل'] : ['off', 'متوقف']) : null;
     var sf = ST.social_feed, sb = sf ? (sf.enabled === false ? ['off', 'مخفي'] : ['on', 'ظاهر']) : null;
-    var top = blk('', '📢', 'شريط الإعلان', 'يظهر أعلى كل صفحات الموقع', 'ed|announce', null, annB) + blk('', '🏷️', 'الشعار والاتصال', 'الشعار، الهاتف، البريد، العنوان', 'ed|contact', ST.logo_url, null) + blk('', '📈', 'إحصائيات الزيارات', 'منحنى عدد الزوار (بالكود)', 'link|/admin/stats.html', null, null) + blk('', '💬', 'الملاحظات والاستمارات', 'اقتراحات الزوار واستمارات التبرع والانضمام (بالكود)', 'link|/admin/feedback.html', null, null) + blk('', '🛑', 'تعطيل الموقع', 'إيقاف / تشغيل الموقع بضغطة واحدة', 'ed|maintenance', null, (ST.maintenance && ST.maintenance.enabled) ? ['off', 'معطّل حالياً'] : ['on', 'يعمل']);
+    var top = blk('', '📢', 'شريط الإعلان', 'يظهر أعلى كل صفحات الموقع', 'ed|announce', null, annB) + blk('', '🏷️', 'الشعار والاتصال', 'الشعار، الهاتف، البريد، العنوان', 'ed|contact', ST.logo_url, null) + blk('', '📈', 'إحصائيات الزيارات', 'منحنى عدد الزوار (بالكود)', 'link|/admin/stats.html', null, null) + blk('', '💎', 'إدارة التبرعات', 'إيصالات المتبرعين والحملات وحالة الاستمارة', 'link|/admin/donations.html', null, null) + blk('', '🛑', 'تعطيل الموقع', 'إيقاف / تشغيل الموقع بضغطة واحدة', 'ed|maintenance', null, (ST.maintenance && ST.maintenance.enabled) ? ['off', 'معطّل حالياً'] : ['on', 'يعمل']);
     var order = [
       ['🏠', 'الواجهة الكبيرة', 'أول صورة يراها الزائر (+ فيديو اختياري)', 'ed|hero', M.heroImage, null],
       ['🌙', 'وضع رمضان', 'العدّ التنازلي + سلة رمضان + زكاة الفطر', 'ed|ramadan', null, rb],
@@ -903,7 +903,7 @@
     ['المعرض', 'gallery', '🖼️', 'صور الموقع'], ['الواجهة الكبيرة', 'ed|hero', '✨', 'الصورة الأولى للزائر'], ['الحملة الحالية', 'ed|campaign', '💰', 'المبلغ والهدف والتاريخ'],
     ['شريط الإعلان', 'ed|announce', '📢', 'يظهر أعلى كل الصفحات'], ['وضع رمضان', 'ed|ramadan', '🌙', 'العدّ التنازلي والسلة'], ['الصدقة الجارية', 'ed|sadaqa', '🤲', 'المشاريع الدائمة'],
     ['معلومات الدفع', 'ed|payment', '💳', 'الحسابات والأرقام'], ['تعطيل الموقع', 'ed|maintenance', '🛑', 'وضع الصيانة'],
-    ['صندوق الرسائل', 'link|/admin/feedback.html', '📥', 'الملاحظات والاستمارات'], ['إحصائيات الزيارات', 'link|/admin/stats.html', '📈', 'الزوار والمصادر']
+    ['إدارة التبرعات', 'link|/admin/donations.html', '💎', 'المتبرعون والإيصالات والحملات'], ['الشكاوى والاقتراحات', 'link|/admin/feedback.html', '🗣️', 'رسائل وملاحظات الزوار'], ['إحصائيات الزيارات', 'link|/admin/stats.html', '📈', 'الزوار والمصادر']
   ];
   function palOpen() {
     if (S.screen !== 'app') return;

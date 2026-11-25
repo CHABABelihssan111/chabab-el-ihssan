@@ -392,3 +392,19 @@ body.dark .th > span, body.dark .stats span, body.dark .quick span, body.dark .p
 .hello h1 .em { font-size: .95em; margin-inline-end: .35em; }
 h1 .em, h2 .em { filter: drop-shadow(0 1px 1.5px rgba(0, 0, 0, .25)); }
 .pill .em { font-size: 13px; margin-inline-end: 0; }
+
+
+/* ===== استعادة سماكة الخط الواضحة في لوحة الإدارة ===== */
+body, body button, body input, body select, body textarea {
+  font-weight: 600;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.admin-shell h1, .admin-shell h2, .admin-shell h3,
+header h1, header h2, .topbar, .side .si, .side h4,
+.section-title, .panel-title, .stat b, .stat strong,
+label, .btn, button, .chip, .pill, .tab, .nav-link {
+  font-weight: 800;
+}
+.boot b, .gbox h1 { font-weight: 700; }
+.side .si { font-weight: 700; }

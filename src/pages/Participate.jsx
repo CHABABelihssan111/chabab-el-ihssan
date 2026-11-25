@@ -9,21 +9,21 @@ import { sendForm } from '../utils/sendForm';
 
 const L = {
     ar: {
-        title: 'استمارة المشاركة', sub: 'املأ البيان خانةً خانة وسنتواصل معك بإذن الله.',
+        title: 'استمارة المشاركة', sub: 'املأ البيان خانةً خانة وسنتواصل معك بإذن الله.', donationIntro: 'يرجى ملء هذه الاستمارة بعد التبرع بالمال.', campaign: 'الحملة التي تبرعت لها', bank: 'الحساب الذي حوّلت إليه المال', receipt: 'إرفاق صورة الوصل', camera: 'يمكنك اختيار صورة موجودة أو التقاط صورة مباشرة بالكاميرا',
         types: { donate: 'تبرع', join: 'انضم لنا', sadaqa: 'صدقة جارية' },
-        f: { name: 'الاسم الكامل', phone: 'رقم الهاتف', email: 'البريد الإلكتروني (اختياري)', wilaya: 'الولاية / البلدية', amount: 'المبلغ المقترح بالدينار (اختياري)', project: 'المشروع', skills: 'مهاراتك أو وقتك المتاح', note: 'ملاحظات إضافية (اختياري)' },
+        f: { name: 'الاسم واللقب', phone: 'رقم الهاتف', email: 'البريد الإلكتروني (اختياري)', wilaya: 'الولاية / البلدية', amount: 'المبلغ المقترح بالدينار (اختياري)', project: 'المشروع', skills: 'مهاراتك أو وقتك المتاح', note: 'ملاحظات إضافية (اختياري)' },
         choose: 'اختر مشروعاً', send: 'إرسال الاستمارة', sending: 'جارٍ الإرسال…', fail: 'تعذّر الإرسال، تأكد من الاسم والهاتف ثم حاول مجدداً.',
         okTitle: 'تم استلام استمارتك', ok: 'جزاك الله خيراً، سنتصل بك قريباً.', home: 'العودة للرئيسية', pay: 'معلومات التبرع',
     },
     fr: {
-        title: 'Formulaire de participation', sub: 'Remplissez le formulaire champ par champ, nous vous recontacterons.',
+        title: 'Formulaire de participation', sub: 'Remplissez le formulaire champ par champ, nous vous recontacterons.', donationIntro: 'Veuillez remplir ce formulaire après avoir effectué votre don.', campaign: 'Campagne soutenue', bank: 'Compte bancaire destinataire', receipt: 'Joindre une photo du reçu', camera: 'Choisissez une image existante ou prenez une photo avec votre caméra.',
         types: { donate: 'Faire un don', join: 'Nous rejoindre', sadaqa: 'Sadaqa Jariya' },
-        f: { name: 'Nom complet', phone: 'Téléphone', email: 'E-mail (facultatif)', wilaya: 'Wilaya / commune', amount: 'Montant proposé en DA (facultatif)', project: 'Projet', skills: 'Vos compétences ou disponibilités', note: 'Remarques (facultatif)' },
+        f: { name: 'Nom et prénom', phone: 'Téléphone', email: 'E-mail (facultatif)', wilaya: 'Wilaya / commune', amount: 'Montant proposé en DA (facultatif)', project: 'Projet', skills: 'Vos compétences ou disponibilités', note: 'Remarques (facultatif)' },
         choose: 'Choisir un projet', send: 'Envoyer le formulaire', sending: 'Envoi…', fail: "Échec de l'envoi : vérifiez le nom et le téléphone puis réessayez.",
         okTitle: 'Formulaire reçu', ok: 'Merci, nous vous contacterons bientôt.', home: "Retour à l'accueil", pay: 'Informations de don',
     },
     en: {
-        title: 'Participation form', sub: 'Fill in the form field by field and we will get back to you.',
+        title: 'Participation form', sub: 'Fill in the form field by field and we will get back to you.', donationIntro: 'Please complete this form after making your financial donation.', campaign: 'Which donation campaign did you contribute to?', bank: 'Which bank account did you transfer the money to?', receipt: 'Upload a photo of the payment receipt', camera: 'Choose an existing image or take a picture directly with your camera.',
         types: { donate: 'Donate', join: 'Join us', sadaqa: 'Sadaqa Jariya' },
         f: { name: 'Full name', phone: 'Phone number', email: 'Email (optional)', wilaya: 'Wilaya / town', amount: 'Suggested amount in DZD (optional)', project: 'Project', skills: 'Your skills or available time', note: 'Additional notes (optional)' },
         choose: 'Choose a project', send: 'Send form', sending: 'Sending…', fail: 'Could not send: check name and phone, then try again.',
@@ -38,13 +38,13 @@ const Participate = () => {
     const lb = L[language] || L.en;
     const [params, setParams] = useSearchParams();
     const type = ['donate', 'join', 'sadaqa'].includes(params.get('type')) ? params.get('type') : 'join';
-    const blank = { name: '', phone: '', email: '', wilaya: '', amount: '', project: '', skills: '', note: '', website: '' };
+    const blank = { name: '', phone: '', email: '', wilaya: '', amount: '', project: '', bank: '', skills: '', note: '', website: '' };
     const [f, setF] = useState(blank);
     const [st, setSt] = useState('idle');
     const set = (k) => (e) => setF((p) => ({ ...p, [k]: e.target.value }));
 
     // الحقول تتغير حسب النوع، وكل حقل يظهر كخانة مرقمة
-    const fields = [
+    const fields = type === 'donate' ? [['name','text',true],['phone','tel',true],['amount','number',true],['project','text',true],['bank','text',true]] : [
         ['name', 'text', true], ['phone', 'tel', true], ['email', 'email', false], ['wilaya', 'text', false],
         ...(type === 'sadaqa' ? [['project', 'select', false]] : []),
         ...(type !== 'join' ? [['amount', 'number', false]] : []),
@@ -55,7 +55,14 @@ const Participate = () => {
     const submit = async (e) => {
         e.preventDefault();
         setSt('sending');
-        const ok = await sendForm({ kind: 'form', type, ...f });
+        let ok;
+        if (type === 'donate') {
+            const fd = new FormData();
+            Object.entries(f).forEach(([k,v]) => fd.append(k, v));
+            fd.append('action', 'submit');
+            fd.append('receipt', document.getElementById('donation-receipt')?.files?.[0] || '');
+            ok = await fetch('/feedback/donate.php', { method: 'POST', body: fd }).then(r => r.json()).then(j => j.ok === 1).catch(() => false);
+        } else ok = await sendForm({ kind: 'form', type, ...f });
         setSt(ok ? 'ok' : 'fail');
         if (ok) setF(blank);
     };
@@ -65,7 +72,7 @@ const Participate = () => {
             <div className="max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden luxe-card">
                 <div className="bg-brand-grid text-white text-center p-8 border-b-8 border-[var(--brand-red)]">
                     <h1 className="font-display text-3xl">{lb.title}</h1>
-                    <p className="text-white/80 mt-2">{lb.sub}</p>
+                    <p className="text-white/80 mt-2">{type === 'donate' ? lb.donationIntro : lb.sub}</p>
                 </div>
 
                 <div className="grid grid-cols-3 gap-2 p-4 bg-gray-50 dark:bg-gray-900" role="tablist">
@@ -96,7 +103,7 @@ const Participate = () => {
                             <label key={k} className="block">
                                 <span className="flex items-center gap-2 mb-1.5 text-sm font-semibold text-gray-700 dark:text-gray-200">
                                     <b className="w-6 h-6 rounded-full bg-[var(--brand-navy)] text-white text-xs grid place-items-center">{i + 1}</b>
-                                    {lb.f[k]}{req && <i className="text-[var(--brand-red)] not-italic">*</i>}
+                                    {(type === 'donate' && k === 'amount' ? (language === 'ar' ? 'المبلغ المتبرع به (دج)' : language === 'fr' ? 'Montant du don (DA)' : 'Donation amount (DZD)') : type === 'donate' && k === 'project' ? lb.campaign : type === 'donate' && k === 'bank' ? lb.bank : lb.f[k])}{req && <i className="text-[var(--brand-red)] not-italic">*</i>}
                                 </span>
                                 {kind === 'area' ? (
                                     <textarea className={`${inp} resize-none`} rows={3} maxLength={1500} value={f[k]} onChange={set(k)} />
@@ -110,6 +117,7 @@ const Participate = () => {
                                 )}
                             </label>
                         ))}
+                        {type === 'donate' && <label className="block"><span className="block mb-2 text-sm font-bold text-gray-700 dark:text-gray-200">6. {lb.receipt} *</span><input id="donation-receipt" type="file" accept="image/*" capture="environment" required className={inp} /><small className="block mt-2 text-gray-500">{lb.camera}</small></label>}
                         <input type="text" name="website" value={f.website} onChange={set('website')} tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute opacity-0 pointer-events-none h-0 w-0" />
                         {st === 'fail' && <p className="text-center text-red-600 text-sm" role="alert">{lb.fail}</p>}
                         <button type="submit" disabled={st === 'sending'} className="btn-brand py-3 px-8 mx-auto inline-flex items-center gap-2 disabled:opacity-60">

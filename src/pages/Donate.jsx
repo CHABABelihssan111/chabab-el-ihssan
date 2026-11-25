@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { motion } from 'framer-motion';
@@ -44,6 +44,8 @@ const Donate = () => {
     const { t, language } = useLanguage();
     const lb = L[language] || L.ar;
     const [params] = useSearchParams();
+    const [donationOpen, setDonationOpen] = useState(true);
+    useEffect(() => { fetch('/feedback/donate.php', { cache: 'no-store' }).then(r => r.json()).then(j => setDonationOpen(j.open !== false)).catch(() => setDonationOpen(true)); }, []);
     const pay = settings.payment || {};
 
     // ?amount=3000 (envoyé par la section Ramadan) : on l'affiche
@@ -124,11 +126,11 @@ const Donate = () => {
                         </a>
                     </p>
 
-                    <div className="text-center">
+                    {donationOpen && <div className="text-center">
                         <Link to="/participate?type=donate" className="btn-brand py-3 px-8 inline-flex items-center justify-center gap-2">
                             {{ ar: 'املأ استمارة التبرع', fr: 'Remplir le formulaire de don', en: 'Fill in the donation form' }[language] || 'Donation form'}
                         </Link>
-                    </div>
+                    </div>}
 
                     {pay.iban_eur && (
                         <PayCard

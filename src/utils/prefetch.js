@@ -7,11 +7,9 @@ const ROUTES = {
   '/programs': () => import('../pages/ProgramsPage'),
   '/privacy-policy': () => import('../pages/PrivacyPolicy'),
   '/terms-of-use': () => import('../pages/TermsOfUse'),
-  '/report-problem': () => import('../pages/ReportProblem'),
   '/gallery': () => import('../pages/GalleryPage'),
   '/sadaqa-jariya': () => import('../pages/SadaqaJariya'),
   '/participate': () => import('../pages/Participate'),
-  '/feedback': () => import('../pages/FeedbackPage'),
 };
 const done = new Set();
 
