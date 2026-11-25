@@ -1,74 +1,99 @@
-# شباب الإحسان - إعدادات Apache/cPanel
+```apache
+# ==========================================
+# CHABAB EL IHSSAN - Apache / cPanel
+# ==========================================
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # --- إجبار https: شيل # من السطرين بعد ما يخدم SSL (قفل 🔒) ---
-     RewriteCond %{HTTPS} off
+  # HTTPS
+  RewriteCond %{HTTPS} off
   RewriteCond %{REQUEST_URI} !^/\.well-known/
   RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]
-  # --- OAuth تاع لوحة /admin (لازم قبل قاعدة React) ---
+
+  # OAuth - Admin
   RewriteRule ^oauth/auth/?$ /oauth/auth.php [L,QSA]
   RewriteRule ^oauth/callback/?$ /oauth/callback.php [L,QSA]
 
-  # --- توجيه صفحات React ---
+  # React / Vite routing
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^ /index.html [L]
 </IfModule>
 
-# --- ضغط الملفات ---
+
+# ==========================================
+# COMPRESSION
+# ==========================================
+
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/x-javascript application/json application/manifest+json image/svg+xml application/xml text/plain
 </IfModule>
 
-# --- Brotli (إن كان متوفرا على الخادم) ---
 <IfModule mod_brotli.c>
   AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/javascript application/javascript application/json image/svg+xml
 </IfModule>
 
-# --- أمان وكاش ---
+
+# ==========================================
+# SECURITY & CACHE
+# ==========================================
+
 <IfModule mod_headers.c>
+
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set X-Frame-Options "SAMEORIGIN"
-  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
-  # CSP: لا تُطبَّق على /oauth/ (callback.php يضع CSP خاصة به بـ nonce، وإلا يُمنع السكربت وتظهر صفحة بيضاء)
+
+  # Allow camera for receipt capture
+  Header always set Permissions-Policy "camera=(self), microphone=(), geolocation=(), payment=()"
+
+  # Content Security Policy
   <If "%{REQUEST_URI} !~ m#^/oauth/#">
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://api.github.com https://feeds.behold.so https://*.behold.so; frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com https://www.facebook.com https://web.facebook.com https://www.instagram.com https://www.openstreetmap.org https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://api.github.com https://feeds.behold.so https://*.behold.so; frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com https://www.facebook.com https://web.facebook.com https://www.instagram.com https://www.openstreetmap.org https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
   </If>
+
+  # Admin protection
   <If "%{REQUEST_URI} =~ m#^/admin/#">
     Header always set X-Robots-Tag "noindex, nofollow"
     Header always set Cache-Control "no-store"
   </If>
 
-  # ملفات assets (أسماؤها تتبدل مع كل build): كاش طويل
+  # Assets cache
   <FilesMatch "\.(js|css|woff2?)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
 
-  # ملفات لوحة الأدمن + sw.js: بلا كاش (باش التعديلات تظهر فورا)
+  # Admin files without cache
   <FilesMatch "^(admin|config|sw|stats|feedback)\.(js|css|yml)$">
     Header set Cache-Control "no-cache"
   </FilesMatch>
 
+  # Images cache
   <FilesMatch "\.(png|jpe?g|webp|svg|ico)$">
     Header set Cache-Control "public, max-age=2592000"
   </FilesMatch>
+
   <FilesMatch "^index\.html$">
     Header set Cache-Control "no-cache"
   </FilesMatch>
+
 </IfModule>
 
-# --- إخفاء ملف حالة رفع FTP ---
+
+# ==========================================
+# PROTECT SENSITIVE FILES
+# ==========================================
+
 <IfModule mod_authz_core.c>
+
   <Files ".ftp-deploy-sync-state.json">
     Require all denied
   </Files>
-</IfModule>
-# --- حماية ملف رسائل الزوار (الملاحظات والاستمارات) ---
-<IfModule mod_authz_core.c>
+
   <Files "cei-feedback.json">
     Require all denied
   </Files>
+
 </IfModule>
+```
