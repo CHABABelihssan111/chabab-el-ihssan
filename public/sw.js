@@ -20,9 +20,11 @@ self.addEventListener('install', (e) => {
         // قائمة ملفات البناء (يولّدها vite) : التطبيق + الرئيسية + التبرع + التطوع + الخطوط
         let built = [];
         try { built = (await (await fetch('/precache.json', { cache: 'reload' })).json()).files || []; } catch { /* dev */ }
-        await Promise.all([...CORE, ...built].map((u) =>
-          fetch(u, { cache: 'reload' }).then((r) => store(c, u, r)).catch(() => {})
-        ));
+        // CORE (صفحات HTML صغيرة) : نسخة جديدة دائماً. ملفات البناء أسماؤها بصمة : نستعمل كاش المتصفح فلا تُحمَّل مرتين.
+        await Promise.all([
+          ...CORE.map((u) => fetch(u, { cache: 'reload' }).then((r) => store(c, u, r)).catch(() => {})),
+          ...built.map((u) => fetch(u).then((r) => store(c, u, r)).catch(() => {})),
+        ]);
       })
       .then(() => self.skipWaiting())
   );

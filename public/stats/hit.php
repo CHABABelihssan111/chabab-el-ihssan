@@ -86,7 +86,7 @@ if ($dur > 0 && ($P['e'] ?? '') === '1') { // إشارة نهاية الجلسة
     }
 }
 ksort($d);
-if (count($d) > 800) $d = array_slice($d, -800, null, true);
+if (count($d) > 90) $d = array_slice($d, -90, null, true); // نحتفظ بآخر 90 يوماً فقط : يبقي الملف صغيراً وسريعاً
 ftruncate($fp, 0); rewind($fp);
 fwrite($fp, json_encode($d, JSON_UNESCAPED_UNICODE));
 fflush($fp); flock($fp, LOCK_UN); fclose($fp);
