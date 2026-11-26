@@ -39,6 +39,19 @@ const ScrollCue = ({ label, targetId }) => {
 };
 
 // Accueil : fond en fondu + zoom lent, texte à gauche/droite, pile de photos qui tournent.
+// Versions réduites (800 / 1200 px) des photos du diaporama, pour alléger le chargement sur téléphone.
+// Seules les photos listées ici ont des versions réduites ; toute autre photo (ajoutée plus tard depuis /admin) garde son fichier d'origine.
+const RESP = {
+    'img-mwwa8gvd7pt': [800, 1200], 'img-mwwa8p45rca': [800, 1200], 'hero-3': [800, 1200],
+    'img-mwwa91diadk': [800, 1200], 'hero-5': [800, 1200],
+};
+const respProps = (src) => {
+    const base = String(src).split('/').pop().replace(/\.webp$/, '');
+    const w = RESP[base];
+    if (!w) return {};
+    return { srcSet: [...w.map((x) => `/images/responsive/${base}-${x}.webp ${x}w`), `${src} 1600w`].join(', '), sizes: '100vw' };
+};
+
 const Hero = () => {
     const { language, t } = useLanguage();
     const [playing, setPlaying] = useState(false);
@@ -89,6 +102,7 @@ const Hero = () => {
                     <img
                         key={src}
                         src={src}
+                        {...respProps(src)}
                         alt=""
                         decoding="async"
                         loading={i === 0 ? 'eager' : 'lazy'}
@@ -147,7 +161,7 @@ const Hero = () => {
                                 style={cardStyle(i)}
                                 className="hero-card absolute inset-0 rounded-3xl overflow-hidden ring-[6px] ring-white/90 shadow-2xl"
                             >
-                                <img src={src} alt={i === idx ? t.hero_title : ''} decoding="async" loading={i < 2 ? 'eager' : 'lazy'} className="w-full h-full object-cover" />
+                                <img src={src} {...respProps(src)} alt={i === idx ? t.hero_title : ''} decoding="async" loading={i < 2 ? 'eager' : 'lazy'} className="w-full h-full object-cover" />
                             </button>
                         ))}
                         {hasVideo && (
