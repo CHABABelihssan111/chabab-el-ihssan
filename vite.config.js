@@ -13,6 +13,9 @@ const siteMeta = () => {
   const base = (process.env.SITE_URL || settings.site_url || '').replace(/\/+$/, '')
   // Logo : accepte une adresse complète OU un chemin local (ex. /images/logo.png)
   const logo = /^https?:/.test(settings.logo_url || '') ? settings.logo_url : base + (settings.logo_url || '')
+  // Preload the exact first hero image so Chrome discovers the LCP resource from HTML.
+  const media = JSON.parse(fs.readFileSync(new URL('./src/content/media.json', import.meta.url), 'utf8'))
+  const heroImage = media.heroImage || '/images/gallery/team/benevoles-en-route.webp'
   // Téléphone pour Google (JSON-LD) : premier numéro de phone_display, converti au format international
   const first = String(settings.phone_display || '').split('/')[0].replace(/\D/g, '')
   const phone = first ? '+213' + first.replace(/^0/, '') : ''
@@ -27,6 +30,7 @@ const siteMeta = () => {
       handler: (html) => html
         .replaceAll('__SITE_URL__', base)
         .replaceAll('__LOGO_URL__', logo)
+        .replaceAll('__HERO_IMAGE__', heroImage)
         .replaceAll('__PHONE__', phone)
         .replaceAll('__EMAIL__', settings.email || '')
         .replaceAll('__SAME_AS__', JSON.stringify(social)),
