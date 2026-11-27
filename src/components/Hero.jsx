@@ -93,7 +93,7 @@ const Hero = () => {
                         width="1280"
                         height="960"
                         decoding="async"
-                        fetchPriority={i === 0 ? 'high' : 'auto'}
+                        fetchPriority={i === 0 ? 'high' : 'low'}
                         loading={i === 0 ? 'eager' : 'lazy'}
                         className={`hero-bg ${i === idx ? 'is-on' : ''}`}
                         style={{ transformOrigin: KB[i % KB.length][0], '--kx': KB[i % KB.length][1], '--ky': KB[i % KB.length][2] }}
@@ -150,7 +150,7 @@ const Hero = () => {
                                 style={cardStyle(i)}
                                 className="hero-card absolute inset-0 rounded-3xl overflow-hidden ring-[6px] ring-white/90 shadow-2xl"
                             >
-                                <img src={src} alt={i === idx ? t.hero_title : ''} width="1280" height="960" decoding="async" fetchPriority={i === 0 ? 'high' : 'auto'} loading={i < 2 ? 'eager' : 'lazy'} className="w-full h-full object-cover" />
+                                <img src={src} alt={i === idx ? t.hero_title : ''} width="1280" height="960" decoding="async" fetchPriority={i === 0 ? 'high' : 'low'} loading={i === 0 ? 'eager' : 'lazy'} className="w-full h-full object-cover" />
                             </button>
                         ))}
                         {hasVideo && (
