@@ -33,7 +33,7 @@ const Splash = () => {
                             className="rounded-full bg-white p-4 shadow-2xl"
                             style={{ boxShadow: '0 0 0 5px #f2b705, 0 20px 50px rgba(0,0,0,.4)' }}
                         >
-                            <img src="/images/logo.png" alt="" className="w-28 h-28 sm:w-36 sm:h-36 object-contain" />
+                            <img src="/images/logo.png" alt="" width="220" height="249" decoding="async" className="w-28 h-28 sm:w-36 sm:h-36 object-contain" />
                         </motion.div>
                         <motion.span
                             initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.6 }}

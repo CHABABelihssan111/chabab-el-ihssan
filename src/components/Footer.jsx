@@ -103,7 +103,7 @@ const Footer = () => {
                 </div>
 
                 <div className="footer-brand">
-                    <img src="/images/logo-full.png" alt="شباب الإحسان" loading="lazy" decoding="async" className="footer-logo" />
+                    <img src="/images/logo-full.png" alt="شباب الإحسان" width="631" height="249" loading="lazy" decoding="async" className="footer-logo" />
                     <p className="mt-3 text-sm md:text-base text-white/75">{t.association_name}</p>
                 </div>
 
