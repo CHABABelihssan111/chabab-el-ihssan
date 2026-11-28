@@ -15,7 +15,7 @@
     var n = navigator, c = n.connection || {}, de = n.deviceMemory;
     var force = localStorage.getItem('lite');
     var weak =
-      (de && de <= 3) ||
+      (de && de <= 4) ||
       c.saveData ||
       /(^|-)2g$/.test(c.effectiveType || '') ||
       (!de && n.hardwareConcurrency && n.hardwareConcurrency <= 4 && /Android/i.test(n.userAgent));

@@ -682,3 +682,14 @@ html.lite .hero-card { box-shadow: none; }
 html.lite *,
 html.lite *::before,
 html.lite *::after { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+
+/* ===== Tous les téléphones (écran <= 768px) : on retire le plus lourd, même hors mode lite ===== */
+@media (max-width: 768px) {
+    .hero-blob, .hero-dot, .hero-vignette,
+    .hero::before, .hero > div[aria-hidden="true"]::after,
+    .hero-card::after, .hero-badge::after { display: none !important; }
+    .hero-bg.is-on { animation: none; }
+    .hero-tilt { animation: none; }
+    .hero-card { box-shadow: 0 10px 24px -12px rgba(0, 0, 0, .6); }
+    .hero, .hero * { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+}
