@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 // Écran d'accueil de 2 secondes aux couleurs de l'association
+const LITE = typeof document !== 'undefined' && document.documentElement.classList.contains('lite');
+
 const Splash = () => {
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(!LITE);
     useEffect(() => {
         const t = setTimeout(() => setShow(false), 1200);
         return () => clearTimeout(t);
     }, []);
+
+    if (LITE) return null;
 
     return (
         <AnimatePresence>
@@ -33,7 +37,7 @@ const Splash = () => {
                             className="rounded-full bg-white p-4 shadow-2xl"
                             style={{ boxShadow: '0 0 0 5px #f2b705, 0 20px 50px rgba(0,0,0,.4)' }}
                         >
-                            <img src="/images/logo.png" alt="" width="220" height="249" decoding="async" className="w-28 h-28 sm:w-36 sm:h-36 object-contain" />
+                            <img src="/images/logo.png" alt="" className="w-28 h-28 sm:w-36 sm:h-36 object-contain" />
                         </motion.div>
                         <motion.span
                             initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.6 }}

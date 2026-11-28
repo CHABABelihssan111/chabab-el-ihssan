@@ -660,3 +660,25 @@ html[data-ramadan="on"] .nav-glass { border-bottom: 2px solid #f2b705; box-shado
 html[data-ramadan="on"] .btn-brand { box-shadow: 0 0 0 0 rgba(242,183,5,.6); animation: ram-pulse 2.6s ease-in-out infinite; }
 @keyframes ram-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(242,183,5,0); } 50% { box-shadow: 0 0 18px 2px rgba(242,183,5,.55); } }
 @media (prefers-reduced-motion: reduce) { .ramadan-flame, html[data-ramadan="on"] .btn-brand { animation: none !important; } }
+
+/* ===== Mode léger : هواتف ضعيفة فقط ===== */
+html.lite .hero-blob,
+html.lite .hero-dot,
+html.lite .hero::before,
+html.lite .hero > div[aria-hidden="true"]::after,
+html.lite .hero-card::after,
+html.lite .hero-badge::after,
+html.lite .hero-vignette { display: none !important; }
+
+html.lite .hero-bg.is-on,
+html.lite .hero-tilt,
+html.lite .btn-pulse,
+html.lite .hero-mark,
+html.lite .heading-bar { animation: none !important; }
+
+html.lite .hero-mark { background-size: 100% .16em; filter: none; }
+html.lite .hero-card { box-shadow: none; }
+
+html.lite *,
+html.lite *::before,
+html.lite *::after { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }

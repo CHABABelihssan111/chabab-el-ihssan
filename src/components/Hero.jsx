@@ -2,7 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
 import { FaPlay, FaHandHoldingHeart, FaHandsHelping } from 'react-icons/fa';
-import { heroVideo, heroSlides } from '../data/media';
+import { heroVideo, heroSlides as allSlides } from '../data/media';
+
+// Mode léger : صورة واحدة فقط، بدون سلايدر ولا جزيئات
+const LITE = typeof document !== 'undefined' && document.documentElement.classList.contains('lite');
+const heroSlides = LITE ? allSlides.slice(0, 1) : allSlides;
 import VideoModal from './VideoModal';
 
 const INTERVAL = 5200;
@@ -93,7 +97,7 @@ const Hero = () => {
                         width="1280"
                         height="960"
                         decoding="async"
-                        fetchPriority={i === 0 ? 'high' : 'low'}
+                        fetchPriority={i === 0 ? 'high' : 'auto'}
                         loading={i === 0 ? 'eager' : 'lazy'}
                         className={`hero-bg ${i === idx ? 'is-on' : ''}`}
                         style={{ transformOrigin: KB[i % KB.length][0], '--kx': KB[i % KB.length][1], '--ky': KB[i % KB.length][2] }}
@@ -102,7 +106,7 @@ const Hero = () => {
                 <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(77,10,33,.94)_8%,rgba(122,16,52,.78)_55%,rgba(77,10,33,.55))]" />
                 <div className="hero-blob -top-24 -start-24 w-[26rem] h-[26rem] bg-[var(--brand-red)]" />
                 <div className="hero-blob top-1/2 -end-32 w-[24rem] h-[24rem] bg-[var(--brand-gold)] opacity-20" style={{ animationDelay: '-6s' }} />
-                {DOTS.map((d, i) => (
+                {!LITE && DOTS.map((d, i) => (
                     <i key={i} className="hero-dot" style={{ left: `${d.x}%`, width: d.s, height: d.s, animationDuration: `${d.d}s`, animationDelay: `${d.t}s` }} />
                 ))}
                 <div className="hero-vignette" />
@@ -150,7 +154,7 @@ const Hero = () => {
                                 style={cardStyle(i)}
                                 className="hero-card absolute inset-0 rounded-3xl overflow-hidden ring-[6px] ring-white/90 shadow-2xl"
                             >
-                                <img src={src} alt={i === idx ? t.hero_title : ''} width="1280" height="960" decoding="async" fetchPriority={i === 0 ? 'high' : 'low'} loading={i === 0 ? 'eager' : 'lazy'} className="w-full h-full object-cover" />
+                                <img src={src} alt={i === idx ? t.hero_title : ''} width="1280" height="960" decoding="async" fetchPriority={i === 0 ? 'high' : 'auto'} loading={i < 2 ? 'eager' : 'lazy'} className="w-full h-full object-cover" />
                             </button>
                         ))}
                         {hasVideo && (
@@ -164,7 +168,7 @@ const Hero = () => {
                             </button>
                         )}
                     </div>
-                    <div className="mt-8 flex gap-2 w-full max-w-xs" role="tablist">
+                    <div className={`mt-8 flex gap-2 w-full max-w-xs${LITE ? ' hidden' : ''}`} role="tablist">
                         {heroSlides.map((_, i) => (
                             <button key={i} type="button" role="tab" aria-selected={i === idx} aria-label={`${i + 1} / ${n}`} onClick={() => setIdx(i)} className="hero-bar">
                                 <i style={i === idx ? { animationDuration: `${INTERVAL}ms`, animationPlayState: paused ? 'paused' : 'running' } : undefined} className={i === idx ? 'on' : i < idx ? 'done' : ''} />
